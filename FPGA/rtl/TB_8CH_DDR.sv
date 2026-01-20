@@ -11,22 +11,22 @@ parameter                           CMOS_H_PIXEL               =  800  ;
 parameter                           CMOS_V_PIXEL               =  600  ;
 
 
-    wire                      [  31: 0]         ddr3_dq                     ;//DQ，4片 x16 DDR的数据线
+    wire                      [  31: 0]         ddr3_dq                     ;//DQ锛�4鐗� x16 DDR鐨勬暟鎹嚎
 
     wire                      [  13: 0]         ddr3_addr                   ;//Address
     wire                      [   2: 0]         ddr3_ba                     ;//Bank Address
 
-    wire                      [   3: 0]         ddr3_dqs_p                  ;//DQ Select，0,2,4,6分别为四片DDR的DQSL(Lower Byte)，
-    wire                      [   3: 0]         ddr3_dqs_n                  ;//1,3,5,7分别为四片DDR的DQSU(Upper Byte)
+    wire                      [   3: 0]         ddr3_dqs_p                  ;//DQ Select锛�0,2,4,6鍒嗗埆涓哄洓鐗嘍DR鐨凞QSL(Lower Byte)锛�
+    wire                      [   3: 0]         ddr3_dqs_n                  ;//1,3,5,7鍒嗗埆涓哄洓鐗嘍DR鐨凞QSU(Upper Byte)
 //Output with read data. Edge-aligned with read data.
 //Input with write data. Center-aligned to write data.
 
-    wire                      [   0: 0]         ddr3_ck_p                   ;//4片DR3共用ck、cke、odt、cs信号，故[0:0]
+    wire                      [   0: 0]         ddr3_ck_p                   ;//4鐗嘍R3鍏辩敤ck銆乧ke銆乷dt銆乧s淇″彿锛屾晠[0:0]
     wire                      [   0: 0]         ddr3_ck_n                   ;
 //differential clock inputs. All control and address input signals are sampled 
 //on the crossing of the positive edge of CK and the negative edge of CK#
 
-    wire                      [   3: 0]         ddr3_dm                     ;//Input Data Mask，0,2,4,6为DML，1,3,5,7为DMU
+    wire                      [   3: 0]         ddr3_dm                     ;//Input Data Mask锛�0,2,4,6涓篋ML锛�1,3,5,7涓篋MU
     wire                      [   0: 0]         ddr3_cke                    ;//Clock Enable
     wire                      [   0: 0]         ddr3_cs_n                   ;//Chip Select
     wire                                        ddr3_ras_n                  ;//Row Address Enable
@@ -34,19 +34,19 @@ parameter                           CMOS_V_PIXEL               =  600  ;
     wire                                        ddr3_we_n                   ;//Write Enable
     wire                      [   0: 0]         ddr3_odt                    ;//On-die termination enable
     wire                                        ddr3_reset_n                ;
-    // �����ź�
-    reg                                         rst                         ;// ��λ�ź�
-    reg                                         clk                         ;// ʱ���ź�
-    reg                       [   7: 0]         i_data_R   [7:0]            ;// 8bit ��������
-    reg                       [   7: 0]         i_data_G   [7:0]            ;// 8bit ��������
-    reg                       [   7: 0]         i_data_B   [7:0]            ;// 8bit ��������
+    // 锟斤拷锟斤拷锟脚猴拷
+    reg                                         rst                         ;// 锟斤拷位锟脚猴拷
+    reg                                         clk                         ;// 时锟斤拷锟脚猴拷
+    reg                       [   7: 0]         i_data_R   [7:0]            ;// 8bit 锟斤拷锟斤拷锟斤拷锟斤拷
+    reg                       [   7: 0]         i_data_G   [7:0]            ;// 8bit 锟斤拷锟斤拷锟斤拷锟斤拷
+    reg                       [   7: 0]         i_data_B   [7:0]            ;// 8bit 锟斤拷锟斤拷锟斤拷锟斤拷
 
-    reg                                         i_fval                      ;// ����Ч�ź�
-    reg                                         i_lval                      ;// ����Ч�ź�
+    reg                                         i_fval                      ;// 锟斤拷锟斤拷效锟脚猴拷
+    reg                                         i_lval                      ;// 锟斤拷锟斤拷效锟脚猴拷
     wire                      [   7: 0]         o_data_R   [7:0]            ;
     wire                      [   7: 0]         o_data_G   [7:0]            ;
     wire                      [   7: 0]         o_data_B   [7:0]            ;
-    // ����ź�???
+    // 锟斤拷锟斤拷藕锟�???
 
 
     wire                                        o_fval                      ;
@@ -90,7 +90,7 @@ parameter                           CMOS_V_PIXEL               =  600  ;
     integer                                     pixel_x                     ;
     integer                                     pixel_y                     ;
     integer                                     mem_index                   ;
-    integer                                     test1_file                  ;// 文件句柄
+    integer                                     test1_file                  ;// 鏂囦欢鍙ユ焺
     integer                                     test_a                      ;
     integer                                     frame                       ;
     integer                                     row                         ;
@@ -98,11 +98,11 @@ parameter                           CMOS_V_PIXEL               =  600  ;
 
 
 
-// 添加以下模块级变量声�????
-    reg [7:0] image_mem [0:H_DISP * V_DISP*3 - 1]; // 640x480=307200像素
+// 娣诲姞浠ヤ笅妯″潡绾у彉閲忓０锟�????
+    reg [7:0] image_mem [0:H_DISP * V_DISP*3 - 1]; // 640x480=307200鍍忕礌
 
     
-    reg [7:0] out_mem [0:H_DISP * V_DISP*3 - 1]; // 640x480=307200像素
+    reg [7:0] out_mem [0:H_DISP * V_DISP*3 - 1]; // 640x480=307200鍍忕礌
 
     
 
@@ -120,24 +120,24 @@ parameter                           CMOS_V_PIXEL               =  600  ;
 //        slv_agent.start_slave();
 //    end
 
-    // 在initial块开头添加文件读取操作（替换原有的随机数据生成部分）
+    // 鍦╥nitial鍧楀紑澶存坊鍔犳枃浠惰鍙栨搷浣滐紙鏇挎崲鍘熸湁鐨勯殢鏈烘暟鎹敓鎴愰儴鍒嗭級
     reg                                         ref_clk                     ;
     reg                                         sys_clk                     ;
 
-    // ʱ������
+    // 时锟斤拷锟斤拷锟斤拷
     initial begin
         clk = 0;
-        forever #5 clk = ~clk; // 100MHz ʱ��
+        forever #5 clk = ~clk; // 100MHz 时锟斤拷
     end
 
     initial begin
         ref_clk = 0;
-        forever #2.5 ref_clk = ~ref_clk; // 200MHz ʱ��
+        forever #2.5 ref_clk = ~ref_clk; // 200MHz 时锟斤拷
     end
 
     initial begin
         sys_clk = 0;
-        forever #1.25 sys_clk = ~sys_clk; // 400MHz ʱ��
+        forever #1.25 sys_clk = ~sys_clk; // 400MHz 时锟斤拷
     end
 
     reg                                         sys_rst                     ;
@@ -148,16 +148,16 @@ parameter                           CMOS_V_PIXEL               =  600  ;
         sys_rst = 0;
     end
 
-    // ���Թ���
+    // 锟斤拷锟皆癸拷锟斤拷
     initial begin
-        // 初始化存储器
+        // 鍒濆鍖栧瓨鍌ㄥ櫒
         $display("Loading image data...");
 
-        // 读取16进制数据到存储�?
+        // 璇诲彇16杩涘埗鏁版嵁鍒板瓨鍌拷?
         $readmemh("D:/EDA_Work_Space/Temp_WorkStack/3DNR/MATLAB/Bmp_2_rgb888.txt", image_mem);
         $display("Image loading complete");
     
-        // 保持原有的复位和初始化代�????
+        // 淇濇寔鍘熸湁鐨勫浣嶅拰鍒濆鍖栦唬锟�????
         rst = 1;
         i_data_R[0] = 8'b0;
         i_data_R[1] = 8'b0;
@@ -189,33 +189,33 @@ parameter                           CMOS_V_PIXEL               =  600  ;
 
         i_fval = 0;
         i_lval = 0;
-        // ... 原有其他初始化代�????
+        // ... 鍘熸湁鍏朵粬鍒濆鍖栦唬锟�????
 
-        // ��λ
+        // 锟斤拷位
         #2000;
         rst = 0;
         
-        wait (init_calib_complete);  // 卡在这里，直到条件为�?
+        wait (init_calib_complete);  // 鍗″湪杩欓噷锛岀洿鍒版潯浠朵负锟�?
 
     for (frame = 0; frame < 2; frame = frame + 1) begin
-        // ����Ч�ź�����
+        // 锟斤拷锟斤拷效锟脚猴拷锟斤拷锟斤拷
         i_fval = 1;
 
         for (row = 0; row < CMOS_V_PIXEL; row = row + 1) begin
 
-        // 修改数据生成部分的for循环
+        // 淇敼鏁版嵁鐢熸垚閮ㄥ垎鐨刦or寰幆
             for (col = 0; col < (CMOS_H_PIXEL * 3); col = col + 24) begin
 
                 if (col > ((CMOS_H_PIXEL - H_DISP) - 1) && col < (H_DISP + CMOS_H_PIXEL) && 
                     row > ((CMOS_V_PIXEL - V_DISP)/2 - 1) && row < (V_DISP + CMOS_V_PIXEL)/2) begin
                     
-                    // 计算有效像素索引
+                    // 璁＄畻鏈夋晥鍍忕礌绱㈠紩
                     pixel_x     =  col - ((CMOS_H_PIXEL - H_DISP))  ;
                     pixel_y     =  row - ((CMOS_V_PIXEL - V_DISP)/2);
                     mem_index   =  (pixel_y * H_DISP * 3) + pixel_x ;
                     i_lval      =  1                                ;        
             
-                    // 从存储器获取RGB888数据（大端格式）
+                    // 浠庡瓨鍌ㄥ櫒鑾峰彇RGB888鏁版嵁锛堝ぇ绔牸寮忥級
                     i_data_R[0] =  image_mem[mem_index + 3*0 + 0]   ;
                     i_data_R[1] =  image_mem[mem_index + 3*1 + 0]   ;
                     i_data_R[2] =  image_mem[mem_index + 3*2 + 0]   ;
@@ -262,10 +262,10 @@ parameter                           CMOS_V_PIXEL               =  600  ;
         $display("Testbench finished.");
     end
 
-    integer     file;      // 文件句柄
+    integer     file;      // 鏂囦欢鍙ユ焺
 
     initial begin
-        // 打开输出文件（自动覆盖旧文件�???
+        // 鎵撳紑杈撳嚭鏂囦欢锛堣嚜鍔ㄨ鐩栨棫鏂囦欢锟�???
         file = $fopen("D:/EDA_Work_Space/Temp_WorkStack/3DNR/MATLAB/rgb888_output.txt", "w");
         if (!file) begin
             $display("Error opening file!");
@@ -337,8 +337,8 @@ parameter                           CMOS_V_PIXEL               =  600  ;
                     $fdisplay(file,"%h",out_mem[a][7:0]);
                 end
                 $display("Write_Over!!");
-                                // 仿真结束前关闭文�???
-                #1000;          // 调整仿真时间为实际需�???
+                                // 浠跨湡缁撴潫鍓嶅叧闂枃锟�???
+                #1000;          // 璋冩暣浠跨湡鏃堕棿涓哄疄闄呴渶锟�???
                 $fclose(file);
                 $finish;
             end 
@@ -365,19 +365,19 @@ parameter                           CMOS_V_PIXEL               =  600  ;
     //////////////////////////////////////////
     //Data_in
     //////////////////////////////////////////
-        .i_data_R                                  (i_data_R                   ),// 输入数据
-        .i_data_G                                  (i_data_G                   ),// 输入数据
-        .i_data_B                                  (i_data_B                   ),// 输入数据
-        .i_fval                                    (i_fval                     ),// 输入的DVP帧有�???
-        .i_lval                                    (i_lval                     ),// 输入的DVP行有�???
+        .i_data_R                                  (i_data_R                   ),// 杈撳叆鏁版嵁
+        .i_data_G                                  (i_data_G                   ),// 杈撳叆鏁版嵁
+        .i_data_B                                  (i_data_B                   ),// 杈撳叆鏁版嵁
+        .i_fval                                    (i_fval                     ),// 杈撳叆鐨凞VP甯ф湁锟�???
+        .i_lval                                    (i_lval                     ),// 杈撳叆鐨凞VP琛屾湁锟�???
     //////////////////////////////////////////
     //Data_out:TFT_LCD
     //////////////////////////////////////////
-        .o_fval                                    (o_fval                     ),// 输出VGA帧有�???
-        .o_lval                                    (o_lval                     ),// 输出VGA行有�???
-        .o_data_R                                  (o_data_R                   ),// 后处理数据R 8bit
-        .o_data_G                                  (o_data_G                   ),// 后处理数据G 8bit
-        .o_data_B                                  (o_data_B                   ),// 后处理数据B 8bit
+        .o_fval                                    (o_fval                     ),// 杈撳嚭VGA甯ф湁锟�???
+        .o_lval                                    (o_lval                     ),// 杈撳嚭VGA琛屾湁锟�???
+        .o_data_R                                  (o_data_R                   ),// 鍚庡鐞嗘暟鎹甊 8bit
+        .o_data_G                                  (o_data_G                   ),// 鍚庡鐞嗘暟鎹瓽 8bit
+        .o_data_B                                  (o_data_B                   ),// 鍚庡鐞嗘暟鎹瓸 8bit
     //////////////////////////////////////////
     //DDR_Inteface
     //////////////////////////////////////////

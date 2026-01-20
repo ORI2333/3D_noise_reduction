@@ -1,0 +1,1059 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dF:/EngineeringWarehouse/NR/3D_noise_reduction/FPGA
+vmulti_bram
+Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z2 !s110 1768903337
+!i10b 1
+!s100 HUR3clE6XUa=2jK1Ij>bQ2
+I`U>CVaQQ0]jWV1S>8ccEY1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+Z4 !s105 _3DNR_8CH_sv_unit
+S1
+R0
+w1740895806
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_0_LUT_ROM.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_0_LUT_ROM.sv
+L0 1
+Z5 OL;L;10.5;63
+r1
+!s85 0
+31
+Z6 !s108 1768903337.000000
+Z7 !s107 F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_FWFT.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_64_24.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_24_64.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_3_to_1_MUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_1_to_3_DEMUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map_Subsys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_4_to_1_MUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_2_to_1_MUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_4_DEMUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_2_DEMUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_DDR_DMA.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_0_88_BRAM.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_Algorithm_sys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_Algorithm_Subsys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_1_Temporal_algorithm.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_Spatial_algorithm.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_8_8_BRAM.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_Calculator.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_LUT_Parameter.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_0_LUT_ROM.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Prefetch_generator.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller_Subsys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_3_BRAM_28port.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_2_Write_InterConnect.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_1_Read_InterConnect.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_MotionEstimate_ThresholdDetect.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_METD_8CH_Sys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_2_Max_reg_SAD_Vector.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_1_Addr_Gen.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_MBDS_8CH_SubSys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_MBDS_8CH.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_1_4p_add.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_0_8p_add.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_Mul_Channel_DDR.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_1_Mul_Channel_DDR_Rd_channel.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_Mul_Channel_DDR_Wr_channel.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_Transaction_Arbitor.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_Tran_Arbitor.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_0_Sort.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_2_FIFO_Stack.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_1_FC.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_0_FIFO_Alloc_Arbitor.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse_SubSys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\TB_8CH_DDR.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\MBDS_Counter.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\3DNR_8CH.sv|
+Z8 !s90 -sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\3DNR_8CH.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\MBDS_Counter.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\TB_8CH_DDR.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse_SubSys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_0_FIFO_Alloc_Arbitor.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_1_FC.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_2_FIFO_Stack.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_0_Sort.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_Tran_Arbitor.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_Transaction_Arbitor.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_Mul_Channel_DDR_Wr_channel.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_1_Mul_Channel_DDR_Rd_channel.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_Mul_Channel_DDR.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_0_8p_add.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_1_4p_add.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_MBDS_8CH.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_MBDS_8CH_SubSys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_1_Addr_Gen.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_2_Max_reg_SAD_Vector.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_METD_8CH_Sys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_MotionEstimate_ThresholdDetect.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_1_Read_InterConnect.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_2_Write_InterConnect.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_3_BRAM_28port.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller_Subsys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Prefetch_generator.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_0_LUT_ROM.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_LUT_Parameter.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_Calculator.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_8_8_BRAM.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_Spatial_algorithm.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_1_Temporal_algorithm.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_Algorithm_Subsys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_Algorithm_sys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_0_88_BRAM.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_DDR_DMA.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_2_DEMUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_4_DEMUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_2_to_1_MUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_4_to_1_MUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map_Subsys.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_1_to_3_DEMUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_3_to_1_MUX.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_24_64.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_64_24.sv|F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_FWFT.sv|
+!i113 0
+Z9 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 tCvgOpt 0
+vSync_FIFO
+R1
+R2
+!i10b 1
+!s100 zY4e>d3f]EnTe>dH6NlE@0
+IV9ReMiE>ZV=fcoR3R4j1f3
+R3
+R4
+S1
+R0
+w1740974502
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO.sv
+Z11 L0 23
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@sync_@f@i@f@o
+vSync_FIFO_24_64
+R1
+R2
+!i10b 1
+!s100 Fl9^fUMf5D^Cag>7UYG1g1
+IOigzG5SLaeSBd<?CP>UT62
+R3
+R4
+S1
+R0
+w1740307874
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_24_64.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_24_64.sv
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@sync_@f@i@f@o_24_64
+vSync_FIFO_64_24
+R1
+R2
+!i10b 1
+!s100 I2fQF0`egb?ZLB_S?=l<S0
+I6kC]FUW=Q_D4<]Dh5V8102
+R3
+R4
+S1
+R0
+w1740307954
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_64_24.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_64_24.sv
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@sync_@f@i@f@o_64_24
+vU0_SinglePulse
+R1
+R2
+!i10b 1
+!s100 d5CTND56En`:`6mH^LSNT3
+ImedmzVBd[z38:dZg9X3`h1
+R3
+R4
+S1
+R0
+w1739356274
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse.sv
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u0_@single@pulse
+vU0_SinglePulse_SubSys
+R1
+R2
+!i10b 1
+!s100 D81ZY9inN1dmlFRLD3O<;0
+I_O@CIdn2OU7V^^AfXz:KD2
+R3
+R4
+S1
+R0
+w1740155962
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse_SubSys.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U0_SinglePulse_SubSys.sv
+Z12 L0 26
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u0_@single@pulse_@sub@sys
+vU1_0_0_FIFO_Alloc_Arbitor
+R1
+R2
+!i10b 1
+!s100 XA[Fh8Olb8hJQ?Y]namz:1
+I2coQ@5gGRMA6UGRGJ:LJD0
+R3
+R4
+S1
+R0
+w1742698918
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_0_FIFO_Alloc_Arbitor.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_0_FIFO_Alloc_Arbitor.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_0_0_@f@i@f@o_@alloc_@arbitor
+vU1_0_1_FC
+R1
+R2
+!i10b 1
+!s100 Bg=Oo]cS_@<15;hYKJT[@3
+IbZk?1^oz<AO9SDOae`CT90
+R3
+R4
+S1
+R0
+w1742707074
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_1_FC.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_1_FC.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_0_1_@f@c
+vU1_0_3_0_0_Sort
+R1
+R2
+!i10b 1
+!s100 9?O2`UI9Df]RLn0Ac73dY2
+IB[Am;V;?NY]6^^cLHGcC;0
+R3
+R4
+S1
+R0
+w1742468696
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_0_Sort.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_0_Sort.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_0_3_0_0_@sort
+vU1_0_3_0_Tran_Arbitor
+R1
+R2
+!i10b 1
+!s100 5>0V;:<=JcF7:VWg6_AUT2
+IzMFhFonTPLj1A3YS9@L3e2
+R3
+R4
+S1
+R0
+w1742708323
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_Tran_Arbitor.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_0_Tran_Arbitor.sv
+L0 7
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_0_3_0_@tran_@arbitor
+vU1_0_3_Transaction_Arbitor
+R1
+R2
+!i10b 1
+!s100 z8Z:G8Fbl_:oW@nkMf?;<3
+IO8S_[Ql_6aRVHR=`X_Y6b2
+R3
+R4
+S1
+R0
+w1742708312
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_Transaction_Arbitor.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_3_Transaction_Arbitor.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_0_3_@transaction_@arbitor
+vU1_0_Mul_Channel_DDR_Rd_channel
+R1
+R2
+!i10b 1
+!s100 ]>0o>4?e^P4>B^>D:W=GM2
+IiD>3m3]^0QfRWL:@]YzId1
+R3
+R4
+S1
+R0
+w1743644506
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_1_Mul_Channel_DDR_Rd_channel.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_1_Mul_Channel_DDR_Rd_channel.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_0_@mul_@channel_@d@d@r_@rd_channel
+vU1_0_Mul_Channel_DDR_Wr_channel
+R1
+R2
+!i10b 1
+!s100 HV:;QH_GTk<PU<^4SemF]2
+Iee2=dXo5=SLN8=oMS[QUA3
+R3
+R4
+S1
+R0
+w1768473115
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_Mul_Channel_DDR_Wr_channel.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_0_Mul_Channel_DDR_Wr_channel.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_0_@mul_@channel_@d@d@r_@wr_channel
+vU1_Mul_Channel_DDR
+R1
+R2
+!i10b 1
+!s100 IA_DfdeW462Dde`H55K0M3
+I1XOWE>Em6RmbA8T<;V7gK0
+R3
+R4
+S1
+R0
+w1743644456
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_Mul_Channel_DDR.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U1_Mul_Channel_DDR.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u1_@mul_@channel_@d@d@r
+vU2_0_8p_add
+R1
+R2
+!i10b 1
+!s100 Hefl5n9LeTh`_^I?c7TbF1
+Iil5ogC04BD[OND_;L<MKL1
+R3
+R4
+S1
+R0
+w1742699351
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_0_8p_add.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_0_8p_add.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u2_0_8p_add
+vU2_1_4p_add
+R1
+R2
+!i10b 1
+!s100 o[^UQ:I:hVNO;]SLRDeBj3
+IlSKfdle`m<0zNFcI3E1`;3
+R3
+R4
+S1
+R0
+w1742708660
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_1_4p_add.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_1_4p_add.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u2_1_4p_add
+vU2_MBDS_8CH
+R1
+R2
+!i10b 1
+!s100 <3kcSd8OQE6Ab2OnVP94T3
+Ib]o_cE?<FSU;`7O3ck_]d3
+R3
+R4
+S1
+R0
+w1742703844
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_MBDS_8CH.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U2_MBDS_8CH.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u2_@m@b@d@s_8@c@h
+vU4_1_Addr_Gen
+R1
+R2
+!i10b 1
+!s100 McjB:2PO=WQfPfgno[G`m2
+I7Ze>Gm4e3iV;L3k@U1hgk2
+R3
+R4
+S1
+R0
+w1742002976
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_1_Addr_Gen.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_1_Addr_Gen.sv
+L0 27
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u4_1_@addr_@gen
+vU4_2_Max_reg_SAD_Vector
+R1
+R2
+!i10b 1
+!s100 Q@3>mb^TRGC1P5o[B@i`40
+IoV>n^LaZZgT;5CLWP87on1
+R3
+R4
+S1
+R0
+w1740195720
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_2_Max_reg_SAD_Vector.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_2_Max_reg_SAD_Vector.sv
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u4_2_@max_reg_@s@a@d_@vector
+vU4_ME_TD_Subsys
+R1
+R2
+!i10b 1
+!s100 jk>hP9NeFS]0K[Mz`nc?33
+IG9U`6MAYBZPOKPH]H@lL;0
+R3
+R4
+S1
+R0
+w1742807305
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_METD_8CH_Sys.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U4_METD_8CH_Sys.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u4_@m@e_@t@d_@subsys
+vU5_1_Read_InterConnect
+R1
+R2
+!i10b 1
+!s100 ^M`<Fz:j@0I^`l;8jUX]@1
+If0n5zACP3CER>R=2M_>gI0
+R3
+R4
+S1
+R0
+w1740062400
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_1_Read_InterConnect.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_1_Read_InterConnect.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u5_1_@read_@inter@connect
+vU5_2_Write_InterConnect
+R1
+R2
+!i10b 1
+!s100 P]dRAiaZ4KS4JBeRiE7`d2
+IJ_<f]Eaibj9CCF1iEC2`R1
+R3
+R4
+S1
+R0
+w1742711431
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_2_Write_InterConnect.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_2_Write_InterConnect.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u5_2_@write_@inter@connect
+vU5_3_BRAM_28port
+R1
+R2
+!i10b 1
+!s100 MYoP:`WY^^QdTmWRhz58l0
+IniKOZ@Gnb<1b1e8kI6GDc3
+R3
+R4
+S1
+R0
+w1742719467
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_3_BRAM_28port.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_3_BRAM_28port.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u5_3_@b@r@a@m_28port
+vU5_BRAM_Controller
+R1
+R2
+!i10b 1
+!s100 mL>?DS==965dJT>zl^FJ<2
+IBfGNlmLVz<0;TbO<]P4ge0
+R3
+R4
+S1
+R0
+w1742711198
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller.sv
+L0 28
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u5_@b@r@a@m_@controller
+vU5_BRAM_Controller_Subsys
+R1
+R2
+!i10b 1
+!s100 1AkThL_W`84lzZE`HHYBd2
+If<:EJDdQUni5aMY2LmKgn3
+R3
+R4
+S1
+R0
+w1742711625
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller_Subsys.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Controller_Subsys.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u5_@b@r@a@m_@controller_@subsys
+vU5_BRAM_Prefetch_generator
+R1
+R2
+!i10b 1
+!s100 j^ImV5Ld`H?TI;PFkeo6O0
+I0GbnXzT0E6M17_^CjXD?O3
+R3
+R4
+S1
+R0
+w1742708677
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Prefetch_generator.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U5_BRAM_Prefetch_generator.sv
+L0 3
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u5_@b@r@a@m_@prefetch_generator
+vU6_0_0_0_LUT_Parameter
+R1
+R2
+!i10b 1
+!s100 ?7LaWBP^0jJG<K]meo^Xn0
+IUHe3C0nI3GXm_QGIEkgTz0
+R3
+R4
+S1
+R0
+w1740895956
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_LUT_Parameter.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_0_0_LUT_Parameter.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u6_0_0_0_@l@u@t_@parameter
+vU6_0_8_8_BRAM
+R1
+R2
+!i10b 1
+!s100 CNCmWn@L7@lJnH4^IXfR<2
+I1EITabIBz2fcU1zdH<UBb3
+R3
+R4
+S1
+R0
+w1742719750
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_8_8_BRAM.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_8_8_BRAM.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u6_0_8_8_@b@r@a@m
+vU6_0_Spatial_algorithm
+R1
+R2
+!i10b 1
+!s100 jA>K`=P?KHjzOAAaGa[6z0
+I[hGnDf9dnZh4T[0=g75I^3
+R3
+R4
+S1
+R0
+w1742712139
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_Spatial_algorithm.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_0_Spatial_algorithm.sv
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u6_0_@spatial_algorithm
+vU6_1_Temporal_algorithm
+R1
+R2
+!i10b 1
+!s100 ^=4JD_9o>EDKA>jH@JIK53
+I@enngeYQ2CE0U6<=97P@T2
+R3
+R4
+S1
+R0
+w1742716633
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_1_Temporal_algorithm.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_1_Temporal_algorithm.sv
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u6_1_@temporal_algorithm
+vU6_Algorithm_sys
+R1
+R2
+!i10b 1
+!s100 CH=F7QI_2Hi0Y]PB8nXd^1
+IbOSHTT>hTnVLneXzVFR?Q3
+R3
+R4
+S1
+R0
+w1742720840
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_Algorithm_sys.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U6_Algorithm_sys.sv
+L0 33
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u6_@algorithm_sys
+vU7_0_8_8_BRAM
+R1
+R2
+!i10b 1
+!s100 >[PF72ROfTeZLV^YL=JJB2
+IH[jc?H]BL=4jNJfQUX<Sz1
+R3
+R4
+S1
+R0
+w1742721333
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_0_88_BRAM.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_0_88_BRAM.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u7_0_8_8_@b@r@a@m
+vU7_DDR_DMA
+R1
+R2
+!i10b 1
+!s100 F=0JW5N:CgH>@nkl=7[Zd0
+Ik0zYdA@h]>1O1zGFR2Bjb0
+R3
+R4
+S1
+R0
+w1742729490
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_DDR_DMA.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\U7_DDR_DMA.sv
+L0 38
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+n@u7_@d@d@r_@d@m@a
+vu_1_to_2_DEMUX
+R1
+R2
+!i10b 1
+!s100 j:]4hW>B?bHz3g0l26:S>1
+ImCfRO>8`@TCB8_[Q]IH9R0
+R3
+R4
+S1
+R0
+w1740040298
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_2_DEMUX.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_2_DEMUX.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_1_to_2_@d@e@m@u@x
+vu_1_to_4_DEMUX
+R1
+R2
+!i10b 1
+!s100 jB2zJaUMd]gTB[;O>LWzB1
+Io95GM5F_UCZM0S0TZTDQG2
+R3
+R4
+S1
+R0
+w1740040316
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_4_DEMUX.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_1_to_4_DEMUX.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_1_to_4_@d@e@m@u@x
+vu_2_to_1_MUX
+R1
+R2
+!i10b 1
+!s100 ^U:6^6kePF:ZD3>3bF9DX3
+I=XESM:0XX`[kQ00@RIDP70
+R3
+R4
+S1
+R0
+w1739528508
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_2_to_1_MUX.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_2_to_1_MUX.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_2_to_1_@m@u@x
+vu_4_to_1_MUX
+R1
+R2
+!i10b 1
+!s100 88HVNUF0T19X4KSAAg7KI1
+I0m65>3:SfDG`0YUjEK2a43
+R3
+R4
+S1
+R0
+w1740040326
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_4_to_1_MUX.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_4_to_1_MUX.sv
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_4_to_1_@m@u@x
+vu_Addr_Map
+R1
+R2
+!i10b 1
+!s100 NKU>L@QUGNVR`iJ85hJgI3
+IK0C2@InJW[T:Df0YFfSSS2
+R3
+R4
+S1
+R0
+w1742699401
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map.sv
+L0 3
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_@addr_@map
+vu_Addr_Map_Subsys
+R1
+R2
+!i10b 1
+!s100 62N2oJlP4`WTjm?l?>gU12
+IG]5gii[gal6QQmGLAA>MV2
+R3
+R4
+S1
+R0
+w1742360773
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map_Subsys.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Addr_Map_Subsys.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_@addr_@map_@subsys
+vu_OneHot_1_to_3_DEMUX
+R1
+R2
+!i10b 1
+!s100 WezoeH<<Lo[JDR465IEG?2
+IW6QAa]FoUD2^:eB5_]9o62
+R3
+R4
+S1
+R0
+w1742454155
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_1_to_3_DEMUX.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_1_to_3_DEMUX.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_@one@hot_1_to_3_@d@e@m@u@x
+vu_OneHot_3_to_1_MUX
+R1
+R2
+!i10b 1
+!s100 L@9NOihl@`<fVFIBZDa>C0
+I>S:><1azl8:Dd_31ASzOC0
+R3
+R4
+S1
+R0
+w1742481917
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_3_to_1_MUX.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_OneHot_3_to_1_MUX.sv
+R12
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_@one@hot_3_to_1_@m@u@x
+vu_Sync_FIFO_FWFT
+R1
+R2
+!i10b 1
+!s100 _9AE<2G<@^CN2bAbzKL<80
+I5QU@TfU:iAMMR=WC>4ZUd1
+R3
+R4
+S1
+R0
+w1742206676
+8F:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_FWFT.sv
+FF:\EngineeringWarehouse\NR\3D_noise_reduction\FPGA\rtl\u_Sync_FIFO_FWFT.sv
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R10
+nu_@sync_@f@i@f@o_@f@w@f@t

@@ -1,58 +1,14 @@
-                                        
-/**************************************************************
-/
-Project Name :UDP_TOP
-/
-Module : *.v or *.sv
-/
-Software : Vivado Vscode
-/
-Language : Verilog or SystemVerilog
-/
-/
-Author : Cheng.Zhonglin
-/
-Email : 15038154164@163.com
-/
-Telephone : 15038154164
-/
-Company : Aimuon
-/
-Engineer : FPGAer
-/
-/
-Create Time : 2024/11/4/22:57
-/
-/
-*****************************************************************
-/
-Module function: 3Dʱ������ȥ���㷨
-/
-/
-All Right Reserved
-/
-*****************************************************************
-/
-Modification History:
-/
-Date By Version Change Description
-/
------------------------------------------------------------------
-/
-Aimuon 1.0 Original
-/
-*****************************************************************/
 
 module DDD_Noise_8CH #(
-    parameter                           DDR_BASE_ADDR              = 0     ,//! DDR参�?�帧的存储地�?
-    parameter                           DATA_CHANNEL               = 8     ,
-    parameter                           WAIT                       = 10    ,//! 摄像头前x帧要舍弃
-    parameter                           CMOS_H_PIXEL               = 640   ,//! �?张图的宽
-    parameter                           CMOS_V_PIXEL               = 480   ,//! �?张图的高
-    parameter                           H_DISP                     = 480   ,//! 宽的有效像素
-    parameter                           V_DISP                     = 320   ,//! 高的有效像素
-    parameter                           MACROBLOCK_THREASHOLD      = 4095  ,//! 运动估计的阈�?
-    parameter                           TEMPORAL_CALCULATE_PARAM   = 16     //! 时域算法的参数：0-32
+    parameter                           DDR_BASE_ADDR              = 0     ,//32'h8000_0000
+    parameter                           DATA_CHANNEL               = 1     ,// channel number
+    parameter                           WAIT                       = 10    ,// wait cycles
+    parameter                           CMOS_H_PIXEL               = 640   ,// CMOS horizontal pixels
+    parameter                           CMOS_V_PIXEL               = 480   ,// CMOS vertical pixels
+    parameter                           H_DISP                     = 480   ,// display horizontal pixels
+    parameter                           V_DISP                     = 320   ,// display vertical pixels
+    parameter                           MACROBLOCK_THREASHOLD      = 4095  ,// macroblock threshold
+    parameter                           TEMPORAL_CALCULATE_PARAM   = 16     // temporal calculate parameter
 )
 (
     //////////////////////////////////////////
@@ -147,13 +103,27 @@ module DDD_Noise_8CH #(
     localparam                B_MATCH_ADDR                = DDR_BASE_ADDR + 32'h0200_0000   ;
     localparam                B_PROC_ADDR                 = DDR_BASE_ADDR + 32'h8200_0000   ;
 
-    localparam                IDLE                        = 3'b000          ;
-    localparam                FIRST_FRAME                 = 3'b001          ;
-    localparam                SECOND_FRAME                = 3'b011          ;
-    localparam                INIT_LOCAL_MAT              = 3'b010          ;
-    localparam                INIT_LOCAL_PROC             = 3'b110          ;
-    localparam                ME_TD                       = 3'b111          ;
-    localparam                ALGO                        = 3'b101          ;//算法处理期间要自动更新一行宏块缓�?
+    //---------------------------------------------------------------------------------------
+    // Top-level control FSM (frame pipeline)
+    //
+    // Flow (matches `F:\EngineeringWarehouse\NR\3DNR.docx`):
+    //   1) Write two consecutive frames into DDR.
+    //   2) Prefetch DDR data into local BRAM and run MBDS (macroblock + downsample preparation).
+    //   3) Run ME/TD (Motion Estimation / Temporal Decision) and prefetch next data chunk.
+    //   4) Run the denoise algorithm for one macroblock-row block (4 lines), output + writeback.
+    //
+    // Notes:
+    // - `wr_finish_clr` is a single-cycle pulse derived from `frame_in_finish` (end of an input frame).
+    // - `mbds_finish_flag`/`ME_TD_finish_flag` are completion flags from the corresponding subsystems.
+    // - `prefetch` is a level signal converted into `prefetch_pulse` by `U0_SinglePulse_SubSys`.
+    //---------------------------------------------------------------------------------------
+    localparam                IDLE                        = 3'b000          ; // Wait for `i_fval_pulse` (new frame start)
+    localparam                FIRST_FRAME                 = 3'b001          ; // Write 1st frame into DDR
+    localparam                SECOND_FRAME                = 3'b011          ; // Write 2nd frame into DDR
+    localparam                INIT_LOCAL_MAT              = 3'b010          ; // Init/localize "match/reference" data into BRAM (MBDS)
+    localparam                INIT_LOCAL_PROC             = 3'b110          ; // Init/localize "process/current" data into BRAM (MBDS)
+    localparam                ME_TD                       = 3'b111          ; // ME/TD for current macroblock-row; may trigger BRAM/DDR prefetch
+    localparam                ALGO                        = 3'b101          ; // Algorithm stage (process 4 lines, output + writeback) //缁犳纭舵径鍕倞閺堢喖妫跨憰浣藉殰閸斻劍娲块弬棰佺鐞涘苯鐣崸妤冪处閿燂拷?
 
 
     reg                                         status_wr_finish[2:0]       ;
@@ -321,42 +291,49 @@ module DDD_Noise_8CH #(
     always @(posedge clk ) begin
         if (~rst_n) begin
             cur_st                              <=          IDLE            ;
-        end 
+            prefetch                            <=          1'b0            ;
+        end
         else begin
             case (cur_st)
                 IDLE         : begin
+                    // Wait for frame-valid rising edge. This is the entry of the whole pipeline.
                     if (i_fval_pulse) begin
                         cur_st                  <=          FIRST_FRAME     ;
-                    end 
+                    end
                     else begin
                         cur_st                  <=          IDLE            ;
                     end
                 end
                 FIRST_FRAME  : begin
+                    // Write the 1st frame into DDR; advance when the frame write finishes.
                     if (wr_finish_clr) begin
                         cur_st                  <=          SECOND_FRAME    ;
-                    end 
+                    end
                     else begin
                         cur_st                  <=          FIRST_FRAME     ;
                     end
                 end
                 SECOND_FRAME : begin
+                    // Write the 2nd frame into DDR; after that, start local BRAM initialization (MBDS).
                     if (wr_finish_clr) begin
                         cur_st                  <=          INIT_LOCAL_MAT  ;
-                    end 
+                    end
                     else begin
-                        cur_st                  <=          SECOND_FRAME    ;    
+                        cur_st                  <=          SECOND_FRAME    ;
                     end
                 end
                 INIT_LOCAL_MAT: begin
+                    // Prefetch/init "match/reference" region into BRAM and generate macroblocks/downsample data.
                     if (mbds_finish_flag) begin
                         cur_st                  <=          INIT_LOCAL_PROC ;
-                    end 
+                    end
                     else begin
                         cur_st                  <=          INIT_LOCAL_MAT  ;
                     end
                 end
                 INIT_LOCAL_PROC: begin
+                    // Prefetch/init "process/current" region into BRAM and generate macroblocks/downsample data.
+                    // When ready, raise `prefetch` (converted to a pulse) and enter ME/TD.
                     if (mbds_finish_flag) begin
                         cur_st                  <=          ME_TD           ;
                         prefetch                <=          1'b1            ;
@@ -366,8 +343,11 @@ module DDD_Noise_8CH #(
                     end
                 end
                 ME_TD        : begin
+                    // Motion estimation / temporal decision for one macroblock-row step.
+                    // `prefetch` is lowered here to make a clean rising edge on the previous cycle.
                     prefetch                    <=          1'b0            ;
                     if (ME_TD_finish_flag) begin
+                        // After ME/TD finishes for the last horizontal chunk, start the algorithm stage.
                         if (METD_cnt == H_DISP/4 - 8) begin
                             cur_st              <=          ALGO            ;
                         end
@@ -380,15 +360,18 @@ module DDD_Noise_8CH #(
                     end
                 end
                 ALGO         : begin
+                    // Denoise algorithm stage. Processes one "block" (typically 4 lines) and outputs pixels.
                     if (o_frame_finish_pulse) begin
+                        // Pipeline re-enters frame capture for continuous streaming.
                         cur_st                  <=          FIRST_FRAME     ;
                     end
                     else if (o_line_transfer_finish_pulse) begin
+                        // One macroblock-row block finished; either end the frame or loop back to ME/TD.
                         if (algo_vcnt == V_DISP /4 - 1) begin
                             cur_st              <=          IDLE            ;
                         end
                         else begin
-                            cur_st              <=          ME_TD           ;    
+                            cur_st              <=          ME_TD           ;
                         end
                     end
                     else begin
@@ -708,25 +691,25 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
 //---------------------------------------------------------------------------------------
 // WR
 //---------------------------------------------------------------------------------------
-    .M_wr_req                                  (M_wr_req                   ),// !本地写请�?
-    .M_wr_granted                              (M_wr_granted               ),// !可接收一轮传�?
+    .M_wr_req                                  (M_wr_req                   ),// !閺堫剙婀撮崘娆掝嚞閿燂拷?
+    .M_wr_granted                              (M_wr_granted               ),// !閸欘垱甯撮弨鏈电鏉烆喕绱堕敓锟�?
     .M_wr_busy                                 (M_wr_busy                  ),
-    .M_wr_len                                  (M_wr_len                   ),// !写长度：单位打拍数量
-    .M_wr_addr                                 (M_wr_addr                  ),// !写地�?
-    .M_wr_din                                  (M_wr_din                   ),// !写数据输�?
-    .M_wr_dval                                 (M_wr_dval                  ),// !写数据有�?
-    .M_wr_finish                               (M_wr_finish                ),// !写完�?
+    .M_wr_len                                  (M_wr_len                   ),// !閸愭瑩鏆辨惔锔肩窗閸楁洑缍呴幍鎾村閺佷即鍣�
+    .M_wr_addr                                 (M_wr_addr                  ),// !閸愭瑥婀撮敓锟�?
+    .M_wr_din                                  (M_wr_din                   ),// !閸愭瑦鏆熼幑顔跨翻閿燂拷?
+    .M_wr_dval                                 (M_wr_dval                  ),// !閸愭瑦鏆熼幑顔芥箒閿燂拷?
+    .M_wr_finish                               (M_wr_finish                ),// !閸愭瑥鐣敓锟�?
 //---------------------------------------------------------------------------------------
 // RD
 //---------------------------------------------------------------------------------------
-    .M_rd_req                                  (M_rd_req                   ),// !本地读请�?
-    .M_rd_granted                              (M_rd_granted               ),// !可接收一轮传�?
+    .M_rd_req                                  (M_rd_req                   ),// !閺堫剙婀寸拠鏄忣嚞閿燂拷?
+    .M_rd_granted                              (M_rd_granted               ),// !閸欘垱甯撮弨鏈电鏉烆喕绱堕敓锟�?
     .M_rd_busy                                 (M_rd_busy                  ),
-    .M_rd_addr                                 (M_rd_addr                  ),// !读地�?
-    .M_rd_lenth                                (M_rd_lenth                 ),// !读长度：单位字节
-    .M_rd_dout                                 (M_rd_dout                  ),// !读数据输�?
-    .M_rd_dval                                 (M_rd_dval                  ),// !读数据有�?
-    .M_rd_finish                               (M_rd_finish                ),// !读事务完�?
+    .M_rd_addr                                 (M_rd_addr                  ),// !鐠囪婀撮敓锟�?
+    .M_rd_lenth                                (M_rd_lenth                 ),// !鐠囧鏆辨惔锔肩窗閸楁洑缍呯€涙濡�
+    .M_rd_dout                                 (M_rd_dout                  ),// !鐠囩粯鏆熼幑顔跨翻閿燂拷?
+    .M_rd_dval                                 (M_rd_dval                  ),// !鐠囩粯鏆熼幑顔芥箒閿燂拷?
+    .M_rd_finish                               (M_rd_finish                ),// !鐠囪绨ㄩ崝鈥崇暚閿燂拷?
 
 //////////////////////////////////////////
 //DDR_Inteface
@@ -895,7 +878,7 @@ u_U2_MBDS_8CH_Subsys(
             else if (cur_st == ME_TD && ME_TD_finish_flag) begin
                 bram_prefetch         <=        1'b1                        ;
                 bram_prefetch_type    <=         'b1                        ;
-                if (i_wr_MUX_reg) begin//process通道
+                if (i_wr_MUX_reg) begin//process闁岸浜�
                     g_pref_proc_vcnt  <=        g_pref_proc_vcnt + 8        ;
                 end
                 else begin
@@ -942,7 +925,7 @@ u_U2_MBDS_8CH_Subsys(
                         bram_prefetch_addr[i2]    <=        frame_proc_addr[i2] ;
                     end
                     else if (cur_st == ME_TD && ME_TD_finish_flag) begin
-                        if (i_wr_MUX_reg) begin//process通道
+                        if (i_wr_MUX_reg) begin//process闁岸浜�
                             bram_prefetch_addr[i2]<=        frame_proc_addr[i2] + g_pref_proc_vcnt * H_DISP * 3 ;
                         end
                         else begin
@@ -1004,22 +987,22 @@ U5_BRAM_Controller_Subsys u_U5_BRAM_Controller_Subsys(
 //
 //---------------------------------------------------------------------------------------
     .prefetch                                  (bram_prefetch              ),
-    .prefetch_type                             (bram_prefetch_type         ),// 0 为init模式 1�?4行读取模�?
+    .prefetch_type                             (bram_prefetch_type         ),// 0 娑撶nit濡€崇础 1閿燂拷?4鐞涘矁顕伴崣鏍侀敓锟�?
     .prefetch_addr                             (bram_prefetch_addr         ),
 //---------------------------------------------------------------------------------------
 //
 //---------------------------------------------------------------------------------------
-    .o_ena_dma_rd                              (o_ena_dma_rd               ),// ! 本地读请�?
-    .o_addr_dma_rd                             (o_addr_dma_rd              ),// ! 本地读地�?
-    .o_lenth_dma_rd                            (o_lenth_dma_rd             ),// ! 本地读长�?
-    .i_finish_dma_rd                           (i_finish_dma_rd            ),// ! 本地读完�?
+    .o_ena_dma_rd                              (o_ena_dma_rd               ),// ! 閺堫剙婀寸拠鏄忣嚞閿燂拷?
+    .o_addr_dma_rd                             (o_addr_dma_rd              ),// ! 閺堫剙婀寸拠璇叉勾閿燂拷?
+    .o_lenth_dma_rd                            (o_lenth_dma_rd             ),// ! 閺堫剙婀寸拠濠氭毐閿燂拷?
+    .i_finish_dma_rd                           (i_finish_dma_rd            ),// ! 閺堫剙婀寸拠璇茬暚閿燂拷?
 
 //---------------------------------------------------------------------------------------
 //
 //---------------------------------------------------------------------------------------
-    .i_wr_MUX_reg_r                            (i_wr_MUX_reg               ),// 1永远指向处理�?
-    .i_wr_MUX_reg_g                            (i_wr_MUX_reg               ),// 1永远指向处理�?
-    .i_wr_MUX_reg_b                            (i_wr_MUX_reg               ),// 1永远指向处理�?
+    .i_wr_MUX_reg_r                            (i_wr_MUX_reg               ),// 1濮樻瓕绻欓幐鍥ф倻婢跺嫮鎮婇敓锟�?
+    .i_wr_MUX_reg_g                            (i_wr_MUX_reg               ),// 1濮樻瓕绻欓幐鍥ф倻婢跺嫮鎮婇敓锟�?
+    .i_wr_MUX_reg_b                            (i_wr_MUX_reg               ),// 1濮樻瓕绻欓幐鍥ф倻婢跺嫮鎮婇敓锟�?
 //---------------------------------------------------------------------------------------
 //                                                                                     
 //---------------------------------------------------------------------------------------
@@ -1050,7 +1033,7 @@ U5_BRAM_Controller_Subsys u_U5_BRAM_Controller_Subsys(
 //-----------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------
-    .i_rd_MUX_reg                              (i_wr_MUX_reg               ),// 和wr的控制连接一条�?�道
+    .i_rd_MUX_reg                              (i_wr_MUX_reg               ),// 閸滃瘍r閻ㄥ嫭甯堕崚鎯扮箾閹恒儰绔撮弶鈽呮嫹?閿熶粙浜�
 
     .i_rd_type_R                               (R_rd_type_d                ),
     .i_rd_type_G                               (G_rd_type_d                ),
@@ -1257,11 +1240,11 @@ u_U6_Algorithm_Subsys(
 //
 //-----------------------------------------------------------------------
     .i_one_finish_clr                          (i_one_finish_clr           ),
-    .o_one_MB_finish                           (o_one_MB_finish            ),// �?个宏块完�?
+    .o_one_MB_finish                           (o_one_MB_finish            ),// 閿燂拷?娑擃亜鐣崸妤€鐣敓锟�?
 
     .o_image_out_start                         (o_image_out_start          ),
-    .o_line_transfer_finish_pulse              (o_line_transfer_finish_pulse),// 列完成和帧完成如果有效，则同时拉�?
-    .o_frame_finish_pulse                      (o_frame_finish_pulse       ),// ָ列完成和帧完成如果有效，则同时拉�?
+    .o_line_transfer_finish_pulse              (o_line_transfer_finish_pulse),// 閸掓鐣幋鎰嫲鐢冪暚閹存劕顩ч弸婊勬箒閺佸牞绱濋崚娆忔倱閺冭埖濯洪敓锟�?
+    .o_frame_finish_pulse                      (o_frame_finish_pulse       ),// 鎸囬崚妤€鐣幋鎰嫲鐢冪暚閹存劕顩ч弸婊勬箒閺佸牞绱濋崚娆忔倱閺冭埖濯洪敓锟�?
 //-----------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------
@@ -1361,30 +1344,30 @@ U7_DDR_DMA#(
     .CHANNEL_NUM                               (DATA_CHANNEL               )
 )
 u_U7_DDR_DMA(
-    .clk                                       (clk                        ),// ! 时钟
-    .rst                                       (rst                        ),// ! 复位
+    .clk                                       (clk                        ),// ! 閺冨爼鎸�
+    .rst                                       (rst                        ),// ! 婢跺秳缍�
     
-    .line_finish                               (o_image_out_start          ),// ! 驱动模块�?始与DDR写交�?
-    .frame_finish                              (o_frame_finish_pulse       ),// ! 算法模块完成了一整帧处理并发送，不用再工作，清除部分计数�?
-    .prefetch                                  (prefetch                   ),// ! 驱动模块�?始与DDR读交�?
+    .line_finish                               (o_image_out_start          ),// ! 妞瑰崬濮╁Ο鈥虫健閿燂拷?婵绗孌DR閸愭瑤姘﹂敓锟�?
+    .frame_finish                              (o_frame_finish_pulse       ),// ! 缁犳纭跺Ο鈥虫健鐎瑰本鍨氭禍鍡曠閺佹潙鎶氭径鍕倞楠炶泛褰傞柅渚婄礉娑撳秶鏁ら崘宥呬紣娴ｆ粣绱濆〒鍛存珟闁劌鍨庣拋鈩冩殶閿燂拷?
+    .prefetch                                  (prefetch                   ),// ! 妞瑰崬濮╁Ο鈥虫健閿燂拷?婵绗孌DR鐠囪姘﹂敓锟�?
     
-    .o_ena_dma_wr                              (o_ena_dma_wr               ),// ! 本地写请�?
-    .i_ddr_ready                               (i_ddr_ready                ),// ! DDR准备好接收写数据
-    .o_lenth_dma_wr                            (o_lenth_dma_wr             ),// ! 本地写长度：单位为打拍次�?
-    .o_addr_dma_wr                             (o_addr_dma_wr              ),// ! 本地写地�?
-    .o_data_dma_wr                             (o_data_dma_wr              ),// ! 本地写数�?
-    .o_d_val_dma_wr                            (o_d_val_dma_wr             ),// ! 本地写数据有�?
-    .o_dma_ddr_finish                          (o_dma_ddr_finish           ),// ! 本地写完�?
+    .o_ena_dma_wr                              (o_ena_dma_wr               ),// ! 閺堫剙婀撮崘娆掝嚞閿燂拷?
+    .i_ddr_ready                               (i_ddr_ready                ),// ! DDR閸戝棗顦總鑺ュ复閺€璺哄晸閺佺増宓�
+    .o_lenth_dma_wr                            (o_lenth_dma_wr             ),// ! 閺堫剙婀撮崘娆撴毐鎼达讣绱伴崡鏇氱秴娑撶儤澧﹂幏宥嗩偧閿燂拷?
+    .o_addr_dma_wr                             (o_addr_dma_wr              ),// ! 閺堫剙婀撮崘娆忔勾閿燂拷?
+    .o_data_dma_wr                             (o_data_dma_wr              ),// ! 閺堫剙婀撮崘娆愭殶閿燂拷?
+    .o_d_val_dma_wr                            (o_d_val_dma_wr             ),// ! 閺堫剙婀撮崘娆愭殶閹诡喗婀侀敓锟�?
+    .o_dma_ddr_finish                          (o_dma_ddr_finish           ),// ! 閺堫剙婀撮崘娆忕暚閿燂拷?
 
-    .o_ena_dma_rd                              (o_ena_pre_rd               ),// ! 本地读请�?
-    .o_addr_dma_rd                             (o_addr_pre_rd              ),// ! 本地读地�?
-    .o_lenth_dma_rd                            (o_lenth_pre_rd             ),// ! 本地读长�?
-    .i_data_dma_rd                             (i_data_pre_rd              ),// ! 本地读数�?
-    .i_d_val_dma_rd                            (i_d_val_pre_rd             ),// ! 本地读数据有�?
-    .i_finish_dma_rd                           (i_finish_pre_rd            ),// ! 本地读完�?
+    .o_ena_dma_rd                              (o_ena_pre_rd               ),// ! 閺堫剙婀寸拠鏄忣嚞閿燂拷?
+    .o_addr_dma_rd                             (o_addr_pre_rd              ),// ! 閺堫剙婀寸拠璇叉勾閿燂拷?
+    .o_lenth_dma_rd                            (o_lenth_pre_rd             ),// ! 閺堫剙婀寸拠濠氭毐閿燂拷?
+    .i_data_dma_rd                             (i_data_pre_rd              ),// ! 閺堫剙婀寸拠缁樻殶閿燂拷?
+    .i_d_val_dma_rd                            (i_d_val_pre_rd             ),// ! 閺堫剙婀寸拠缁樻殶閹诡喗婀侀敓锟�?
+    .i_finish_dma_rd                           (i_finish_pre_rd            ),// ! 閺堫剙婀寸拠璇茬暚閿燂拷?
 
-    .i_data                                    (i_data                     ),// ! 写请求后直接与写数据端口相连
-    .i_d_val                                   (o_lval                     ),// ! 写请求后直接与写数据有效相连
+    .i_data                                    (i_data                     ),// ! 閸愭瑨顕Ч鍌氭倵閻╁瓨甯存稉搴″晸閺佺増宓佺粩顖氬經閻╂瓕绻�
+    .i_d_val                                   (o_lval                     ),// ! 閸愭瑨顕Ч鍌氭倵閻╁瓨甯存稉搴″晸閺佺増宓侀張澶嬫櫏閻╂瓕绻�
 
     .i_proc_RAM_ena                            (o_rd_ena                   ),// ! 
     .i_proc_RAM_addr                           (o_rd_address               ),// ! 
