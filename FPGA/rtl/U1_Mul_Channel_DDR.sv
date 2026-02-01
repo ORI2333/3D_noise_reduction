@@ -1,65 +1,53 @@
 `timescale 1ns / 1ps 
-//****************************************VSCODE PLUG-IN**********************************// 
-//---------------------------------------------------------------------------------------- 
-// IDE :                   VSCODE      
-// VSCODE plug-in version: Verilog-Hdl-Format-2.4.20240526
-// VSCODE plug-in author : Jiang Percy 
-//---------------------------------------------------------------------------------------- 
-//****************************************Copyright (c)***********************************// 
-// Copyright(C)            COMPANY_NAME
-// All rights reserved      
-// File name:               
-// Last modified Date:     2025/03/14 09:10:23 
-// Last Version:           V1.0 
-// Descriptions:            
-//---------------------------------------------------------------------------------------- 
-// Created by:             USER_NAME
-// Created date:           2025/03/14 09:10:23 
-// Version:                V1.0 
-// TEXT NAME:              Mul_Channel_DDR.v 
-// PATH:                   D:\EDA_Work_Space\FPGA_Worker\3DNR\3DNR.srcs\sources_1\3D_Denoise\Mul_Channel_DDR.v 
-// Descriptions:            
-//                          
-//---------------------------------------------------------------------------------------- 
-//****************************************************************************************// 
+
 
 module U1_Mul_Channel_DDR(
     
+    //-----------------------------------------------------------------------------------
+    // Clocks / resets
+    // - `clk`            : local/system clock domain
+    // - `ui_clk`         : DDR/MIG user interface clock domain
+    // - `rst`            : reset for `clk` domain logic (active-high)
+    // - `ui_clk_sync_rst`: reset synced to `ui_clk` domain (active-high)
+    //-----------------------------------------------------------------------------------
     input                                       clk                         ,
     input                                       ui_clk                      ,
     input                                       rst                         ,
     input                                       ui_clk_sync_rst             ,
 //---------------------------------------------------------------------------------------
-// WR                                                                                    
+// Local write interface (3 channels)
+// Notes:
+// - Channel index meaning is project-defined (in this repo typically: [0]=R, [1]=G, [2]=B).
+// - `*_granted` indicates the request is accepted by the arbiter.
 //---------------------------------------------------------------------------------------
 
-    input                                       M_wr_req        [2:0]       ,//!本地写请�?
-    output wire                                 M_wr_granted    [2:0]       ,//!可接收一轮传�?
-    output wire                                 M_wr_busy       [2:0]       ,
-    input                     [  31: 0]         M_wr_len        [2:0]       ,//!写长度：单位打拍数量
-    input                     [  31: 0]         M_wr_addr       [2:0]       ,//!写地�?
-    input                     [  63: 0]         M_wr_din        [2:0]       ,//!写数据输�?
-    input                                       M_wr_dval       [2:0]       ,//!写数据有�?
-    input                                       M_wr_finish     [2:0]       ,//!写完�?
+    input                                       M_wr_req        [2:0]       ,// Local write request (per channel)
+    output wire                                 M_wr_granted    [2:0]       ,// Local write grant/accept (per channel)
+    output wire                                 M_wr_busy       [2:0]       ,// Local write busy (per channel)
+    input                     [  31: 0]         M_wr_len        [2:0]       ,// Local write length (per channel, units defined by WR engine)
+    input                     [  31: 0]         M_wr_addr       [2:0]       ,// Local write start address (per channel, byte address)
+    input                     [  63: 0]         M_wr_din        [2:0]       ,// Local write data (per channel)
+    input                                       M_wr_dval       [2:0]       ,// Local write data valid (per channel)
+    input                                       M_wr_finish     [2:0]       ,// Local write finished (per channel)
 
 
 //---------------------------------------------------------------------------------------
-// RD                                                                             
+// Local read interface (3 channels)
 //---------------------------------------------------------------------------------------
 
 
-    input                                       M_rd_req        [2:0]       ,//!本地读请�?
-    output wire                                 M_rd_granted    [2:0]       ,//!可接收一轮传�?
-    output wire                                 M_rd_busy       [2:0]       ,
-    input                     [  31: 0]         M_rd_addr       [2:0]       ,//!读地�?
-    input                     [  31: 0]         M_rd_lenth      [2:0]       ,//!读长度：单位字节
-    output                    [  63: 0]         M_rd_dout       [2:0]       ,//!读数据输�?
-    output wire                                 M_rd_dval       [2:0]       ,//!读数据有�?
-    output wire                                 M_rd_finish     [2:0]       , //!读事务完�?
+    input                                       M_rd_req        [2:0]       ,// Local read request (per channel)
+    output wire                                 M_rd_granted    [2:0]       ,// Local read grant/accept (per channel)
+    output wire                                 M_rd_busy       [2:0]       ,// Local read busy (per channel)
+    input                     [  31: 0]         M_rd_addr       [2:0]       ,// Local read start address (per channel, byte address)
+    input                     [  31: 0]         M_rd_lenth      [2:0]       ,// Local read length (per channel, bytes)
+    output                    [  63: 0]         M_rd_dout       [2:0]       ,// Local read data (per channel)
+    output wire                                 M_rd_dval       [2:0]       ,// Local read data valid (per channel)
+    output wire                                 M_rd_finish     [2:0]       ,// Local read finished (per channel)
 
-    //////////////////////////////////////////
-    //DDR_Inteface
-    //////////////////////////////////////////
+    //-----------------------------------------------------------------------------------
+    // DDR interface (AXI4 Master)
+    //-----------------------------------------------------------------------------------
   // Master Write Address
     output wire               [   5: 0]         M_AXI_AWID                  ,
     output wire               [  31: 0]         M_AXI_AWADDR                ,
@@ -119,14 +107,14 @@ U1_0_Mul_Channel_DDR_Wr_channel u_U1_0_Mul_Channel_DDR_Wr_channel(
     .rst                                       (rst                        ),
     .ui_clk_sync_rst                           (ui_clk_sync_rst            ),
 
-    .M_wr_req                                  (M_wr_req                   ),// !本地写请�?
-    .M_wr_granted                              (M_wr_granted               ),// !可接收一轮传�?
+    .M_wr_req                                  (M_wr_req                   ),// Local write request (3 channels)
+    .M_wr_granted                              (M_wr_granted               ),// Local write grant/accept (3 channels)
     .M_wr_busy                                 (M_wr_busy                  ),
-    .M_wr_len                                  (M_wr_len                   ),// !写长度：单位打拍数量
-    .M_wr_addr                                 (M_wr_addr                  ),// !写地�?
-    .M_wr_din                                  (M_wr_din                   ),// !写数据输�?
-    .M_wr_dval                                 (M_wr_dval                  ),// !写数据有�?
-    .M_wr_finish                               (M_wr_finish                ),// !写完�?
+    .M_wr_len                                  (M_wr_len                   ),// Local write length (3 channels)
+    .M_wr_addr                                 (M_wr_addr                  ),// Local write address (3 channels)
+    .M_wr_din                                  (M_wr_din                   ),// Local write data (3 channels)
+    .M_wr_dval                                 (M_wr_dval                  ),// Local write data valid (3 channels)
+    .M_wr_finish                               (M_wr_finish                ),// Local write finished (3 channels)
 //---------------------------------------------------------------------------
 // output AXI4_WR
 //---------------------------------------------------------------------------
@@ -159,7 +147,7 @@ U1_0_Mul_Channel_DDR_Wr_channel u_U1_0_Mul_Channel_DDR_Wr_channel(
 );
 
 //---------------------------------------------------------------------------------------
-// RD                                                                                    
+// RD
 //---------------------------------------------------------------------------------------
 
 U1_0_Mul_Channel_DDR_Rd_channel u_U1_0_Mul_Channel_DDR_Rd_channel(
@@ -168,18 +156,18 @@ U1_0_Mul_Channel_DDR_Rd_channel u_U1_0_Mul_Channel_DDR_Rd_channel(
     .rst                                       (rst                        ),
     .ui_clk_sync_rst                           (ui_clk_sync_rst            ),
 
-    .M_rd_req                                  (M_rd_req                   ),// !本地写请�?
-    .M_rd_granted                              (M_rd_granted               ),// !可接收一轮传�?
-    .M_rd_busy                                 (M_rd_busy                  ),// !
-    .M_rd_len                                  (M_rd_lenth                   ),// !写长度：单位打拍数量
-    .M_rd_addr                                 (M_rd_addr                  ),// !写地�?
-    .M_rd_dout                                 (M_rd_dout                  ),// !写数据输�?
-    .M_rd_dval                                 (M_rd_dval                  ),// !写数据有�?
-    .M_rd_finish                               (M_rd_finish                ),// !写完�?
+    .M_rd_req                                  (M_rd_req                   ),// Local read request (3 channels)
+    .M_rd_granted                              (M_rd_granted               ),// Local read grant/accept (3 channels)
+    .M_rd_busy                                 (M_rd_busy                  ),// Local read busy (3 channels)
+    .M_rd_len                                  (M_rd_lenth                 ),// Local read length (3 channels, bytes)
+    .M_rd_addr                                 (M_rd_addr                  ),// Local read address (3 channels)
+    .M_rd_dout                                 (M_rd_dout                  ),// Local read data (3 channels)
+    .M_rd_dval                                 (M_rd_dval                  ),// Local read data valid (3 channels)
+    .M_rd_finish                               (M_rd_finish                ),// Local read finished (3 channels)
 //---------------------------------------------------------------------------
-// output AXI4_WR
+// output AXI4_RD
 //---------------------------------------------------------------------------
-// Master Write Address
+// Master Read Address
     .M_AXI_ARID                                (M_AXI_ARID                 ),
     .M_AXI_ARADDR                              (M_AXI_ARADDR               ),
     .M_AXI_ARLEN                               (M_AXI_ARLEN                ),
@@ -192,7 +180,7 @@ U1_0_Mul_Channel_DDR_Rd_channel u_U1_0_Mul_Channel_DDR_Rd_channel(
     .M_AXI_ARUSER                              (M_AXI_ARUSER               ),
     .M_AXI_ARVALID                             (M_AXI_ARVALID              ),
     .M_AXI_ARREADY                             (M_AXI_ARREADY              ),
-// Master Write Data
+// Master Read Data
     .M_AXI_RID                                 (M_AXI_RID                  ),
     .M_AXI_RDATA                               (M_AXI_RDATA                ),
     .M_AXI_RRESP                               (M_AXI_RRESP                ),

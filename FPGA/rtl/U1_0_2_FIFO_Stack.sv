@@ -44,8 +44,8 @@ module U1_0_2_FIFO_Stack #(
 
     genvar          i       ;
 
-    generate
-        for (i = 0; i < FIFO_CH_NUM; i = i + 1) begin
+generate
+    for (i = 0; i < FIFO_CH_NUM; i = i + 1) begin
             u_Sync_FIFO_FWFT#(
                 .DATA_WIDTH                                (D_WIDTH                    ),
                 .DATA_DEPTH                                (D_DEPTH                    )
@@ -58,7 +58,7 @@ module U1_0_2_FIFO_Stack #(
                 .wr_en                                     (wr_ena[i]                  ),
                 .data_out                                  (rd_data[i]                 ) 
             );
-        end
+        
 
         always @(posedge clk ) begin
             if (rst) begin
@@ -76,7 +76,8 @@ module U1_0_2_FIFO_Stack #(
             end
         end
 
-    endgenerate
+    end
+endgenerate
 
 
 endmodule                                                          

@@ -22,27 +22,27 @@
 
 module    Sync_FIFO_24_64
 #(
-    parameter                           DATA_WIDTH         = 24    ,//FIFOλ��
-    parameter                           DATA_DEPTH         = 64     //FIFO���
+    parameter                           DATA_WIDTH         = 24    ,//FIFO位锟斤拷
+    parameter                           DATA_DEPTH         = 64     //FIFO锟斤拷锟�
 )
 (
-    input                               clk                        ,//ϵͳʱ��
-    input                               rst                        ,//�͵�ƽ��Ч�ĸ�λ�ź�
-    input              [DATA_WIDTH-1:0] data_in                    ,//д�������
-    input                               rd_en                      ,//��ʹ���źţ��ߵ�ƽ��Ч
-    input                               wr_en                      ,//дʹ���źţ��ߵ�ƽ��Ч
+    input                               clk                        ,//系统时锟斤拷
+    input                               rst                        ,//锟酵碉拷平锟斤拷效锟侥革拷位锟脚猴拷
+    input              [DATA_WIDTH-1:0] data_in                    ,//写锟斤拷锟斤拷锟斤拷锟�
+    input                               rd_en                      ,//锟斤拷使锟斤拷锟脚号ｏ拷锟竭碉拷平锟斤拷效
+    input                               wr_en                      ,//写使锟斤拷锟脚号ｏ拷锟竭碉拷平锟斤拷效
 						                                        
-    output reg                [  63: 0] data_out                   ,//���������
-    output                              empty                      ,//�ձ�־���ߵ�ƽ��ʾ��ǰFIFO�ѱ�д��
-    output                              full                       ,//����־���ߵ�ƽ��ʾ��ǰFIFO�ѱ�����
+    output reg                [  63: 0] data_out                   ,//锟斤拷锟斤拷锟斤拷锟斤拷锟�
+    output                              empty                      ,//锟秸憋拷志锟斤拷锟竭碉拷平锟斤拷示锟斤拷前FIFO锟窖憋拷写锟斤拷
+    output                              full                       ,//锟斤拷锟斤拷志锟斤拷锟竭碉拷平锟斤拷示锟斤拷前FIFO锟窖憋拷锟斤拷锟斤拷
     output                              almost_full                 
 );
 
 //reg define
-//�ö�ά����ʵ��RAM
+//锟矫讹拷维锟斤拷锟斤拷实锟斤拷RAM
     reg                       [   7: 0]         			  fifo_buffer[DATA_DEPTH-1:0] ;
-    reg                       [$clog2(DATA_DEPTH): 0]         wr_ptr                      ;//д��ַָ�룬λ����һλ	
-    reg                       [$clog2(DATA_DEPTH): 0]         rd_ptr                      ;//����ַָ�룬λ����һλ	
+    reg                       [$clog2(DATA_DEPTH): 0]         wr_ptr                      ;//写锟斤拷址指锟诫，位锟斤拷锟斤拷一位	
+    reg                       [$clog2(DATA_DEPTH): 0]         rd_ptr                      ;//锟斤拷锟斤拷址指锟诫，位锟斤拷锟斤拷一位	
  
     wire                      [$clog2(DATA_DEPTH)-1: 0]       wr_ptr_true                 ;
     wire                      [$clog2(DATA_DEPTH)-1: 0]       rd_ptr_true                 ;
@@ -101,9 +101,9 @@ end
 
 
 
-//д����,����д��ַ
+//写锟斤拷锟斤拷,锟斤拷锟斤拷写锟斤拷址
 always @ (posedge clk) begin
-	if (true_wr_en)begin//дʹ����Ч�ҷ���
+	if (true_wr_en)begin//写使锟斤拷锟斤拷效锟揭凤拷锟斤拷
 		fifo_buffer[wr_ptr_true + 2] <= data_in[23:16]			;
         fifo_buffer[wr_ptr_true + 1] <= data_in[15: 8]			;
 		fifo_buffer[wr_ptr_true    ] <= data_in[ 7: 0]			;
@@ -111,11 +111,11 @@ always @ (posedge clk) begin
 end
 
 
-//������,���¶���ַ
+//锟斤拷锟斤拷锟斤拷,锟斤拷锟铰讹拷锟斤拷址
 always @ (posedge clk or posedge rst) begin
 	if (rst)
         data_out 				<= 'd0                     		;
-	else if (true_rd_en) begin//��ʹ����Ч�ҷǿ�
+	else if (true_rd_en) begin//锟斤拷使锟斤拷锟斤拷效锟揭非匡拷
 		data_out[31: 0] 		<= {fifo_buffer[rd_ptr_true + 3],fifo_buffer[rd_ptr_true + 2],fifo_buffer[rd_ptr_true + 1],fifo_buffer[rd_ptr_true]    };
         data_out[63:32] 		<= {fifo_buffer[rd_ptr_true + 7],fifo_buffer[rd_ptr_true + 6],fifo_buffer[rd_ptr_true + 5],fifo_buffer[rd_ptr_true + 4]};
 	end

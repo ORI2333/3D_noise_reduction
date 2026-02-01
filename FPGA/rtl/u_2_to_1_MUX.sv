@@ -1,3 +1,4 @@
+// 2 to 1 Multiplexer
 module u_2_to_1_MUX #(
     parameter                 D_WIDTH                     = 1     
 

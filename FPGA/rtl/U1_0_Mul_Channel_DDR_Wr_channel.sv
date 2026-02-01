@@ -29,14 +29,14 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
     input                                       rst                         ,
     input                                       ui_clk_sync_rst             ,
 
-    input                                       M_wr_req      [2:0]         ,//!鏈湴鍐欒锟�?
-    output  wire                                M_wr_granted  [2:0]         ,//!鍙帴鏀朵竴杞紶锟�?
+    input                                       M_wr_req      [2:0]         ,//!閺堫剙婀撮崘娆掝嚞閿燂拷?
+    output  wire                                M_wr_granted  [2:0]         ,//!閸欘垱甯撮弨鏈电鏉烆喕绱堕敓锟�?
     output  wire                                M_wr_busy     [2:0]         ,
-    input                     [  31: 0]         M_wr_len      [2:0]         ,//!鍐欓暱搴︼細鍗曚綅鎵撴媿鏁伴噺
-    input                     [  31: 0]         M_wr_addr     [2:0]         ,//!鍐欏湴锟�?
-    input                     [  63: 0]         M_wr_din      [2:0]         ,//!鍐欐暟鎹緭锟�?
-    input                                       M_wr_dval     [2:0]         ,//!鍐欐暟鎹湁锟�?
-    input                                       M_wr_finish   [2:0]         ,//!鍐欏畬锟�?
+    input                     [  31: 0]         M_wr_len      [2:0]         ,//!閸愭瑩鏆辨惔锔肩窗閸楁洑缍呴幍鎾村閺佷即鍣�
+    input                     [  31: 0]         M_wr_addr     [2:0]         ,//!閸愭瑥婀撮敓锟�?
+    input                     [  63: 0]         M_wr_din      [2:0]         ,//!閸愭瑦鏆熼幑顔跨翻閿燂拷?
+    input                                       M_wr_dval     [2:0]         ,//!閸愭瑦鏆熼幑顔芥箒閿燂拷?
+    input                                       M_wr_finish   [2:0]         ,//!閸愭瑥鐣敓锟�?
 
 
 //---------------------------------------------------------------------------
@@ -92,7 +92,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
     wire                      [  19: 0]         trans_cnt  [2:0]            ;
     wire                      [   6: 0]         fifo_cnt   [2:0]            ;
     wire                                        rd_ena     [2:0]            ;
-    wire                      [ 255: 0]         rd_data    [2:0]            ;
+    wire                      [  63: 0]         rd_data    [2:0]            ;
     wire                      [  63: 0]         S_wr_data  [2:0]            ;
     wire                                        S_wr_dval  [2:0]            ;
     wire                                        grant0_d                    ;
@@ -151,7 +151,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
 
     generate
         for (i = 0; i < 3; i = i + 1) begin
-            always @(posedge clk ) begin//杩欓噷瀵勫瓨鐨勬槸MM涓绘満鐨勫彿
+            always @(posedge clk ) begin//鏉╂瑩鍣风€靛嫬鐡ㄩ惃鍕ЦMM娑撶粯婧€閻ㄥ嫬褰�
                 if (rst) begin
                     FIFO_Transaction_tmp_Addr[i]      <=      'b0                         ;
                     FIFO_Transaction_tmp_Len[i]       <=      'b0                         ;
@@ -168,7 +168,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
                 end
             end
 
-            always @(posedge clk ) begin//杩欓噷瀵勫瓨鐨勬槸缁忚繃鍒嗛厤鍚庣殑FIFO锟�?
+            always @(posedge clk ) begin//鏉╂瑩鍣风€靛嫬鐡ㄩ惃鍕Ц缂佸繗绻冮崚鍡涘帳閸氬海娈慒IFO閿燂拷?
                 if (rst) begin
                     FIFO_Transaction_Len[i]           <=      'b0                         ;
                     FIFO_Transaction_Addr[i]          <=      'b0                         ;
@@ -206,7 +206,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
 
 
 //---------------------------------------------------------------------------------------
-// FIFO璋冨害浠茶锛岃礋璐ｇ粰浜嬪姟鎺ュ彛鍒嗛厤FIFO
+// FIFO鐠嬪啫瀹虫禒鑼额梿閿涘矁绀嬬拹锝囩舶娴滃濮熼幒銉ュ經閸掑棝鍘IFO
 //---------------------------------------------------------------------------------------
 
     U1_0_0_FIFO_Alloc_Arbitor u_U1_0_0_FIFO_Alloc_Arbitor(
@@ -223,14 +223,8 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
         .grant1_d                                  (M_wr_granted[1]            ),
         .grant2_d                                  (M_wr_granted[2]            ),
         .o_dval_r                                  (o_dval_r                   ),
-        .granted_fifo_id                           (granted_fifo_id            ) //缁欐瘡涓拷?锟介亾涓绘満鍒嗛厤鐨凢IFO锟�?
+        .granted_fifo_id                           (granted_fifo_id            ) //缂佹瑦鐦℃稉顏庢嫹?閿熶粙浜炬稉缁樻簚閸掑棝鍘ら惃鍑FO閿燂拷?
     );
-
-
-//---------------------------------------------------------------------------------------
-// 鍏ㄨ繛鎺ュ眰锛岀敤浜庤繛鎺IFO
-//---------------------------------------------------------------------------------------
-
 
     U1_0_1_FC#(
         .D_WIDTH                                   (64                         ),
@@ -241,17 +235,11 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
         .rst                                       (rst                        ),
         .granted_ena                               ({M_wr_granted[2],M_wr_granted[1],M_wr_granted[0]}),
         .granted_fifo_id                           (granted_fifo_id            ),
-        .M_wr_din                                  (M_wr_din                   ),// !鍐欐暟鎹緭锟�?
-        .M_wr_dval                                 (M_wr_dval                  ),// !鍐欐暟鎹湁锟�?
+        .M_wr_din                                  (M_wr_din                   ),// !閸愭瑦鏆熼幑顔跨翻閿燂拷?
+        .M_wr_dval                                 (M_wr_dval                  ),// !閸愭瑦鏆熼幑顔芥箒閿燂拷?
         .S_wr_data                                 (S_wr_data                  ),
-        .S_wr_dval                                 (S_wr_dval                  ) //缁橣IFO鐨勮緭鍏ヤ娇锟�?
+        .S_wr_dval                                 (S_wr_dval                  ) //缂佹IFO閻ㄥ嫯绶崗銉ゅ▏閿燂拷?
     );
-
-
-//---------------------------------------------------------------------------------------
-// FIFO鏍堬紝缂撳瓨鏁版嵁锟�?
-//---------------------------------------------------------------------------------------
-
 
 
     U1_0_2_FIFO_Stack#(
@@ -281,7 +269,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
      u_u_OneHot_3_to_1_MUX(
         .select_info                               (select_mux                 ),
         .d_in                                      (rd_data                    ),
-        .d_out                                     (M_AXI_WDATA                ) //锟�?缁堢殑杈撳嚭
+        .d_out                                     (M_AXI_WDATA                ) //閿燂拷?缂佸牏娈戞潏鎾冲毉
     );
 
     u_OneHot_1_to_3_DEMUX#(
@@ -296,7 +284,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
 
 
 //---------------------------------------------------------------------------------------
-// 鏃跺簭鍚姩涓嶧IFO閫夊彇鐨勪徊瑁佹ā锟�?1
+// 閺冭泛绨崥顖氬З娑撳锭IFO闁褰囬惃鍕緤鐟佷焦膩閿燂拷?1
 //---------------------------------------------------------------------------------------
 
 
@@ -307,20 +295,20 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
         .clk                                       (ui_clk                     ),
         .rst                                       (ui_clk_sync_rst            ),
 
-        .FIFO_lenth                                (FIFO_Transaction_Len       ),// 绯荤粺淇℃伅
-        .FIFO_granted                              (FIFO_Granted_status        ),// 绯荤粺淇℃伅
+        .FIFO_lenth                                (FIFO_Transaction_Len       ),// 缁崵绮烘穱鈩冧紖
+        .FIFO_granted                              (FIFO_Granted_status        ),// 缁崵绮烘穱鈩冧紖
         .FIFO_stack_cnt                            (fifo_cnt                   ),
         .trans_cnt                                 (trans_cnt                  ),
 
         .last_transaction                          (last_transaction           ),
-        .select_mux                                (select_mux                 ),//閫夋嫨FIFO
+        .select_mux                                (select_mux                 ),//闁瀚‵IFO
         .start_wr                                  (start_wr                   ),
         .transaction_finish                        (transaction_finish         ) //input
     );
 
 
 //---------------------------------------------------------------------------------------
-// 鏃跺簭鍙戠敓锟�?                                                                                    
+// 閺冭泛绨崣鎴犳晸閿燂拷?                                                                                    
 //---------------------------------------------------------------------------------------
 
 

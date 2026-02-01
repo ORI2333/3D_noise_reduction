@@ -1,7 +1,7 @@
 
 module DDD_Noise_8CH #(
     parameter                           DDR_BASE_ADDR              = 0     ,//32'h8000_0000
-    parameter                           DATA_CHANNEL               = 1     ,// channel number
+    parameter                           DATA_CHANNEL               = 8     ,// channel number
     parameter                           WAIT                       = 10    ,// wait cycles
     parameter                           CMOS_H_PIXEL               = 640   ,// CMOS horizontal pixels
     parameter                           CMOS_V_PIXEL               = 480   ,// CMOS vertical pixels
@@ -123,7 +123,7 @@ module DDD_Noise_8CH #(
     localparam                INIT_LOCAL_MAT              = 3'b010          ; // Init/localize "match/reference" data into BRAM (MBDS)
     localparam                INIT_LOCAL_PROC             = 3'b110          ; // Init/localize "process/current" data into BRAM (MBDS)
     localparam                ME_TD                       = 3'b111          ; // ME/TD for current macroblock-row; may trigger BRAM/DDR prefetch
-    localparam                ALGO                        = 3'b101          ; // Algorithm stage (process 4 lines, output + writeback) //缁犳纭舵径鍕倞閺堢喖妫跨憰浣藉殰閸斻劍娲块弬棰佺鐞涘苯鐣崸妤冪处閿燂拷?
+    localparam                ALGO                        = 3'b101          ; // Algorithm stage (process 4 lines, output + writeback) //缂佺姵顨嗙涵鑸靛緞閸曨厽鍊為柡鍫㈠枛濡法鎲版担钘夋闁告柣鍔嶅ú鍧楀棘妫颁胶顏遍悶娑樿嫰閻ｎ垶宕稿Δ鍐闁跨噦鎷�?
 
 
     reg                                         status_wr_finish[2:0]       ;
@@ -691,25 +691,25 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
 //---------------------------------------------------------------------------------------
 // WR
 //---------------------------------------------------------------------------------------
-    .M_wr_req                                  (M_wr_req                   ),// !閺堫剙婀撮崘娆掝嚞閿燂拷?
-    .M_wr_granted                              (M_wr_granted               ),// !閸欘垱甯撮弨鏈电鏉烆喕绱堕敓锟�?
+    .M_wr_req                                  (M_wr_req                   ),
+    .M_wr_granted                              (M_wr_granted               ),
     .M_wr_busy                                 (M_wr_busy                  ),
-    .M_wr_len                                  (M_wr_len                   ),// !閸愭瑩鏆辨惔锔肩窗閸楁洑缍呴幍鎾村閺佷即鍣�
-    .M_wr_addr                                 (M_wr_addr                  ),// !閸愭瑥婀撮敓锟�?
-    .M_wr_din                                  (M_wr_din                   ),// !閸愭瑦鏆熼幑顔跨翻閿燂拷?
-    .M_wr_dval                                 (M_wr_dval                  ),// !閸愭瑦鏆熼幑顔芥箒閿燂拷?
-    .M_wr_finish                               (M_wr_finish                ),// !閸愭瑥鐣敓锟�?
+    .M_wr_len                                  (M_wr_len                   ),
+    .M_wr_addr                                 (M_wr_addr                  ),
+    .M_wr_din                                  (M_wr_din                   ),
+    .M_wr_dval                                 (M_wr_dval                  ),
+    .M_wr_finish                               (M_wr_finish                ),
 //---------------------------------------------------------------------------------------
 // RD
 //---------------------------------------------------------------------------------------
-    .M_rd_req                                  (M_rd_req                   ),// !閺堫剙婀寸拠鏄忣嚞閿燂拷?
-    .M_rd_granted                              (M_rd_granted               ),// !閸欘垱甯撮弨鏈电鏉烆喕绱堕敓锟�?
+    .M_rd_req                                  (M_rd_req                   ),
+    .M_rd_granted                              (M_rd_granted               ),
     .M_rd_busy                                 (M_rd_busy                  ),
-    .M_rd_addr                                 (M_rd_addr                  ),// !鐠囪婀撮敓锟�?
-    .M_rd_lenth                                (M_rd_lenth                 ),// !鐠囧鏆辨惔锔肩窗閸楁洑缍呯€涙濡�
-    .M_rd_dout                                 (M_rd_dout                  ),// !鐠囩粯鏆熼幑顔跨翻閿燂拷?
-    .M_rd_dval                                 (M_rd_dval                  ),// !鐠囩粯鏆熼幑顔芥箒閿燂拷?
-    .M_rd_finish                               (M_rd_finish                ),// !鐠囪绨ㄩ崝鈥崇暚閿燂拷?
+    .M_rd_addr                                 (M_rd_addr                  ),
+    .M_rd_lenth                                (M_rd_lenth                 ),
+    .M_rd_dout                                 (M_rd_dout                  ),
+    .M_rd_dval                                 (M_rd_dval                  ),
+    .M_rd_finish                               (M_rd_finish                ),
 
 //////////////////////////////////////////
 //DDR_Inteface
@@ -878,7 +878,7 @@ u_U2_MBDS_8CH_Subsys(
             else if (cur_st == ME_TD && ME_TD_finish_flag) begin
                 bram_prefetch         <=        1'b1                        ;
                 bram_prefetch_type    <=         'b1                        ;
-                if (i_wr_MUX_reg) begin//process闁岸浜�
+                if (i_wr_MUX_reg) begin//process闂侇偅宀告禍锟�
                     g_pref_proc_vcnt  <=        g_pref_proc_vcnt + 8        ;
                 end
                 else begin
@@ -925,7 +925,7 @@ u_U2_MBDS_8CH_Subsys(
                         bram_prefetch_addr[i2]    <=        frame_proc_addr[i2] ;
                     end
                     else if (cur_st == ME_TD && ME_TD_finish_flag) begin
-                        if (i_wr_MUX_reg) begin//process闁岸浜�
+                        if (i_wr_MUX_reg) begin//process闂侇偅宀告禍锟�
                             bram_prefetch_addr[i2]<=        frame_proc_addr[i2] + g_pref_proc_vcnt * H_DISP * 3 ;
                         end
                         else begin
@@ -987,22 +987,22 @@ U5_BRAM_Controller_Subsys u_U5_BRAM_Controller_Subsys(
 //
 //---------------------------------------------------------------------------------------
     .prefetch                                  (bram_prefetch              ),
-    .prefetch_type                             (bram_prefetch_type         ),// 0 娑撶nit濡€崇础 1閿燂拷?4鐞涘矁顕伴崣鏍侀敓锟�?
+    .prefetch_type                             (bram_prefetch_type         ),// 0 濞戞挾顕磏it婵☆垪鈧磭纭€ 1闁跨噦鎷�?4閻炴稑鐭侀浼村矗閺嶎煂渚€鏁撻敓锟�?
     .prefetch_addr                             (bram_prefetch_addr         ),
 //---------------------------------------------------------------------------------------
 //
 //---------------------------------------------------------------------------------------
-    .o_ena_dma_rd                              (o_ena_dma_rd               ),// ! 閺堫剙婀寸拠鏄忣嚞閿燂拷?
-    .o_addr_dma_rd                             (o_addr_dma_rd              ),// ! 閺堫剙婀寸拠璇叉勾閿燂拷?
-    .o_lenth_dma_rd                            (o_lenth_dma_rd             ),// ! 閺堫剙婀寸拠濠氭毐閿燂拷?
-    .i_finish_dma_rd                           (i_finish_dma_rd            ),// ! 閺堫剙婀寸拠璇茬暚閿燂拷?
+    .o_ena_dma_rd                              (o_ena_dma_rd               ),// ! 闁哄牜鍓欏﹢瀵告嫚閺勫浚鍤為柨鐕傛嫹?
+    .o_addr_dma_rd                             (o_addr_dma_rd              ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囧弶鍕鹃柨鐕傛嫹?
+    .o_lenth_dma_rd                            (o_lenth_dma_rd             ),// ! 闁哄牜鍓欏﹢瀵告嫚婵犳碍姣愰柨鐕傛嫹?
+    .i_finish_dma_rd                           (i_finish_dma_rd            ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囪尙鏆氶柨鐕傛嫹?
 
 //---------------------------------------------------------------------------------------
 //
 //---------------------------------------------------------------------------------------
-    .i_wr_MUX_reg_r                            (i_wr_MUX_reg               ),// 1濮樻瓕绻欓幐鍥ф倻婢跺嫮鎮婇敓锟�?
-    .i_wr_MUX_reg_g                            (i_wr_MUX_reg               ),// 1濮樻瓕绻欓幐鍥ф倻婢跺嫮鎮婇敓锟�?
-    .i_wr_MUX_reg_b                            (i_wr_MUX_reg               ),// 1濮樻瓕绻欓幐鍥ф倻婢跺嫮鎮婇敓锟�?
+    .i_wr_MUX_reg_r                            (i_wr_MUX_reg               ),// 1婵ɑ鐡曠换娆撳箰閸パ勫€诲璺哄閹﹪鏁撻敓锟�?
+    .i_wr_MUX_reg_g                            (i_wr_MUX_reg               ),// 1婵ɑ鐡曠换娆撳箰閸パ勫€诲璺哄閹﹪鏁撻敓锟�?
+    .i_wr_MUX_reg_b                            (i_wr_MUX_reg               ),// 1婵ɑ鐡曠换娆撳箰閸パ勫€诲璺哄閹﹪鏁撻敓锟�?
 //---------------------------------------------------------------------------------------
 //                                                                                     
 //---------------------------------------------------------------------------------------
@@ -1033,7 +1033,7 @@ U5_BRAM_Controller_Subsys u_U5_BRAM_Controller_Subsys(
 //-----------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------
-    .i_rd_MUX_reg                              (i_wr_MUX_reg               ),// 閸滃瘍r閻ㄥ嫭甯堕崚鎯扮箾閹恒儰绔撮弶鈽呮嫹?閿熶粙浜�
+    .i_rd_MUX_reg                              (i_wr_MUX_reg               ),// 闁告粌鐦峳闁汇劌瀚敮鍫曞礆閹壆绠鹃柟鎭掑劙缁旀挳寮堕埥鍛?闁跨喍绮欐禍锟�
 
     .i_rd_type_R                               (R_rd_type_d                ),
     .i_rd_type_G                               (G_rd_type_d                ),
@@ -1240,11 +1240,11 @@ u_U6_Algorithm_Subsys(
 //
 //-----------------------------------------------------------------------
     .i_one_finish_clr                          (i_one_finish_clr           ),
-    .o_one_MB_finish                           (o_one_MB_finish            ),// 閿燂拷?娑擃亜鐣崸妤€鐣敓锟�?
+    .o_one_MB_finish                           (o_one_MB_finish            ),// 闁跨噦鎷�?濞戞搩浜滈悾顖炲锤濡も偓閻ｎ剟鏁撻敓锟�?
 
     .o_image_out_start                         (o_image_out_start          ),
-    .o_line_transfer_finish_pulse              (o_line_transfer_finish_pulse),// 閸掓鐣幋鎰嫲鐢冪暚閹存劕顩ч弸婊勬箒閺佸牞绱濋崚娆忔倱閺冭埖濯洪敓锟�?
-    .o_frame_finish_pulse                      (o_frame_finish_pulse       ),// 鎸囬崚妤€鐣幋鎰嫲鐢冪暚閹存劕顩ч弸婊勬箒閺佸牞绱濋崚娆忔倱閺冭埖濯洪敓锟�?
+    .o_line_transfer_finish_pulse              (o_line_transfer_finish_pulse),// 闁告帗顨呴悾顒勫箣閹邦剚瀚查悽顖嗗啰鏆氶柟瀛樺姇椤┭囧几濠婂嫭绠掗柡浣哥墳缁辨繈宕氬▎蹇斿€遍柡鍐煐婵椽鏁撻敓锟�?
+    .o_frame_finish_pulse                      (o_frame_finish_pulse       ),// 閹稿洭宕氬Δ鈧悾顒勫箣閹邦剚瀚查悽顖嗗啰鏆氶柟瀛樺姇椤┭囧几濠婂嫭绠掗柡浣哥墳缁辨繈宕氬▎蹇斿€遍柡鍐煐婵椽鏁撻敓锟�?
 //-----------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------
@@ -1344,30 +1344,30 @@ U7_DDR_DMA#(
     .CHANNEL_NUM                               (DATA_CHANNEL               )
 )
 u_U7_DDR_DMA(
-    .clk                                       (clk                        ),// ! 閺冨爼鎸�
-    .rst                                       (rst                        ),// ! 婢跺秳缍�
+    .clk                                       (clk                        ),// ! 闁哄啫鐖奸幐锟�
+    .rst                                       (rst                        ),// ! 濠㈣泛绉崇紞锟�
     
-    .line_finish                               (o_image_out_start          ),// ! 妞瑰崬濮╁Ο鈥虫健閿燂拷?婵绗孌DR閸愭瑤姘﹂敓锟�?
-    .frame_finish                              (o_frame_finish_pulse       ),// ! 缁犳纭跺Ο鈥虫健鐎瑰本鍨氭禍鍡曠閺佹潙鎶氭径鍕倞楠炶泛褰傞柅渚婄礉娑撳秶鏁ら崘宥呬紣娴ｆ粣绱濆〒鍛存珟闁劌鍨庣拋鈩冩殶閿燂拷?
-    .prefetch                                  (prefetch                   ),// ! 妞瑰崬濮╁Ο鈥虫健閿燂拷?婵绗孌DR鐠囪姘﹂敓锟�?
+    .line_finish                               (o_image_out_start          ),// ! 濡炵懓宕慨鈺佄熼垾铏仴闁跨噦鎷�?濠殿喖顑勭粭瀛孌R闁告劖鐟ゅ锕傛晸閿燂拷?
+    .frame_finish                              (o_frame_finish_pulse       ),// ! 缂佺姵顨嗙涵璺何熼垾铏仴閻庣懓鏈崹姘閸℃洜顏遍柡浣规綑閹舵碍寰勯崟顓熷€炴鐐舵硾瑜板倿鏌呮笟濠勭濞戞挸绉堕弫銈夊礃瀹ュ懍绱ｅù锝嗙玻缁辨繂銆掗崨瀛樼彑闂侇喓鍔岄崹搴ｆ媼閳╁啯娈堕柨鐕傛嫹?
+    .prefetch                                  (prefetch                   ),// ! 濡炵懓宕慨鈺佄熼垾铏仴闁跨噦鎷�?濠殿喖顑勭粭瀛孌R閻犲洩顔婂锕傛晸閿燂拷?
     
-    .o_ena_dma_wr                              (o_ena_dma_wr               ),// ! 閺堫剙婀撮崘娆掝嚞閿燂拷?
-    .i_ddr_ready                               (i_ddr_ready                ),// ! DDR閸戝棗顦總鑺ュ复閺€璺哄晸閺佺増宓�
-    .o_lenth_dma_wr                            (o_lenth_dma_wr             ),// ! 閺堫剙婀撮崘娆撴毐鎼达讣绱伴崡鏇氱秴娑撶儤澧﹂幏宥嗩偧閿燂拷?
-    .o_addr_dma_wr                             (o_addr_dma_wr              ),// ! 閺堫剙婀撮崘娆忔勾閿燂拷?
-    .o_data_dma_wr                             (o_data_dma_wr              ),// ! 閺堫剙婀撮崘娆愭殶閿燂拷?
-    .o_d_val_dma_wr                            (o_d_val_dma_wr             ),// ! 閺堫剙婀撮崘娆愭殶閹诡喗婀侀敓锟�?
-    .o_dma_ddr_finish                          (o_dma_ddr_finish           ),// ! 閺堫剙婀撮崘娆忕暚閿燂拷?
+    .o_ena_dma_wr                              (o_ena_dma_wr               ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘帩鍤為柨鐕傛嫹?
+    .i_ddr_ready                               (i_ddr_ready                ),// ! DDR闁告垵妫楅ˇ顒佺附閼恒儱澶嶉柡鈧捄鍝勬櫢闁轰胶澧楀畵锟�
+    .o_lenth_dma_wr                            (o_lenth_dma_wr             ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘挻姣愰幖杈捐缁变即宕￠弴姘辩Т濞戞挾鍎ゆ晶锕傚箯瀹ュ棭鍋ч柨鐕傛嫹?
+    .o_addr_dma_wr                             (o_addr_dma_wr              ),// ! 闁哄牜鍓欏﹢鎾礃濞嗗繑鍕鹃柨鐕傛嫹?
+    .o_data_dma_wr                             (o_data_dma_wr              ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘劖娈堕柨鐕傛嫹?
+    .o_d_val_dma_wr                            (o_d_val_dma_wr             ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘劖娈堕柟璇″枟濠€渚€鏁撻敓锟�?
+    .o_dma_ddr_finish                          (o_dma_ddr_finish           ),// ! 闁哄牜鍓欏﹢鎾礃濞嗗繒鏆氶柨鐕傛嫹?
 
-    .o_ena_dma_rd                              (o_ena_pre_rd               ),// ! 閺堫剙婀寸拠鏄忣嚞閿燂拷?
-    .o_addr_dma_rd                             (o_addr_pre_rd              ),// ! 閺堫剙婀寸拠璇叉勾閿燂拷?
-    .o_lenth_dma_rd                            (o_lenth_pre_rd             ),// ! 閺堫剙婀寸拠濠氭毐閿燂拷?
-    .i_data_dma_rd                             (i_data_pre_rd              ),// ! 閺堫剙婀寸拠缁樻殶閿燂拷?
-    .i_d_val_dma_rd                            (i_d_val_pre_rd             ),// ! 閺堫剙婀寸拠缁樻殶閹诡喗婀侀敓锟�?
-    .i_finish_dma_rd                           (i_finish_pre_rd            ),// ! 閺堫剙婀寸拠璇茬暚閿燂拷?
+    .o_ena_dma_rd                              (o_ena_pre_rd               ),// ! 闁哄牜鍓欏﹢瀵告嫚閺勫浚鍤為柨鐕傛嫹?
+    .o_addr_dma_rd                             (o_addr_pre_rd              ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囧弶鍕鹃柨鐕傛嫹?
+    .o_lenth_dma_rd                            (o_lenth_pre_rd             ),// ! 闁哄牜鍓欏﹢瀵告嫚婵犳碍姣愰柨鐕傛嫹?
+    .i_data_dma_rd                             (i_data_pre_rd              ),// ! 闁哄牜鍓欏﹢瀵告嫚缂佹ɑ娈堕柨鐕傛嫹?
+    .i_d_val_dma_rd                            (i_d_val_pre_rd             ),// ! 闁哄牜鍓欏﹢瀵告嫚缂佹ɑ娈堕柟璇″枟濠€渚€鏁撻敓锟�?
+    .i_finish_dma_rd                           (i_finish_pre_rd            ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囪尙鏆氶柨鐕傛嫹?
 
-    .i_data                                    (i_data                     ),// ! 閸愭瑨顕Ч鍌氭倵閻╁瓨甯存稉搴″晸閺佺増宓佺粩顖氬經閻╂瓕绻�
-    .i_d_val                                   (o_lval                     ),// ! 閸愭瑨顕Ч鍌氭倵閻╁瓨甯存稉搴″晸閺佺増宓侀張澶嬫櫏閻╂瓕绻�
+    .i_data                                    (i_data                     ),// ! 闁告劖鐟ㄩ顒€效閸屾碍鍊甸柣鈺佺摠鐢瓨绋夋惔鈥虫櫢闁轰胶澧楀畵浣虹博椤栨艾缍撻柣鈺傜摃缁伙拷
+    .i_d_val                                   (o_lval                     ),// ! 闁告劖鐟ㄩ顒€效閸屾碍鍊甸柣鈺佺摠鐢瓨绋夋惔鈥虫櫢闁轰胶澧楀畵渚€寮垫径瀣珡闁烩晜鐡曠换锟�
 
     .i_proc_RAM_ena                            (o_rd_ena                   ),// ! 
     .i_proc_RAM_addr                           (o_rd_address               ),// ! 
