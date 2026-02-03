@@ -45,6 +45,8 @@ module U6_0_8_8_BRAM#(
     output reg             [DATA_WIDTH-1: 0] rd_data [CHANNEL-1:0]
 );
 
+    localparam integer DEPTH_ROUNDED = (1 << $clog2(DEPTH));
+    localparam integer ADDR_AW       = $clog2(DEPTH_ROUNDED);
 
     genvar i;
 
@@ -53,8 +55,8 @@ module U6_0_8_8_BRAM#(
             wire [DATA_WIDTH-1:0] doutb;
 
             xpm_memory_sdpram #(
-                .ADDR_WIDTH_A           (ADDR_WIDTH                 ),
-                .ADDR_WIDTH_B           (ADDR_WIDTH                 ),
+                .ADDR_WIDTH_A           (ADDR_AW                    ),
+                .ADDR_WIDTH_B           (ADDR_AW                    ),
                 .AUTO_SLEEP_TIME        (0                          ),
                 .BYTE_WRITE_WIDTH_A     (DATA_WIDTH                 ),
                 .CASCADE_HEIGHT         (0                          ),
@@ -64,7 +66,7 @@ module U6_0_8_8_BRAM#(
                 .MEMORY_INIT_PARAM      (""                         ),
                 .MEMORY_OPTIMIZATION    ("true"                     ),
                 .MEMORY_PRIMITIVE       ("block"                    ),
-                .MEMORY_SIZE            (DATA_WIDTH * DEPTH         ),
+                .MEMORY_SIZE            (DATA_WIDTH * DEPTH_ROUNDED ),
                 .MESSAGE_CONTROL        (0                          ),
                 .READ_DATA_WIDTH_B      (DATA_WIDTH                 ),
                 .READ_LATENCY_B         (1                          ),
@@ -81,14 +83,14 @@ module U6_0_8_8_BRAM#(
                 .clka                   (clk                        ),
                 .ena                    (1'b1                       ),
                 .wea                    (we[i]                      ),
-                .addra                  (wr_addr[i]                 ),
+                .addra                  (wr_addr[i][ADDR_AW-1:0]     ),
                 .dina                   (wr_data[i]                 ),
                 .injectsbiterra         (1'b0                       ),
                 .injectdbiterra         (1'b0                       ),
 
                 .clkb                   (clk                        ),
                 .enb                    (re[i]                      ),
-                .addrb                  (rd_addr[i]                 ),
+                .addrb                  (rd_addr[i][ADDR_AW-1:0]     ),
                 .doutb                  (doutb                      ),
                 .rstb                   (rst                        ),
                 .regceb                 (1'b1                       ),

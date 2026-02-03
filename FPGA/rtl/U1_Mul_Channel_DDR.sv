@@ -97,9 +97,7 @@ module U1_Mul_Channel_DDR(
     input                     [   0: 0]         M_AXI_RUSER                 ,
     input                                       M_AXI_RVALID                ,
     input                                       M_AXI_RREADY                 
-
     );
-
 
 U1_0_Mul_Channel_DDR_Wr_channel u_U1_0_Mul_Channel_DDR_Wr_channel(
     .clk                                       (clk                        ),

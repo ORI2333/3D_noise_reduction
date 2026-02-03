@@ -16,7 +16,7 @@ module MBDS_Counter #(
     reg                       [   8: 0]         DS_hcnt                     ;
 
     always @(posedge clk ) begin
-        if (~rst_n) begin
+        if (rst) begin
             MB_hcnt         <=          'b0                                 ;    
         end 
         else begin
@@ -41,7 +41,7 @@ module MBDS_Counter #(
         else begin
             if (MB_ena && (MB_hcnt == H_DISP/4 - 1)) begin
                 if (MB_vcnt == V_DISP/4 - 1) begin
-                    MB_vcnt <=          'B0                                 ;
+                    MB_vcnt <=          'b0                                 ;
                 end
                 else begin
                     MB_vcnt <=          MB_vcnt + 1                         ;
@@ -54,7 +54,7 @@ module MBDS_Counter #(
     end
 
     always @(posedge clk ) begin
-        if (~rst_n) begin
+        if (rst) begin
             DS_hcnt         <=          'b0                                 ;
         end
         else begin
@@ -79,7 +79,7 @@ module MBDS_Counter #(
         else begin
             if (DS_ena && (DS_hcnt == H_DISP/8 - 1)) begin
                 if (DS_vcnt == V_DISP/8 - 1) begin
-                    DS_vcnt <=          'B0                                 ;
+                    DS_vcnt <=          'b0                                 ;
                 end
                 else begin
                     DS_vcnt <=          DS_vcnt + 1                         ;

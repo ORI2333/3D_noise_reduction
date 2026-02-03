@@ -6,6 +6,18 @@ from pathlib import Path
 from PIL import Image
 
 
+def _parse_res(s: str) -> tuple[int, int]:
+    s = s.strip().lower().replace(" ", "")
+    if "x" not in s:
+        raise ValueError(f"Invalid --res {s!r}, expected like 640x480")
+    w_str, h_str = s.split("x", 1)
+    w = int(w_str, 10)
+    h = int(h_str, 10)
+    if w <= 0 or h <= 0:
+        raise ValueError(f"Invalid --res {s!r}, width/height must be positive")
+    return w, h
+
+
 def _parse_hex_lines(path: Path) -> list[int]:
     values: list[int] = []
     for line_no, raw in enumerate(path.read_text(encoding="utf-8", errors="ignore").splitlines(), start=1):
@@ -53,6 +65,11 @@ def main() -> int:
         default=None,
         help="Output image path (default: script/image_py/out/rgb888_output.png).",
     )
+    parser.add_argument(
+        "--res",
+        default=None,
+        help="Resolution like 640x480 (overrides --width/--height).",
+    )
     parser.add_argument("--width", type=int, default=640)
     parser.add_argument("--height", type=int, default=480)
     parser.add_argument(
@@ -63,6 +80,8 @@ def main() -> int:
     )
 
     args = parser.parse_args()
+    if args.res:
+        args.width, args.height = _parse_res(args.res)
 
     repo_dir = Path(__file__).resolve().parents[2]
     out_dir = repo_dir / "script" / "image_py" / "out"

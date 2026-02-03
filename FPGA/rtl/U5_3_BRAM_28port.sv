@@ -70,7 +70,8 @@ module U5_3_BRAM_28port#(
 
 
     localparam integer BANK_DEPTH = (DEPTH + 1) / 2;
-    localparam integer BANK_ADDR_WIDTH = (ADDR_WIDTH > 1) ? (ADDR_WIDTH - 1) : 1;
+    localparam integer BANK_DEPTH_ROUNDED = (1 << $clog2(BANK_DEPTH));
+    localparam integer BANK_ADDR_WIDTH = $clog2(BANK_DEPTH_ROUNDED);
 
     wire [7:0] re = {re8, re7, re6, re5, re4, re3, re2, re1};
 
@@ -140,7 +141,7 @@ module U5_3_BRAM_28port#(
                 .MEMORY_INIT_PARAM       (""                         ),
                 .MEMORY_OPTIMIZATION     ("true"                     ),
                 .MEMORY_PRIMITIVE        ("block"                    ),
-                .MEMORY_SIZE             (DATA_WIDTH * BANK_DEPTH    ),
+                .MEMORY_SIZE             (DATA_WIDTH * BANK_DEPTH_ROUNDED),
                 .MESSAGE_CONTROL         (0                          ),
                 .READ_DATA_WIDTH_B       (DATA_WIDTH                 ),
                 .READ_LATENCY_B          (1                          ),
@@ -157,14 +158,14 @@ module U5_3_BRAM_28port#(
                 .clka                    (clk                        ),
                 .ena                     (1'b1                       ),
                 .wea                     (we_even                    ),
-                .addra                   (wr_even_index              ),
+                .addra                   (wr_even_index[BANK_ADDR_WIDTH-1:0]),
                 .dina                    (wr_even_data               ),
                 .injectsbiterra          (1'b0                       ),
                 .injectdbiterra          (1'b0                       ),
 
                 .clkb                    (clk                        ),
                 .enb                     (en_even_p                  ),
-                .addrb                   (rd_index_p                 ),
+                .addrb                   (rd_index_p[BANK_ADDR_WIDTH-1:0]),
                 .doutb                   (dout_even[p]              ),
                 .rstb                    (rst                        ),
                 .regceb                  (1'b1                       ),
@@ -183,7 +184,7 @@ module U5_3_BRAM_28port#(
                 .MEMORY_INIT_PARAM       (""                         ),
                 .MEMORY_OPTIMIZATION     ("true"                     ),
                 .MEMORY_PRIMITIVE        ("block"                    ),
-                .MEMORY_SIZE             (DATA_WIDTH * BANK_DEPTH    ),
+                .MEMORY_SIZE             (DATA_WIDTH * BANK_DEPTH_ROUNDED),
                 .MESSAGE_CONTROL         (0                          ),
                 .READ_DATA_WIDTH_B       (DATA_WIDTH                 ),
                 .READ_LATENCY_B          (1                          ),
@@ -200,14 +201,14 @@ module U5_3_BRAM_28port#(
                 .clka                    (clk                        ),
                 .ena                     (1'b1                       ),
                 .wea                     (we_odd                     ),
-                .addra                   (wr_odd_index               ),
+                .addra                   (wr_odd_index[BANK_ADDR_WIDTH-1:0]),
                 .dina                    (wr_odd_data                ),
                 .injectsbiterra          (1'b0                       ),
                 .injectdbiterra          (1'b0                       ),
 
                 .clkb                    (clk                        ),
                 .enb                     (en_odd_p                   ),
-                .addrb                   (rd_index_p                 ),
+                .addrb                   (rd_index_p[BANK_ADDR_WIDTH-1:0]),
                 .doutb                   (dout_odd[p]               ),
                 .rstb                    (rst                        ),
                 .regceb                  (1'b1                       ),

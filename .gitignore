@@ -1,3 +1,60 @@
-/FPGA/prj
+# ===================================
+# Vivado 项目生成文件（自动生成，不需要提交）
+# ===================================
 
-/script/image_py/out
+# Vivado 日志和临时文件
+*.jou
+*.log
+*.str
+*.backup.*
+.Xil/
+NA/
+
+# 项目缓存和生成文件
+FPGA/prj/3DNR.cache/
+FPGA/prj/3DNR.gen/
+FPGA/prj/3DNR.hw/
+FPGA/prj/3DNR.ip_user_files/ipstatic/
+FPGA/prj/3DNR.runs/
+FPGA/prj/3DNR.sim/
+FPGA/prj/*.lpr
+FPGA/prj/vivado*.jou
+FPGA/prj/vivado*.log
+FPGA/prj/vivado_pid*.str
+
+# 仿真文件
+*.pb
+*.wdb
+*.vcd
+*.saif
+isim/
+xsim.dir/
+
+# 综合实现结果
+*.bit
+*.ltx
+*.dcp
+*.rpt
+*.bin
+*.mmi
+
+# IP 核生成文件（保留 .xci 配置）
+FPGA/prj/3DNR.ip_user_files/sim_scripts/
+FPGA/prj/3DNR.ip_user_files/mem_init_files/
+
+# ===================================
+# Python 脚本输出文件
+# ===================================
+script/image_py/out/
+__pycache__/
+*.pyc
+*.pyo
+
+# ===================================
+# 操作系统和编辑器文件
+# ===================================
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/settings.json
