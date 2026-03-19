@@ -30,22 +30,22 @@ module U5_BRAM_Controller_Subsys(
     //                                                                                     
     //---------------------------------------------------------------------------------------
     input                                       prefetch                    ,
-    input                                       prefetch_type               ,// 0 为init模式 1为4行读取模式
+    input                                       prefetch_type               ,// 0 涓篿nit妯″紡 1涓?琛岃鍙栨ā寮?
     input                     [  31: 0]         prefetch_addr    [2:0]      ,
     //---------------------------------------------------------------------------------------
     //                                                                                     
     //---------------------------------------------------------------------------------------
-    output wire                                 o_ena_dma_rd                ,//! 本地读请求
-    output wire               [  31: 0]         o_addr_dma_rd    [2:0]      ,//! 本地读地址
-    output wire               [  31: 0]         o_lenth_dma_rd              ,//! 本地读长度
-    input                                       i_finish_dma_rd  [2:0]      ,//! 本地读完成
+    output wire                                 o_ena_dma_rd    [2:0]      ,//! 鏈湴璇昏姹?
+    output wire               [  31: 0]         o_addr_dma_rd    [2:0]      ,//! 鏈湴璇诲湴鍧€
+    output wire               [  31: 0]         o_lenth_dma_rd  [2:0]      ,//! 鏈湴璇婚暱搴?
+    input                                       i_finish_dma_rd  [2:0]      ,//! 鏈湴璇诲畬鎴?
 
     //---------------------------------------------------------------------------------------
     //                                                                                     
     //---------------------------------------------------------------------------------------
-    input                                       i_wr_MUX_reg_r              ,//1永远指向处理帧
-    input                                       i_wr_MUX_reg_g              ,//1永远指向处理帧
-    input                                       i_wr_MUX_reg_b              ,//1永远指向处理帧
+    input                                       i_wr_MUX_reg_r              ,//1姘歌繙鎸囧悜澶勭悊甯?
+    input                                       i_wr_MUX_reg_g              ,//1姘歌繙鎸囧悜澶勭悊甯?
+    input                                       i_wr_MUX_reg_b              ,//1姘歌繙鎸囧悜澶勭悊甯?
 
     input                                       i_wr_MB_ena_r               ,
 
@@ -83,7 +83,7 @@ module U5_BRAM_Controller_Subsys(
     //-----------------------------------------------------------------------
     //                                                                       
     //-----------------------------------------------------------------------
-    input                                       i_rd_MUX_reg                ,//和wr的控制连接一条通道
+    input                                       i_rd_MUX_reg                ,//鍜寃r鐨勬帶鍒惰繛鎺ヤ竴鏉￠€氶亾
 
     input                     [   1: 0]         i_rd_type_R   [7:0]         ,
     input                     [   1: 0]         i_rd_type_G   [7:0]         ,
@@ -115,15 +115,15 @@ generate
         //
         //--------------------------------------------------------------------------
             .prefetch                                  (prefetch                   ),
-            .prefetch_type                             (prefetch_type              ),// 0 为init模式 1为4行读取模式
+            .prefetch_type                             (prefetch_type              ),// 0 涓篿nit妯″紡 1涓?琛岃鍙栨ā寮?
             .prefetch_addr                             (prefetch_addr[i]           ),
         //--------------------------------------------------------------------------
         //
         //--------------------------------------------------------------------------
-            .o_ena_dma_rd_r                            (o_ena_dma_rd               ),// ! 本地读请求
-            .o_addr_dma_rd                             (o_addr_dma_rd  [i]         ),// ! 本地读地址
-            .o_lenth_dma_rd                            (o_lenth_dma_rd             ),// ! 本地读长度
-            .i_finish_dma_rd                           (i_finish_dma_rd[i]         ) // ! 本地读完成
+            .o_ena_dma_rd_r                            (o_ena_dma_rd[i]            ),// ! 鏈湴璇昏姹?
+            .o_addr_dma_rd                             (o_addr_dma_rd  [i]         ),// ! 鏈湴璇诲湴鍧€
+            .o_lenth_dma_rd                            (o_lenth_dma_rd[i]          ),// ! 鏈湴璇婚暱搴?
+            .i_finish_dma_rd                           (i_finish_dma_rd[i]         ) // ! 鏈湴璇诲畬鎴?
         );
     end
 endgenerate
@@ -203,3 +203,4 @@ U5_BRAM_Controller u_U5_BRAM_Controller_B(
 
 
 endmodule                                                          
+

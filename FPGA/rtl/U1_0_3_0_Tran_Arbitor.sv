@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps 
 /*
-�?要加�?层�?�辑：要求先判满足last条件的数据进行传�?
+锟�?瑕佸姞锟�?灞傦拷?锟借緫锛氳姹傚厛鍒ゆ弧瓒砽ast鏉′欢鐨勬暟鎹繘琛屼紶锟�?
 */
 
 
@@ -11,15 +11,15 @@ module U1_0_3_0_Tran_Arbitor #(
     input                                       clk                         ,
     input                                       rst                         ,
 
-    input                                       start                       ,//每更新一次grant信号之后就会start�?�?
-    input                     [  19: 0]         trans_lenth     [CH_NUM-1:0],//定�??
-    input                     [   6: 0]         FIFO_stack_cnt  [CH_NUM-1:0],//动�??
-    output  reg               [  19: 0]         trans_cnt       [CH_NUM-1:0],//现阶段三个FIFO的传输�?�量
+    input                                       start                       ,//姣忔洿鏂颁竴娆rant淇″彿涔嬪悗灏变細start锟�?锟�?
+    input                     [  19: 0]         trans_lenth     [CH_NUM-1:0],//瀹氾拷??
+    input                     [   6: 0]         FIFO_stack_cnt  [CH_NUM-1:0],//鍔拷??
+    output  reg               [  19: 0]         trans_cnt       [CH_NUM-1:0],//鐜伴樁娈典笁涓狥IFO鐨勪紶杈擄拷?锟介噺
     input                     [   2: 0]         FIFO_granted                ,
-    output  wire                                last_transaction[CH_NUM-1:0],//动�??
-    input                    [CH_NUM-1:0]       trans_finish                ,//外部的传输结束信�?
+    output  wire                                last_transaction[CH_NUM-1:0],//鍔拷??
+    input                    [CH_NUM-1:0]       trans_finish                ,//澶栭儴鐨勪紶杈撶粨鏉熶俊锟�?
     output  reg              [CH_NUM-1:0]       Select_FIFO_id              ,
-    output                                      Arbitor_flag                 //表示本次仲裁有结果了
+    output                                      Arbitor_flag                 //琛ㄧず鏈浠茶鏈夌粨鏋滀簡
 );
 
 

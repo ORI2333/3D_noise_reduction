@@ -29,14 +29,14 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
     input                                       rst                         ,
     input                                       ui_clk_sync_rst             ,
 
-    input                                       M_wr_req      [2:0]         ,//!閺堫剙婀撮崘娆掝嚞閿燂拷?
-    output  wire                                M_wr_granted  [2:0]         ,//!閸欘垱甯撮弨鏈电鏉烆喕绱堕敓锟�?
+    input                                       M_wr_req      [2:0]         ,//!闁哄牜鍓欏﹢鎾礃濞嗘帩鍤為柨鐕傛嫹?
+    output  wire                                M_wr_granted  [2:0]         ,//!闁告瑯鍨辩敮鎾绩閺堢數顏遍弶鐑嗗枙缁卞爼鏁撻敓锟?
     output  wire                                M_wr_busy     [2:0]         ,
-    input                     [  31: 0]         M_wr_len      [2:0]         ,//!閸愭瑩鏆辨惔锔肩窗閸楁洑缍呴幍鎾村閺佷即鍣�
-    input                     [  31: 0]         M_wr_addr     [2:0]         ,//!閸愭瑥婀撮敓锟�?
-    input                     [  63: 0]         M_wr_din      [2:0]         ,//!閸愭瑦鏆熼幑顔跨翻閿燂拷?
-    input                                       M_wr_dval     [2:0]         ,//!閸愭瑦鏆熼幑顔芥箒閿燂拷?
-    input                                       M_wr_finish   [2:0]         ,//!閸愭瑥鐣敓锟�?
+    input                     [  31: 0]         M_wr_len      [2:0]         ,//!闁告劖鐟╅弳杈ㄦ償閿旇偐绐楅柛妤佹磻缂嶅懘骞嶉幘鏉戭€為柡浣峰嵆閸ｏ拷
+    input                     [  31: 0]         M_wr_addr     [2:0]         ,//!闁告劖鐟ュ﹢鎾晸閿燂拷?
+    input                     [  63: 0]         M_wr_din      [2:0]         ,//!闁告劖鐟﹂弳鐔煎箲椤旇法缈婚柨鐕傛嫹?
+    input                                       M_wr_dval     [2:0]         ,//!闁告劖鐟﹂弳鐔煎箲椤旇姤绠掗柨鐕傛嫹?
+    input                                       M_wr_finish   [2:0]         ,//!闁告劖鐟ラ悾顒勬晸閿燂拷?
 
 
 //---------------------------------------------------------------------------
@@ -94,6 +94,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
     wire                                        rd_ena     [2:0]            ;
     wire                      [  63: 0]         rd_data    [2:0]            ;
     wire                      [  63: 0]         S_wr_data  [2:0]            ;
+    wire                      [  63: 0]         M_AXI_WDATA_64              ;
     wire                                        S_wr_dval  [2:0]            ;
     wire                                        grant0_d                    ;
     wire                                        grant1_d                    ;
@@ -117,6 +118,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
     assign                                      M_AXI_AWQOS        = 4'b0000;
     assign                                      M_AXI_WSTRB        = 8'hff  ;
     assign                                      M_AXI_WVALID       = (state_axi_mst == PROC) & M_AXI_WREADY;
+    assign                                      M_AXI_WDATA        = {192'b0, M_AXI_WDATA_64};
 //---------------------------------------------------------------------------------------
 //  Reg_Pile                                                                                    
 //---------------------------------------------------------------------------------------
@@ -151,7 +153,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
 
     generate
         for (i = 0; i < 3; i = i + 1) begin
-            always @(posedge clk ) begin//鏉╂瑩鍣风€靛嫬鐡ㄩ惃鍕ЦMM娑撶粯婧€閻ㄥ嫬褰�
+            always @(posedge clk ) begin//閺夆晜鐟╅崳椋庘偓闈涘閻°劑鎯冮崟顒佇M濞戞挾绮┃鈧柣銊ュ瑜帮拷
                 if (rst) begin
                     FIFO_Transaction_tmp_Addr[i]      <=      'b0                         ;
                     FIFO_Transaction_tmp_Len[i]       <=      'b0                         ;
@@ -168,37 +170,43 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
                 end
             end
 
-            always @(posedge clk ) begin//鏉╂瑩鍣风€靛嫬鐡ㄩ惃鍕Ц缂佸繗绻冮崚鍡涘帳閸氬海娈慒IFO閿燂拷?
+            end
+    endgenerate
+
+    // FIFO slot-centric: each FIFO_Transaction_Addr/Len[j] driven by exactly one always block
+    genvar j ;
+    generate
+        for (j = 0; j < 3; j = j + 1) begin : gen_fifo_slot
+            always @(posedge clk) begin
                 if (rst) begin
-                    FIFO_Transaction_Len[i]           <=      'b0                         ;
-                    FIFO_Transaction_Addr[i]          <=      'b0                         ;
-                end 
+                    FIFO_Transaction_Len[j]           <=      'b0                         ;
+                    FIFO_Transaction_Addr[j]          <=      'b0                         ;
+                end
                 else begin
-                    if (M_wr_granted[i]) begin
-                        if (granted_fifo_id[i][0]) begin
-                            FIFO_Transaction_Len[0]   <=       FIFO_Transaction_tmp_Len[i];
-                            FIFO_Transaction_Addr[0]  <=       FIFO_Transaction_tmp_Addr[i];
-                        end 
-                        else if (granted_fifo_id[i][1]) begin
-                            FIFO_Transaction_Len[1]   <=       FIFO_Transaction_tmp_Len[i];
-                            FIFO_Transaction_Addr[1]  <=       FIFO_Transaction_tmp_Addr[i];
-                        end
-                        else begin
-                            FIFO_Transaction_Len[2]   <=       FIFO_Transaction_tmp_Len[i];
-                            FIFO_Transaction_Addr[2]  <=       FIFO_Transaction_tmp_Addr[i];
-                        end
+                    if      (M_wr_granted[0] && granted_fifo_id[0][j]) begin
+                        FIFO_Transaction_Len[j]       <=       FIFO_Transaction_tmp_Len[0];
+                        FIFO_Transaction_Addr[j]      <=       FIFO_Transaction_tmp_Addr[0];
+                    end
+                    else if (M_wr_granted[1] && granted_fifo_id[1][j]) begin
+                        FIFO_Transaction_Len[j]       <=       FIFO_Transaction_tmp_Len[1];
+                        FIFO_Transaction_Addr[j]      <=       FIFO_Transaction_tmp_Addr[1];
+                    end
+                    else if (M_wr_granted[2] && granted_fifo_id[2][j]) begin
+                        FIFO_Transaction_Len[j]       <=       FIFO_Transaction_tmp_Len[2];
+                        FIFO_Transaction_Addr[j]      <=       FIFO_Transaction_tmp_Addr[2];
                     end
                     else if (transaction_finish) begin
-                        if (last_transaction[i]) begin
-                            FIFO_Transaction_Len[i]   <=     (select_mux[i])? 20'd0 :  FIFO_Transaction_Len[i];
+                        if (last_transaction[j]) begin
+                            FIFO_Transaction_Len[j]   <=     (select_mux[j])? 20'd0 :  FIFO_Transaction_Len[j];
                         end else begin
-                            FIFO_Transaction_Len[i]   <=      FIFO_Transaction_Len[i]     ;
+                            FIFO_Transaction_Len[j]   <=      FIFO_Transaction_Len[j]     ;
                         end
+                        FIFO_Transaction_Addr[j]      <=       FIFO_Transaction_Addr[j]   ;
                     end
                     else begin
-                        FIFO_Transaction_Len[i]       <=       FIFO_Transaction_Len[i]    ;
-                        FIFO_Transaction_Addr[i]      <=       FIFO_Transaction_Addr[i]   ;
-                    end 
+                        FIFO_Transaction_Len[j]       <=       FIFO_Transaction_Len[j]    ;
+                        FIFO_Transaction_Addr[j]      <=       FIFO_Transaction_Addr[j]   ;
+                    end
                 end
             end
         end
@@ -206,7 +214,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
 
 
 //---------------------------------------------------------------------------------------
-// FIFO鐠嬪啫瀹虫禒鑼额梿閿涘矁绀嬬拹锝囩舶娴滃濮熼幒銉ュ經閸掑棝鍘IFO
+// FIFO閻犲鍟€硅櫕绂掗懠棰濇⒖闁挎稑鐭佺粈瀣嫻閿濆洨鑸跺ù婊冾儏婵喖骞掗妷銉ョ稉闁告帒妫濋崢顥琁FO
 //---------------------------------------------------------------------------------------
 
     U1_0_0_FIFO_Alloc_Arbitor u_U1_0_0_FIFO_Alloc_Arbitor(
@@ -223,7 +231,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
         .grant1_d                                  (M_wr_granted[1]            ),
         .grant2_d                                  (M_wr_granted[2]            ),
         .o_dval_r                                  (o_dval_r                   ),
-        .granted_fifo_id                           (granted_fifo_id            ) //缂佹瑦鐦℃稉顏庢嫹?閿熶粙浜炬稉缁樻簚閸掑棝鍘ら惃鍑FO閿燂拷?
+        .granted_fifo_id                           (granted_fifo_id            ) //缂備焦鐟﹂惁鈩冪▔椤忓孩瀚?闁跨喍绮欐禍鐐▔缂佹ɑ绨氶柛鎺戞閸樸倝鎯冮崙顢疐O闁跨噦鎷?
     );
 
     U1_0_1_FC#(
@@ -235,10 +243,10 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
         .rst                                       (rst                        ),
         .granted_ena                               ({M_wr_granted[2],M_wr_granted[1],M_wr_granted[0]}),
         .granted_fifo_id                           (granted_fifo_id            ),
-        .M_wr_din                                  (M_wr_din                   ),// !閸愭瑦鏆熼幑顔跨翻閿燂拷?
-        .M_wr_dval                                 (M_wr_dval                  ),// !閸愭瑦鏆熼幑顔芥箒閿燂拷?
+        .M_wr_din                                  (M_wr_din                   ),// !闁告劖鐟﹂弳鐔煎箲椤旇法缈婚柨鐕傛嫹?
+        .M_wr_dval                                 (M_wr_dval                  ),// !闁告劖鐟﹂弳鐔煎箲椤旇姤绠掗柨鐕傛嫹?
         .S_wr_data                                 (S_wr_data                  ),
-        .S_wr_dval                                 (S_wr_dval                  ) //缂佹IFO閻ㄥ嫯绶崗銉ゅ▏閿燂拷?
+        .S_wr_dval                                 (S_wr_dval                  ) //缂備焦顮€IFO闁汇劌瀚欢顓㈠礂閵夈倕鈻忛柨鐕傛嫹?
     );
 
 
@@ -269,7 +277,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
      u_u_OneHot_3_to_1_MUX(
         .select_info                               (select_mux                 ),
         .d_in                                      (rd_data                    ),
-        .d_out                                     (M_AXI_WDATA                ) //閿燂拷?缂佸牏娈戞潏鎾冲毉
+                .d_out                                     (M_AXI_WDATA_64             ) //闁跨噦鎷?缂備礁鐗忓▓鎴炴綇閹惧啿姣?
     );
 
     u_OneHot_1_to_3_DEMUX#(
@@ -284,7 +292,7 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
 
 
 //---------------------------------------------------------------------------------------
-// 閺冭泛绨崥顖氬З娑撳锭IFO闁褰囬惃鍕緤鐟佷焦膩閿燂拷?1
+// 闁哄啳娉涚花顓㈠触椤栨艾袟濞戞挸閿璉FO闂侇偄顦ぐ鍥儍閸曨亜绶ら悷浣风劍鑶╅柨鐕傛嫹?1
 //---------------------------------------------------------------------------------------
 
 
@@ -295,20 +303,20 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
         .clk                                       (ui_clk                     ),
         .rst                                       (ui_clk_sync_rst            ),
 
-        .FIFO_lenth                                (FIFO_Transaction_Len       ),// 缁崵绮烘穱鈩冧紖
-        .FIFO_granted                              (FIFO_Granted_status        ),// 缁崵绮烘穱鈩冧紖
+        .FIFO_lenth                                (FIFO_Transaction_Len       ),// 缂侇垵宕电划鐑樼┍閳╁啩绱?
+        .FIFO_granted                              (FIFO_Granted_status        ),// 缂侇垵宕电划鐑樼┍閳╁啩绱?
         .FIFO_stack_cnt                            (fifo_cnt                   ),
         .trans_cnt                                 (trans_cnt                  ),
 
         .last_transaction                          (last_transaction           ),
-        .select_mux                                (select_mux                 ),//闁瀚‵IFO
+        .select_mux                                (select_mux                 ),//闂侇偄顦扮€氣€礗FO
         .start_wr                                  (start_wr                   ),
         .transaction_finish                        (transaction_finish         ) //input
     );
 
 
 //---------------------------------------------------------------------------------------
-// 閺冭泛绨崣鎴犳晸閿燂拷?                                                                                    
+// 闁哄啳娉涚花顓㈠矗閹寸姵鏅搁柨鐕傛嫹?                                                                                    
 //---------------------------------------------------------------------------------------
 
 
@@ -428,3 +436,4 @@ module U1_0_Mul_Channel_DDR_Wr_channel(
 
 
 endmodule                                                          
+

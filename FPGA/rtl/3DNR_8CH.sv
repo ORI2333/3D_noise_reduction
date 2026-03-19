@@ -1,28 +1,22 @@
 
 module DDD_Noise_8CH #(
-    parameter                           DDR_BASE_ADDR              = 0     ,//32'h8000_0000
-    parameter                           DATA_CHANNEL               = 8     ,// channel number
-    parameter                           WAIT                       = 10    ,// wait cycles
-    parameter                           CMOS_H_PIXEL               = 640   ,// CMOS horizontal pixels
-    parameter                           CMOS_V_PIXEL               = 480   ,// CMOS vertical pixels
-    parameter                           H_DISP                     = 480   ,// display horizontal pixels
-    parameter                           V_DISP                     = 320   ,// display vertical pixels
-    parameter                           MACROBLOCK_THREASHOLD      = 4095  ,// macroblock threshold
-    parameter                           TEMPORAL_CALCULATE_PARAM   = 16     // temporal calculate parameter
+    parameter                           DDR_BASE_ADDR              = 0     ,
+    parameter                           DATA_CHANNEL               = 8     ,
+    parameter                           WAIT                       = 10    ,
+    parameter                           CMOS_H_PIXEL               = 640   ,
+    parameter                           CMOS_V_PIXEL               = 480   ,
+    parameter                           H_DISP                     = 480   ,
+    parameter                           V_DISP                     = 320   ,
+    parameter                           MACROBLOCK_THREASHOLD      = 4095  ,
+    parameter                           TEMPORAL_CALCULATE_PARAM   = 16     
 )
 (
-    //////////////////////////////////////////
-    //System
-    //////////////////////////////////////////    
+
     input                                       clk                         ,
     input                                       ui_clk                      ,
     input                                       rst_n                       ,
     input                                       ui_clk_sync_rst             ,
 
-    //////////////////////////////////////////
-    //Data_in
-    //////////////////////////////////////////
-    
     input                     [   7: 0]         i_data_R [DATA_CHANNEL-1:0] ,
     input                     [   7: 0]         i_data_G [DATA_CHANNEL-1:0] ,
     input                     [   7: 0]         i_data_B [DATA_CHANNEL-1:0] ,
@@ -30,9 +24,6 @@ module DDD_Noise_8CH #(
     input                                       i_fval                      ,
     input                                       i_lval                      ,
 
-    //////////////////////////////////////////
-    //Data_out
-    //////////////////////////////////////////
 
     output wire                                 o_fval                      ,
     output wire                                 o_lval                      ,
@@ -40,10 +31,6 @@ module DDD_Noise_8CH #(
     output wire               [   7: 0]         o_data_G [DATA_CHANNEL-1:0] ,
     output wire               [   7: 0]         o_data_B [DATA_CHANNEL-1:0] ,
 
-    //////////////////////////////////////////
-    //DDR_Inteface
-    //////////////////////////////////////////
-  // Master Write Address
     output wire               [   5: 0]         M_AXI_AWID                  ,
     output wire               [  31: 0]         M_AXI_AWADDR                ,
     output wire               [   7: 0]         M_AXI_AWLEN                 ,
@@ -56,7 +43,7 @@ module DDD_Noise_8CH #(
     output wire               [   1: 0]         M_AXI_AWUSER                ,
     output wire                                 M_AXI_AWVALID               ,
     input                                       M_AXI_AWREADY               ,
-  // Master Write Data
+  
     output wire               [ 255: 0]         M_AXI_WDATA                 ,
     output wire               [   7: 0]         M_AXI_WSTRB                 ,
 
@@ -65,13 +52,13 @@ module DDD_Noise_8CH #(
     output wire                                 M_AXI_WVALID                ,
     input                                       M_AXI_WREADY                ,
 
-  // Master Write Response
+  
     input                     [   0: 0]         M_AXI_BID                   ,
     input                     [   1: 0]         M_AXI_BRESP                 ,
     input                     [   0: 0]         M_AXI_BUSER                 ,
     input                                       M_AXI_BVALID                ,
     output wire                                 M_AXI_BREADY                ,
-    // Master Read Address
+    
     output wire               [   5: 0]         M_AXI_ARID                  ,
     output wire               [  31: 0]         M_AXI_ARADDR                ,
     output wire               [   7: 0]         M_AXI_ARLEN                 ,
@@ -84,9 +71,9 @@ module DDD_Noise_8CH #(
     output wire               [   1: 0]         M_AXI_ARUSER                ,
     output wire                                 M_AXI_ARVALID               ,
     input                                       M_AXI_ARREADY               ,
-  // Master Read Data
+  
     input                     [   3: 0]         M_AXI_RID                   ,
-    input                     [  63: 0]         M_AXI_RDATA                 ,
+    input                     [ 255: 0]         M_AXI_RDATA                 ,
     input                     [   1: 0]         M_AXI_RRESP                 ,
     input                                       M_AXI_RLAST                 ,
     input                     [   0: 0]         M_AXI_RUSER                 ,
@@ -103,29 +90,16 @@ module DDD_Noise_8CH #(
     localparam                B_MATCH_ADDR                = DDR_BASE_ADDR + 32'h0200_0000   ;
     localparam                B_PROC_ADDR                 = DDR_BASE_ADDR + 32'h8200_0000   ;
 
-    //---------------------------------------------------------------------------------------
-    // Top-level control FSM (frame pipeline)
-    //
-    // Flow (matches `F:\EngineeringWarehouse\NR\3DNR.docx`):
-    //   1) Write two consecutive frames into DDR.
-    //   2) Prefetch DDR data into local BRAM and run MBDS (macroblock + downsample preparation).
-    //   3) Run ME/TD (Motion Estimation / Temporal Decision) and prefetch next data chunk.
-    //   4) Run the denoise algorithm for one macroblock-row block (4 lines), output + writeback.
-    //
-    // Notes:
-    // - `wr_finish_clr` is a single-cycle pulse derived from `frame_in_finish` (end of an input frame).
-    // - `mbds_finish_flag`/`ME_TD_finish_flag` are completion flags from the corresponding subsystems.
-    // - `prefetch` is a level signal converted into `prefetch_pulse` by `U0_SinglePulse_SubSys`.
-    //---------------------------------------------------------------------------------------
-    localparam                IDLE                        = 3'b000          ; // Wait for `i_fval_pulse` (new frame start)
-    localparam                FIRST_FRAME                 = 3'b001          ; // Write 1st frame into DDR
-    localparam                SECOND_FRAME                = 3'b011          ; // Write 2nd frame into DDR
-    localparam                INIT_LOCAL_MAT              = 3'b010          ; // Init/localize "match/reference" data into BRAM (MBDS)
-    localparam                INIT_LOCAL_PROC             = 3'b110          ; // Init/localize "process/current" data into BRAM (MBDS)
-    localparam                ME_TD                       = 3'b111          ; // ME/TD for current macroblock-row; may trigger BRAM/DDR prefetch
-    localparam                ALGO                        = 3'b101          ; // Algorithm stage (process 4 lines, output + writeback) //缂佺姵顨嗙涵鑸靛緞閸曨厽鍊為柡鍫㈠枛濡法鎲版担钘夋闁告柣鍔嶅ú鍧楀棘妫颁胶顏遍悶娑樿嫰閻ｎ垶宕稿Δ鍐闁跨噦鎷�?
+    
+    localparam                IDLE                        = 3'b000          ; 
+    localparam                FIRST_FRAME                 = 3'b001          ; 
+    localparam                SECOND_FRAME                = 3'b011          ; 
+    localparam                INIT_LOCAL_MAT              = 3'b010          ; 
+    localparam                INIT_LOCAL_PROC             = 3'b110          ; 
+    localparam                ME_TD                       = 3'b111          ; 
+    localparam                ALGO                        = 3'b101          ; 
 
-
+    wire                     rst                              ;
     reg                                         status_wr_finish[2:0]       ;
     wire                                        wr_finish_clr               ;
 
@@ -195,13 +169,13 @@ module DDD_Noise_8CH #(
     reg                       [   9: 0]         g_pref_proc_vcnt            ;
     reg                       [   9: 0]         g_pref_matc_vcnt            ;
 
-    wire                                        o_ena_dma_rd                ;
+    wire                                        o_ena_dma_rd    [2:0]      ;
     wire                      [  31: 0]         o_addr_dma_rd     [2:0]     ;
-    wire                      [  31: 0]         o_lenth_dma_rd              ;
+    wire                      [  31: 0]         o_lenth_dma_rd  [2:0]      ;
     wire                                        i_finish_dma_rd   [2:0]     ;
-//---------------------------------------------------------------------------------------
-//map
-//---------------------------------------------------------------------------------------
+
+
+
 
     wire                      [   1: 0]         R_rd_type_d   [7:0]         ;
     wire                                        R_rd_ena_d    [7:0]         ;
@@ -217,9 +191,9 @@ module DDD_Noise_8CH #(
 
     reg                                         start                       ;
     reg                       [  14: 0]         proc_block_addr             ;
-    //---------------------------------------------------------------------------------------
-    //                                                                                     
-    //---------------------------------------------------------------------------------------
+    
+    
+    
     wire                                        rd_ena_wire_R     [7:0]     ;
     wire                                        rd_ena_wire_G     [7:0]     ;
     wire                                        rd_ena_wire_B     [7:0]     ;
@@ -229,9 +203,9 @@ module DDD_Noise_8CH #(
     wire                      [   1: 0]         rd_type_R         [7:0]     ;
     wire                      [   1: 0]         rd_type_G         [7:0]     ;
     wire                      [   1: 0]         rd_type_B         [7:0]     ;
-    //---------------------------------------------------------------------------------------
-    //                                                                                     
-    //---------------------------------------------------------------------------------------
+    
+    
+    
     wire                      [  11: 0]         d_in_R            [7:0]     ;
     wire                      [  11: 0]         d_in_G            [7:0]     ;
     wire                      [  11: 0]         d_in_B            [7:0]     ;
@@ -287,6 +261,7 @@ module DDD_Noise_8CH #(
     reg                                         frame_in_finish             ;
     reg                                         METD_start                  ;
 
+    assign rst = ~rst_n;
     
     always @(posedge clk ) begin
         if (~rst_n) begin
@@ -296,7 +271,7 @@ module DDD_Noise_8CH #(
         else begin
             case (cur_st)
                 IDLE         : begin
-                    // Wait for frame-valid rising edge. This is the entry of the whole pipeline.
+                    
                     if (i_fval_pulse) begin
                         cur_st                  <=          FIRST_FRAME     ;
                     end
@@ -304,8 +279,7 @@ module DDD_Noise_8CH #(
                         cur_st                  <=          IDLE            ;
                     end
                 end
-                FIRST_FRAME  : begin
-                    // Write the 1st frame into DDR; advance when the frame write finishes.
+                FIRST_FRAME  : begin 
                     if (wr_finish_clr) begin
                         cur_st                  <=          SECOND_FRAME    ;
                     end
@@ -314,7 +288,7 @@ module DDD_Noise_8CH #(
                     end
                 end
                 SECOND_FRAME : begin
-                    // Write the 2nd frame into DDR; after that, start local BRAM initialization (MBDS).
+                    
                     if (wr_finish_clr) begin
                         cur_st                  <=          INIT_LOCAL_MAT  ;
                     end
@@ -323,7 +297,7 @@ module DDD_Noise_8CH #(
                     end
                 end
                 INIT_LOCAL_MAT: begin
-                    // Prefetch/init "match/reference" region into BRAM and generate macroblocks/downsample data.
+                    
                     if (mbds_finish_flag) begin
                         cur_st                  <=          INIT_LOCAL_PROC ;
                     end
@@ -332,8 +306,8 @@ module DDD_Noise_8CH #(
                     end
                 end
                 INIT_LOCAL_PROC: begin
-                    // Prefetch/init "process/current" region into BRAM and generate macroblocks/downsample data.
-                    // When ready, raise `prefetch` (converted to a pulse) and enter ME/TD.
+                    
+                    
                     if (mbds_finish_flag) begin
                         cur_st                  <=          ME_TD           ;
                         prefetch                <=          1'b1            ;
@@ -343,11 +317,11 @@ module DDD_Noise_8CH #(
                     end
                 end
                 ME_TD        : begin
-                    // Motion estimation / temporal decision for one macroblock-row step.
-                    // `prefetch` is lowered here to make a clean rising edge on the previous cycle.
+                    
+                    
                     prefetch                    <=          1'b0            ;
                     if (ME_TD_finish_flag) begin
-                        // After ME/TD finishes for the last horizontal chunk, start the algorithm stage.
+                        
                         if (METD_cnt == H_DISP/4 - 8) begin
                             cur_st              <=          ALGO            ;
                         end
@@ -360,13 +334,13 @@ module DDD_Noise_8CH #(
                     end
                 end
                 ALGO         : begin
-                    // Denoise algorithm stage. Processes one "block" (typically 4 lines) and outputs pixels.
+                    
                     if (o_frame_finish_pulse) begin
-                        // Pipeline re-enters frame capture for continuous streaming.
+                        
                         cur_st                  <=          FIRST_FRAME     ;
                     end
                     else if (o_line_transfer_finish_pulse) begin
-                        // One macroblock-row block finished; either end the frame or loop back to ME/TD.
+                        
                         if (algo_vcnt == V_DISP /4 - 1) begin
                             cur_st              <=          IDLE            ;
                         end
@@ -390,7 +364,7 @@ module DDD_Noise_8CH #(
     genvar i0;
 
     generate
-        for (i0 = 0;i0 < DATA_CHANNEL;i0 = i0 + 1) begin
+        for (i0 = 0;i0 < 3;i0 = i0 + 1) begin
             always @(posedge clk ) begin
                 if (~rst_n) begin
                     fsm_metd_start[i0]            <=          1'b0           ;
@@ -407,9 +381,9 @@ module DDD_Noise_8CH #(
         end
     endgenerate
 
-//---------------------------------------------------------------------------------------
-// Sys_clr                                                                                    
-//---------------------------------------------------------------------------------------
+
+
+
 
 
 U0_SinglePulse_SubSys u_U0_SinglePulse_SubSys(
@@ -420,7 +394,7 @@ U0_SinglePulse_SubSys u_U0_SinglePulse_SubSys(
     .pos_dir1                                  (i_fval                     ),
     .pos_dir2                                  (mbds_finish_flag           ),
     .pos_dir3                                  (ME_TD_finish_flag          ),
-    .pos_dir4                                  (fsm_metd_start             ),
+    .pos_dir4                                  (|fsm_metd_start            ),
     .pos_dir5                                  (o_one_MB_finish            ),
     .pos_dir6                                  (i_start_sys                ),
     .pos_dir7                                  (fsm_algo_start             ),
@@ -436,11 +410,6 @@ U0_SinglePulse_SubSys u_U0_SinglePulse_SubSys(
     .pos_pulse7                                (fsm_algo_start_pulse       ),
     .pos_pulse8                                (prefetch_pulse             ) 
 );
-
-
-//---------------------------------------------------------------------------------------
-// DDR_Mul_Channel                                                                                    
-//---------------------------------------------------------------------------------------
 
 
 
@@ -549,18 +518,17 @@ U0_SinglePulse_SubSys u_U0_SinglePulse_SubSys(
                 end
             end
 
-            //---------------------------------------------------------------------------------------
-            // write                                                                                    
-            //---------------------------------------------------------------------------------------
+            
+            
+            
 
             u_2_to_1_MUX#(
-            .D_WIDTH                                   (1                          ) 
-            )
-            mux_2_1_start(
-            .i_port0                                   (i_fval_pulse               ),
-            .i_port1                                   (o_ena_dma_wr[i1]           ),
-            .sel                                       (~wr_mux_sel                ),
-            .o_port_sel                                (M_wr_req[i1]               ) 
+        .D_WIDTH                           (1                              ) 
+            ) mux_2_1_start (
+        .i_port0                           (i_fval_pulse                   ),
+        .i_port1                           (o_ena_dma_wr[i1]               ),
+        .sel                               (~wr_mux_sel                    ),
+        .o_port_sel                        (M_wr_req[i1]                   ) 
             );
 
             u_2_to_1_MUX#(
@@ -613,15 +581,15 @@ U0_SinglePulse_SubSys u_U0_SinglePulse_SubSys(
             .o_port_sel                                (M_wr_finish[i1]            ) 
             );
 
-            //---------------------------------------------------------------------------------------
-            // read                                                                                    
-            //---------------------------------------------------------------------------------------
+            
+            
+            
 
             u_2_to_1_MUX#(
             .D_WIDTH                                   (1                          ) 
             )
             mux_2_1_start_rd(
-            .i_port0                                   (o_ena_dma_rd               ),
+            .i_port0                                   (o_ena_dma_rd[i1]           ),
             .i_port1                                   (o_ena_pre_rd[i1]           ),
             .sel                                       (rd_mux_sel                 ),
             .o_port_sel                                (M_rd_req[i1]               ) 
@@ -631,7 +599,7 @@ U0_SinglePulse_SubSys u_U0_SinglePulse_SubSys(
             .D_WIDTH                                   (32                         ) 
             )
             mux_2_1_lenth_rd(
-            .i_port0                                   (o_lenth_dma_rd             ),
+            .i_port0                                   (o_lenth_dma_rd[i1]         ),
             .i_port1                                   (o_lenth_pre_rd[i1]         ),
             .sel                                       (rd_mux_sel                 ),
             .o_port_sel                                (M_rd_lenth[i1]             ) 
@@ -688,9 +656,6 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
     .rst                                       (rst                        ),
     .ui_clk_sync_rst                           (ui_clk_sync_rst            ),
 
-//---------------------------------------------------------------------------------------
-// WR
-//---------------------------------------------------------------------------------------
     .M_wr_req                                  (M_wr_req                   ),
     .M_wr_granted                              (M_wr_granted               ),
     .M_wr_busy                                 (M_wr_busy                  ),
@@ -699,9 +664,7 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
     .M_wr_din                                  (M_wr_din                   ),
     .M_wr_dval                                 (M_wr_dval                  ),
     .M_wr_finish                               (M_wr_finish                ),
-//---------------------------------------------------------------------------------------
-// RD
-//---------------------------------------------------------------------------------------
+
     .M_rd_req                                  (M_rd_req                   ),
     .M_rd_granted                              (M_rd_granted               ),
     .M_rd_busy                                 (M_rd_busy                  ),
@@ -711,10 +674,7 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
     .M_rd_dval                                 (M_rd_dval                  ),
     .M_rd_finish                               (M_rd_finish                ),
 
-//////////////////////////////////////////
-//DDR_Inteface
-//////////////////////////////////////////
-// Master Write Address
+
     .M_AXI_AWID                                (M_AXI_AWID                 ),
     .M_AXI_AWADDR                              (M_AXI_AWADDR               ),
     .M_AXI_AWLEN                               (M_AXI_AWLEN                ),
@@ -727,20 +687,20 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
     .M_AXI_AWUSER                              (M_AXI_AWUSER               ),
     .M_AXI_AWVALID                             (M_AXI_AWVALID              ),
     .M_AXI_AWREADY                             (M_AXI_AWREADY              ),
-    // Master Write Data
+    
     .M_AXI_WDATA                               (M_AXI_WDATA                ),
     .M_AXI_WSTRB                               (M_AXI_WSTRB                ),
     .M_AXI_WLAST                               (M_AXI_WLAST                ),
     .M_AXI_WUSER                               (M_AXI_WUSER                ),
     .M_AXI_WVALID                              (M_AXI_WVALID               ),
     .M_AXI_WREADY                              (M_AXI_WREADY               ),
-    // Master Write Response
+    
     .M_AXI_BID                                 (M_AXI_BID                  ),
     .M_AXI_BRESP                               (M_AXI_BRESP                ),
     .M_AXI_BUSER                               (M_AXI_BUSER                ),
     .M_AXI_BVALID                              (M_AXI_BVALID               ),
     .M_AXI_BREADY                              (M_AXI_BREADY               ),
-    // Master Read Address
+    
     .M_AXI_ARID                                (M_AXI_ARID                 ),
     .M_AXI_ARADDR                              (M_AXI_ARADDR               ),
     .M_AXI_ARLEN                               (M_AXI_ARLEN                ),
@@ -753,7 +713,7 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
     .M_AXI_ARUSER                              (M_AXI_ARUSER               ),
     .M_AXI_ARVALID                             (M_AXI_ARVALID              ),
     .M_AXI_ARREADY                             (M_AXI_ARREADY              ),
-    // Master Read Data
+    
     .M_AXI_RID                                 (M_AXI_RID                  ),
     .M_AXI_RDATA                               (M_AXI_RDATA                ),
     .M_AXI_RRESP                               (M_AXI_RRESP                ),
@@ -763,13 +723,6 @@ U1_Mul_Channel_DDR u_U1_Mul_Channel_DDR(
     .M_AXI_RREADY                              (M_AXI_RREADY               ) 
 
 );
-
-
-
-//---------------------------------------------------------------------------------------
-// MacroBlock_SubSample                                                                                    
-//---------------------------------------------------------------------------------------
-
 
 
 
@@ -810,15 +763,12 @@ U2_MBDS_8CH_Subsys#(
 u_U2_MBDS_8CH_Subsys(
     .clk                                       (clk                        ),
     .rst                                       (rst                        ),
-//-----------------------------------------------------------------------
-// Port_in0
-//-----------------------------------------------------------------------
+
+
     .R_ena                                     (bram_prefetch              ),
     .G_ena                                     (bram_prefetch              ),
     .B_ena                                     (bram_prefetch              ),
-//-----------------------------------------------------------------------
-// Port_in1
-//-----------------------------------------------------------------------
+
     .R_data_valid                              (data_valid[0]              ),
     .R_data_in                                 (data_in[0]                 ),
     .G_data_valid                              (data_valid[1]              ),
@@ -826,35 +776,31 @@ u_U2_MBDS_8CH_Subsys(
     .B_data_valid                              (data_valid[2]              ),
     .B_data_in                                 (data_in[2]                 ),
 
-//-----------------------------------------------------------------------
-// Port_out1
-//-----------------------------------------------------------------------
+
+
+
     .R_MB_dout                                 (MB_dout[0]                  ),
     .R_MB_ena                                  (MB_ena[0]                   ),
     .B_MB_dout                                 (MB_dout[2]                  ),
     .B_MB_ena                                  (MB_ena[2]                   ),
     .G_MB_dout                                 (MB_dout[1]                  ),
     .G_MB_ena                                  (MB_ena[1]                   ),
-//-----------------------------------------------------------------------
-// Port_out2
-//-----------------------------------------------------------------------
+
+
+
     .R_Sub_dout                                (Sub_dout[0]                 ),
     .R_Sub_ena                                 (Sub_ena[0]                  ),
     .G_Sub_dout                                (Sub_dout[1]                 ),
     .G_Sub_ena                                 (Sub_ena[1]                  ),
     .B_Sub_dout                                (Sub_dout[2]                 ),
     .B_Sub_ena                                 (Sub_ena[2]                  ),
-//-----------------------------------------------------------------------
-// Port_out3
-//-----------------------------------------------------------------------
+
+
+
     .finish_flag                               (mbds_finish_flag           ),
     .flag_clr                                  (mbds_finish_flag_clr       ) 
 );
 
-
-//---------------------------------------------------------------------------------------
-// BRAM_DMA                                                                                    
-//---------------------------------------------------------------------------------------
 
 
     always @(posedge clk ) begin
@@ -878,7 +824,7 @@ u_U2_MBDS_8CH_Subsys(
             else if (cur_st == ME_TD && ME_TD_finish_flag) begin
                 bram_prefetch         <=        1'b1                        ;
                 bram_prefetch_type    <=         'b1                        ;
-                if (i_wr_MUX_reg) begin//process闂侇偅宀告禍锟�
+                if (i_wr_MUX_reg) begin
                     g_pref_proc_vcnt  <=        g_pref_proc_vcnt + 8        ;
                 end
                 else begin
@@ -925,7 +871,7 @@ u_U2_MBDS_8CH_Subsys(
                         bram_prefetch_addr[i2]    <=        frame_proc_addr[i2] ;
                     end
                     else if (cur_st == ME_TD && ME_TD_finish_flag) begin
-                        if (i_wr_MUX_reg) begin//process闂侇偅宀告禍锟�
+                        if (i_wr_MUX_reg) begin
                             bram_prefetch_addr[i2]<=        frame_proc_addr[i2] + g_pref_proc_vcnt * H_DISP * 3 ;
                         end
                         else begin
@@ -983,57 +929,57 @@ u_U2_MBDS_8CH_Subsys(
 U5_BRAM_Controller_Subsys u_U5_BRAM_Controller_Subsys(
     .clk                                       (clk                        ),
     .rst                                       (rst                        ),
-//---------------------------------------------------------------------------------------
-//
-//---------------------------------------------------------------------------------------
-    .prefetch                                  (bram_prefetch              ),
-    .prefetch_type                             (bram_prefetch_type         ),// 0 濞戞挾顕磏it婵☆垪鈧磭纭€ 1闁跨噦鎷�?4閻炴稑鐭侀浼村矗閺嶎煂渚€鏁撻敓锟�?
-    .prefetch_addr                             (bram_prefetch_addr         ),
-//---------------------------------------------------------------------------------------
-//
-//---------------------------------------------------------------------------------------
-    .o_ena_dma_rd                              (o_ena_dma_rd               ),// ! 闁哄牜鍓欏﹢瀵告嫚閺勫浚鍤為柨鐕傛嫹?
-    .o_addr_dma_rd                             (o_addr_dma_rd              ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囧弶鍕鹃柨鐕傛嫹?
-    .o_lenth_dma_rd                            (o_lenth_dma_rd             ),// ! 闁哄牜鍓欏﹢瀵告嫚婵犳碍姣愰柨鐕傛嫹?
-    .i_finish_dma_rd                           (i_finish_dma_rd            ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囪尙鏆氶柨鐕傛嫹?
 
-//---------------------------------------------------------------------------------------
-//
-//---------------------------------------------------------------------------------------
-    .i_wr_MUX_reg_r                            (i_wr_MUX_reg               ),// 1婵ɑ鐡曠换娆撳箰閸パ勫€诲璺哄閹﹪鏁撻敓锟�?
-    .i_wr_MUX_reg_g                            (i_wr_MUX_reg               ),// 1婵ɑ鐡曠换娆撳箰閸パ勫€诲璺哄閹﹪鏁撻敓锟�?
-    .i_wr_MUX_reg_b                            (i_wr_MUX_reg               ),// 1婵ɑ鐡曠换娆撳箰閸パ勫€诲璺哄閹﹪鏁撻敓锟�?
-//---------------------------------------------------------------------------------------
-//                                                                                     
-//---------------------------------------------------------------------------------------
+
+
+    .prefetch                                  (bram_prefetch              ),
+    .prefetch_type                             (bram_prefetch_type         ),
+    .prefetch_addr                             (bram_prefetch_addr         ),
+
+
+
+    .o_ena_dma_rd                              (o_ena_dma_rd               ),
+    .o_addr_dma_rd                             (o_addr_dma_rd              ),
+    .o_lenth_dma_rd                            (o_lenth_dma_rd             ),
+    .i_finish_dma_rd                           (i_finish_dma_rd            ),
+
+
+
+
+    .i_wr_MUX_reg_r                            (i_wr_MUX_reg               ),
+    .i_wr_MUX_reg_g                            (i_wr_MUX_reg               ),
+    .i_wr_MUX_reg_b                            (i_wr_MUX_reg               ),
+
+
+
     .i_wr_MB_ena_r                             (MB_ena[0]                  ),
     .i_wr_MB_addr_r                            (BRAM_mb_cnt[0]             ),
-    .i_wr_MB_data_r                            (MB_dout[0]                 ),// RGB1 RGB0
+    .i_wr_MB_data_r                            (MB_dout[0]                 ),
     .i_wr_DS_ena_r                             (Sub_ena[0]                 ),
     .i_wr_DS_addr_r                            (BRAM_ds_cnt[0]             ),
     .i_wr_DS_data_r                            (Sub_dout[0]                ),
-//---------------------------------------------------------------------------------------
-//
-//---------------------------------------------------------------------------------------
+
+
+
     .i_wr_MB_ena_g                             (MB_ena[1]                  ),
     .i_wr_MB_addr_g                            (BRAM_mb_cnt[1]             ),
-    .i_wr_MB_data_g                            (MB_dout[1]                 ),// RGB1 RGB0
+    .i_wr_MB_data_g                            (MB_dout[1]                 ),
     .i_wr_DS_ena_g                             (Sub_ena[1]                 ),
     .i_wr_DS_addr_g                            (BRAM_ds_cnt[1]             ),
     .i_wr_DS_data_g                            (Sub_dout[1]                ),
-//---------------------------------------------------------------------------------------
-//
-//---------------------------------------------------------------------------------------
+
+
+
     .i_wr_MB_ena_b                             (MB_ena[2]                  ),
     .i_wr_MB_addr_b                            (BRAM_mb_cnt[2]             ),
-    .i_wr_MB_data_b                            (MB_dout[2]                 ),// RGB1 RGB0
+    .i_wr_MB_data_b                            (MB_dout[2]                 ),
     .i_wr_DS_ena_b                             (Sub_ena[2]                 ),
     .i_wr_DS_addr_b                            (BRAM_ds_cnt[2]             ),
     .i_wr_DS_data_b                            (Sub_dout[2]                ),
-//-----------------------------------------------------------------------
-//
-//-----------------------------------------------------------------------
-    .i_rd_MUX_reg                              (i_wr_MUX_reg               ),// 闁告粌鐦峳闁汇劌瀚敮鍫曞礆閹壆绠鹃柟鎭掑劙缁旀挳寮堕埥鍛?闁跨喍绮欐禍锟�
+
+
+
+    .i_rd_MUX_reg                              (i_wr_MUX_reg               ),
 
     .i_rd_type_R                               (R_rd_type_d                ),
     .i_rd_type_G                               (G_rd_type_d                ),
@@ -1049,7 +995,6 @@ U5_BRAM_Controller_Subsys u_U5_BRAM_Controller_Subsys(
     .o_rd_data_G                               (d_in_G                     ),
     .o_rd_data_B                               (d_in_B                     ) 
 );
-
 
 
 
@@ -1087,11 +1032,6 @@ u_u_Addr_Map_Subsys(
     .B_rd_addr                                 (B_rd_addr                  ) 
 );
 
-
-
-//---------------------------------------------------------------------------------------
-//metd
-//---------------------------------------------------------------------------------------
 
 
 U4_ME_TD_Subsys#(
@@ -1179,12 +1119,12 @@ u_U4_ME_TD_Subsys(
             METD_info_B             <=         'b0                          ;
         end
         else begin
-            if (o_one_MB_finish) begin//process
+            if (o_one_MB_finish) begin
                 METD_info_R         <=      {METD_info_R[H_DISP/4-2:0],1'b0};
                 METD_info_G         <=      {METD_info_G[H_DISP/4-2:0],1'b0};
                 METD_info_B         <=      {METD_info_B[H_DISP/4-2:0],1'b0};
             end
-            else if (ME_TD_finish_flag) begin//metd
+            else if (ME_TD_finish_flag) begin
                 METD_info_R         <=      {METD_info_R[H_DISP/4-8:0],select_Temporal_R};
                 METD_info_G         <=      {METD_info_G[H_DISP/4-8:0],select_Temporal_G};
                 METD_info_B         <=      {METD_info_B[H_DISP/4-8:0],select_Temporal_B};
@@ -1196,12 +1136,6 @@ u_U4_ME_TD_Subsys(
             end
         end
     end
-
-//---------------------------------------------------------------------------------------
-//
-//---------------------------------------------------------------------------------------
-
-
 
 
 U6_Algorithm_Subsys#(
@@ -1221,33 +1155,33 @@ u_U6_Algorithm_Subsys(
     .clk                                       (clk                        ),
     .rst                                       (rst                        ),
     .i_temporal_weight                         (TEMPORAL_CALCULATE_PARAM   ),
-//-----------------------------------------------------------------------
-//
-//-----------------------------------------------------------------------
+
+
+
     .i_start_sys                               (i_start_sys_pulse | fsm_algo_start_pulse),
     .i_macroblock_addr                         (algo_hcnt                  ),
     .i_select_tmp_R                            (METD_info_R[H_DISP/4 - 1]  ),
     .i_select_tmp_G                            (METD_info_G[H_DISP/4 - 1]  ),
     .i_select_tmp_B                            (METD_info_B[H_DISP/4 - 1]  ),
-//-----------------------------------------------------------------------
-//
-//-----------------------------------------------------------------------
+
+
+
     .o_rd_ena                                  (o_rd_ena                   ),
     .o_rd_address                              (o_rd_address               ),
     .i_rd_data_process                         (i_rd_data_process          ),
     .i_rd_data_match                           (i_rd_data_match            ),
-//-----------------------------------------------------------------------
-//
-//-----------------------------------------------------------------------
+
+
+
     .i_one_finish_clr                          (i_one_finish_clr           ),
-    .o_one_MB_finish                           (o_one_MB_finish            ),// 闁跨噦鎷�?濞戞搩浜滈悾顖炲锤濡も偓閻ｎ剟鏁撻敓锟�?
+    .o_one_MB_finish                           (o_one_MB_finish            ),
 
     .o_image_out_start                         (o_image_out_start          ),
-    .o_line_transfer_finish_pulse              (o_line_transfer_finish_pulse),// 闁告帗顨呴悾顒勫箣閹邦剚瀚查悽顖嗗啰鏆氶柟瀛樺姇椤┭囧几濠婂嫭绠掗柡浣哥墳缁辨繈宕氬▎蹇斿€遍柡鍐煐婵椽鏁撻敓锟�?
-    .o_frame_finish_pulse                      (o_frame_finish_pulse       ),// 閹稿洭宕氬Δ鈧悾顒勫箣閹邦剚瀚查悽顖嗗啰鏆氶柟瀛樺姇椤┭囧几濠婂嫭绠掗柡浣哥墳缁辨繈宕氬▎蹇斿€遍柡鍐煐婵椽鏁撻敓锟�?
-//-----------------------------------------------------------------------
-//
-//-----------------------------------------------------------------------
+    .o_line_transfer_finish_pulse              (o_line_transfer_finish_pulse),
+    .o_frame_finish_pulse                      (o_frame_finish_pulse       ),
+
+
+
     .o_posted_data_R                           (o_data_R                   ),
     .o_posted_data_G                           (o_data_G                   ),
     .o_posted_data_B                           (o_data_B                   ),
@@ -1256,8 +1190,6 @@ u_U6_Algorithm_Subsys(
     .o_Vsync                                   (o_fval                     ),
     .o_Hsync                                   (o_lval                     ) 
 );
-
-
 
 
 always @(posedge clk ) begin
@@ -1317,11 +1249,6 @@ always @(posedge clk ) begin
     end
 end
 
-//---------------------------------------------------------------------------------------
-//DMA
-//---------------------------------------------------------------------------------------
-
-
 
     genvar i7;
 
@@ -1344,58 +1271,40 @@ U7_DDR_DMA#(
     .CHANNEL_NUM                               (DATA_CHANNEL               )
 )
 u_U7_DDR_DMA(
-    .clk                                       (clk                        ),// ! 闁哄啫鐖奸幐锟�
-    .rst                                       (rst                        ),// ! 濠㈣泛绉崇紞锟�
+    .clk                                       (clk                        ),
+    .rst                                       (rst                        ),
     
-    .line_finish                               (o_image_out_start          ),// ! 濡炵懓宕慨鈺佄熼垾铏仴闁跨噦鎷�?濠殿喖顑勭粭瀛孌R闁告劖鐟ゅ锕傛晸閿燂拷?
-    .frame_finish                              (o_frame_finish_pulse       ),// ! 缂佺姵顨嗙涵璺何熼垾铏仴閻庣懓鏈崹姘閸℃洜顏遍柡浣规綑閹舵碍寰勯崟顓熷€炴鐐舵硾瑜板倿鏌呮笟濠勭濞戞挸绉堕弫銈夊礃瀹ュ懍绱ｅù锝嗙玻缁辨繂銆掗崨瀛樼彑闂侇喓鍔岄崹搴ｆ媼閳╁啯娈堕柨鐕傛嫹?
-    .prefetch                                  (prefetch                   ),// ! 濡炵懓宕慨鈺佄熼垾铏仴闁跨噦鎷�?濠殿喖顑勭粭瀛孌R閻犲洩顔婂锕傛晸閿燂拷?
+    .line_finish                               (o_image_out_start          ),
+    .frame_finish                              (o_frame_finish_pulse       ),
+    .prefetch                                  (prefetch                   ),
     
-    .o_ena_dma_wr                              (o_ena_dma_wr               ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘帩鍤為柨鐕傛嫹?
-    .i_ddr_ready                               (i_ddr_ready                ),// ! DDR闁告垵妫楅ˇ顒佺附閼恒儱澶嶉柡鈧捄鍝勬櫢闁轰胶澧楀畵锟�
-    .o_lenth_dma_wr                            (o_lenth_dma_wr             ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘挻姣愰幖杈捐缁变即宕￠弴姘辩Т濞戞挾鍎ゆ晶锕傚箯瀹ュ棭鍋ч柨鐕傛嫹?
-    .o_addr_dma_wr                             (o_addr_dma_wr              ),// ! 闁哄牜鍓欏﹢鎾礃濞嗗繑鍕鹃柨鐕傛嫹?
-    .o_data_dma_wr                             (o_data_dma_wr              ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘劖娈堕柨鐕傛嫹?
-    .o_d_val_dma_wr                            (o_d_val_dma_wr             ),// ! 闁哄牜鍓欏﹢鎾礃濞嗘劖娈堕柟璇″枟濠€渚€鏁撻敓锟�?
-    .o_dma_ddr_finish                          (o_dma_ddr_finish           ),// ! 闁哄牜鍓欏﹢鎾礃濞嗗繒鏆氶柨鐕傛嫹?
+    .o_ena_dma_wr                              (o_ena_dma_wr               ),
+    .i_ddr_ready                               (i_ddr_ready                ),
+    .o_lenth_dma_wr                            (o_lenth_dma_wr             ),
+    .o_addr_dma_wr                             (o_addr_dma_wr              ),
+    .o_data_dma_wr                             (o_data_dma_wr              ),
+    .o_d_val_dma_wr                            (o_d_val_dma_wr             ),
+    .o_dma_ddr_finish                          (o_dma_ddr_finish           ),
 
-    .o_ena_dma_rd                              (o_ena_pre_rd               ),// ! 闁哄牜鍓欏﹢瀵告嫚閺勫浚鍤為柨鐕傛嫹?
-    .o_addr_dma_rd                             (o_addr_pre_rd              ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囧弶鍕鹃柨鐕傛嫹?
-    .o_lenth_dma_rd                            (o_lenth_pre_rd             ),// ! 闁哄牜鍓欏﹢瀵告嫚婵犳碍姣愰柨鐕傛嫹?
-    .i_data_dma_rd                             (i_data_pre_rd              ),// ! 闁哄牜鍓欏﹢瀵告嫚缂佹ɑ娈堕柨鐕傛嫹?
-    .i_d_val_dma_rd                            (i_d_val_pre_rd             ),// ! 闁哄牜鍓欏﹢瀵告嫚缂佹ɑ娈堕柟璇″枟濠€渚€鏁撻敓锟�?
-    .i_finish_dma_rd                           (i_finish_pre_rd            ),// ! 闁哄牜鍓欏﹢瀵告嫚鐠囪尙鏆氶柨鐕傛嫹?
+    .o_ena_dma_rd                              (o_ena_pre_rd               ),
+    .o_addr_dma_rd                             (o_addr_pre_rd              ),
+    .o_lenth_dma_rd                            (o_lenth_pre_rd             ),
+    .i_data_dma_rd                             (i_data_pre_rd              ),
+    .i_d_val_dma_rd                            (i_d_val_pre_rd             ),
+    .i_finish_dma_rd                           (i_finish_pre_rd            ),
 
-    .i_data                                    (i_data                     ),// ! 闁告劖鐟ㄩ顒€效閸屾碍鍊甸柣鈺佺摠鐢瓨绋夋惔鈥虫櫢闁轰胶澧楀畵浣虹博椤栨艾缍撻柣鈺傜摃缁伙拷
-    .i_d_val                                   (o_lval                     ),// ! 闁告劖鐟ㄩ顒€效閸屾碍鍊甸柣鈺佺摠鐢瓨绋夋惔鈥虫櫢闁轰胶澧楀畵渚€寮垫径瀣珡闁烩晜鐡曠换锟�
+    .i_data                                    (i_data                     ),
+    .i_d_val                                   (o_lval                     ),
 
-    .i_proc_RAM_ena                            (o_rd_ena                   ),// ! 
-    .i_proc_RAM_addr                           (o_rd_address               ),// ! 
-    .o_proc_RAM_data                           (i_rd_data_process          ),// ! 
-    .i_match_RAM_ena                           (o_rd_ena                   ),// ! 
-    .i_match_RAM_addr                          (o_rd_address               ),// ! 
-    .o_match_RAM_data                          (i_rd_data_match            ) // ! 
+    .i_proc_RAM_ena                            (o_rd_ena                   ),
+    .i_proc_RAM_addr                           (o_rd_address               ),
+    .o_proc_RAM_data                           (i_rd_data_process          ),
+    .i_match_RAM_ena                           (o_rd_ena                   ),
+    .i_match_RAM_addr                          (o_rd_address               ),
+    .o_match_RAM_data                          (i_rd_data_match            ) 
 );
 
-//---------------------------------------------------------------------------------------
-//                                                                                     
-//---------------------------------------------------------------------------------------
 
-/***************************************************/
-/*****
-* Author : Aimuon Cheng.zhonglin
-* Time : 
-* ****
-*
-* All Right Reserved
-/***************************************************/
-
-
-
-
-
-/*  Modify End
-/***************************************************/
 
 endmodule
 

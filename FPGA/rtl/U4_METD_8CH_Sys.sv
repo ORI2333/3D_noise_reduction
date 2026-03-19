@@ -272,7 +272,7 @@ U0_SinglePulse u_U0_SinglePulse(
 
                 .d_in                                      (d_in_R[a]                  ),
 
-                .select_Temporal                           (final_info_R[a]            ),// 选择时域算法使能信号
+                .select_Temporal                           (final_info_R[a]            ),// 閫夋嫨鏃跺煙绠楁硶浣胯兘淇″彿
                 .ME_TD_finish_flag                         (ME_TD_finish_flag_R[a]     ),
                 .finish_clr                                (finish_clr                 ) 
             );
@@ -290,11 +290,11 @@ U0_SinglePulse u_U0_SinglePulse(
 
                 .rd_ena_wire                               (rd_ena_wire_G[a]           ),
                 .rd_addr_wire                              (rd_addr_wire_G[a]          ),
-                .rd_type                                   (rd_type_G[a]               ),// 你要抽取哪个图像的数�?????? 0原图 1匹配�??????
+                .rd_type                                   (rd_type_G[a]               ),// 浣犺鎶藉彇鍝釜鍥惧儚鐨勬暟锟�?????? 0鍘熷浘 1鍖归厤锟�??????
 
                 .d_in                                      (d_in_G[a]                  ),
 
-                .select_Temporal                           (final_info_G[a]            ),// 选择时域算法使能信号
+                .select_Temporal                           (final_info_G[a]            ),// 閫夋嫨鏃跺煙绠楁硶浣胯兘淇″彿
                 .ME_TD_finish_flag                         (ME_TD_finish_flag_G[a]     ),
                 .finish_clr                                (finish_clr                 ) 
             );
@@ -312,11 +312,11 @@ U0_SinglePulse u_U0_SinglePulse(
 
                 .rd_ena_wire                               (rd_ena_wire_B[a]           ),
                 .rd_addr_wire                              (rd_addr_wire_B[a]          ),
-                .rd_type                                   (rd_type_B[a]               ),// 你要抽取哪个图像的数�?????? 0原图 1匹配�??????
+                .rd_type                                   (rd_type_B[a]               ),// 浣犺鎶藉彇鍝釜鍥惧儚鐨勬暟锟�?????? 0鍘熷浘 1鍖归厤锟�??????
 
                 .d_in                                      (d_in_B[a]                  ),
 
-                .select_Temporal                           (final_info_B[a]            ),// 选择时域算法使能信号
+                .select_Temporal                           (final_info_B[a]            ),// 閫夋嫨鏃跺煙绠楁硶浣胯兘淇″彿
                 .ME_TD_finish_flag                         (ME_TD_finish_flag_B[a]     ),
                 .finish_clr                                (finish_clr                 ) 
             );

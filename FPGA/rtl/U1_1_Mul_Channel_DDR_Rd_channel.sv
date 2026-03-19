@@ -29,14 +29,14 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
     input                                       rst                         ,
     input                                       ui_clk_sync_rst             ,
 
-    input                                       M_rd_req      [2:0]         ,//!本地写请�??
-    output  wire                                M_rd_granted  [2:0]         ,//!可接收一轮传�??
+    input                                       M_rd_req      [2:0]         ,//!鏈湴鍐欒锟�??
+    output  wire                                M_rd_granted  [2:0]         ,//!鍙帴鏀朵竴杞紶锟�??
     output  wire                                M_rd_busy     [2:0]         ,//!
-    input                     [  31: 0]         M_rd_len      [2:0]         ,//!写长度：单位打拍数量
-    input                     [  31: 0]         M_rd_addr     [2:0]         ,//!写地�??
-    output  wire              [  63: 0]         M_rd_dout     [2:0]         ,//!写数据输�??
-    output  wire                                M_rd_dval     [2:0]         ,//!写数据有�??
-    output  wire                                M_rd_finish   [2:0]         ,//!写完�??
+    input                     [  31: 0]         M_rd_len      [2:0]         ,//!鍐欓暱搴︼細鍗曚綅鎵撴媿鏁伴噺
+    input                     [  31: 0]         M_rd_addr     [2:0]         ,//!鍐欏湴锟�??
+    output  wire              [  63: 0]         M_rd_dout     [2:0]         ,//!鍐欐暟鎹緭锟�??
+    output  wire                                M_rd_dval     [2:0]         ,//!鍐欐暟鎹湁锟�??
+    output  wire                                M_rd_finish   [2:0]         ,//!鍐欏畬锟�??
 
 //---------------------------------------------------------------------------
 // output AXI4_RD                                                                        
@@ -140,7 +140,7 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
 
     generate
         for (i = 0; i < 3; i = i + 1) begin
-            always @(posedge clk ) begin//这里寄存的是MM主机的号
+            always @(posedge clk ) begin//杩欓噷瀵勫瓨鐨勬槸MM涓绘満鐨勫彿
                 if (rst) begin
                     FIFO_Transaction_tmp_Addr[i]      <=      'b0                         ;
                     FIFO_Transaction_tmp_Len[i]       <=      'b0                         ;
@@ -157,7 +157,7 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
                 end
             end
 
-            always @(posedge clk ) begin//这里寄存的是经过分配后的FIFO�??
+            always @(posedge clk ) begin//杩欓噷瀵勫瓨鐨勬槸缁忚繃鍒嗛厤鍚庣殑FIFO锟�??
                 if (rst) begin
                     FIFO_Transaction_Len[i]           <=      'b0                         ;
                     FIFO_Transaction_Addr[i]          <=      'b0                         ;
@@ -195,7 +195,7 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
 
 
 //---------------------------------------------------------------------------------------
-// 调度仲裁，负责给事务接口分配FC
+// 璋冨害浠茶锛岃礋璐ｇ粰浜嬪姟鎺ュ彛鍒嗛厤FC
 //---------------------------------------------------------------------------------------
 
 
@@ -213,12 +213,12 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
         .grant1_d                                  (M_rd_granted[1]            ),
         .grant2_d                                  (M_rd_granted[2]            ),
         .o_dval_r                                  (o_dval_r                   ),
-        .granted_fifo_id                           (granted_fifo_id            ) //给每个�?�道主机分配的FIFO�??
+        .granted_fifo_id                           (granted_fifo_id            ) //缁欐瘡涓拷?锟介亾涓绘満鍒嗛厤鐨凢IFO锟�??
     );
 
 
 //---------------------------------------------------------------------------------------
-// 全连接层
+// 鍏ㄨ繛鎺ュ眰
 //---------------------------------------------------------------------------------------
 
 
@@ -231,10 +231,10 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
         .rst                                       (rst                        ),
         .granted_ena                               ({M_rd_granted[2],M_rd_granted[1],M_rd_granted[0]}),
         .granted_fifo_id                           (granted_fifo_id            ),
-        .M_rd_din                                  (fc_in                      ),// !写数据输�??
-        .M_rd_dval                                 (fc_in_val                  ),// !写数据有�??
-        .S_rd_data                                 (M_rd_dout                  ),// !输出
-        .S_rd_dval                                 (M_rd_dval                  ) // !输出
+        .M_rd_din                                  (fc_in                      ),// !鍐欐暟鎹緭锟�??
+        .M_rd_dval                                 (fc_in_val                  ),// !鍐欐暟鎹湁锟�??
+        .S_rd_data                                 (M_rd_dout                  ),// !杈撳嚭
+        .S_rd_dval                                 (M_rd_dval                  ) // !杈撳嚭
     );
 
 
@@ -267,13 +267,13 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
     )
     u_u_OneHot_1_to_3_DEMUX_data(
         .select_info                               (select_mux                 ),
-        .d_in                                      (M_AXI_RDATA                ),
+        .d_in                                      (M_AXI_RDATA[63:0]          ),
         .d_out                                     (fc_in                      ) 
     );
 
 
 //---------------------------------------------------------------------------------------
-// 时序启动与FIFO选取的仲裁模�??1
+// 鏃跺簭鍚姩涓嶧IFO閫夊彇鐨勪徊瑁佹ā锟�??1
 //---------------------------------------------------------------------------------------
 
 
@@ -284,20 +284,20 @@ module U1_0_Mul_Channel_DDR_Rd_channel(
         .clk                                       (ui_clk                        ),
         .rst                                       (ui_clk_sync_rst                        ),
 
-        .FIFO_lenth                                (FIFO_Transaction_Len       ),// 系统信息
-        .FIFO_granted                              (FIFO_Granted_status        ),// 系统信息
+        .FIFO_lenth                                (FIFO_Transaction_Len       ),// 绯荤粺淇℃伅
+        .FIFO_granted                              (FIFO_Granted_status        ),// 绯荤粺淇℃伅
         .FIFO_stack_cnt                            (fifo_cnt                   ),
         .trans_cnt                                 (trans_cnt                  ),
 
         .last_transaction                          (last_transaction           ),
-        .select_mux                                (select_mux                 ),//选择FIFO
+        .select_mux                                (select_mux                 ),//閫夋嫨FIFO
         .start_wr                                  (start_rd                   ),
         .transaction_finish                        (transaction_finish         ) //input
     );
 
 
 //---------------------------------------------------------------------------------------
-// 时序发生�??                                                                                    
+// 鏃跺簭鍙戠敓锟�??                                                                                    
 //---------------------------------------------------------------------------------------
 
 

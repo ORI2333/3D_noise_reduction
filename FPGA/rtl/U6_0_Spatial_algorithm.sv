@@ -48,7 +48,7 @@ module U6_0_Spatial_algorithm #(
     localparam                          data_proc           = 3     ;
 
     reg                [   1: 0]        c_st                        ;
-    reg                [  13: 0]        address_gen   [ 1: 0][CHANNEL_NUM -1: 0];
+    reg                [  13: 0]        address_gen   [CHANNEL_NUM -1: 0][ 1: 0];
     reg                [   0: 0]        addr_idx                    ;
     reg                [   0: 0]        addr_idx_d                  ;
     reg                [   0: 0]        addr_out_idx                ;
@@ -155,39 +155,21 @@ module U6_0_Spatial_algorithm #(
         else begin
             if (i_ena_single_pulse) begin
                 address_gen[0][0]       <=       (macroblock_num << 2)                    ;
-                address_gen[0][1]       <=       (macroblock_num << 2) + 1                ;
-                address_gen[0][2]       <=       (macroblock_num << 2) + 2                ;
-                address_gen[0][3]       <=       (macroblock_num << 2) + 3                ;
-                address_gen[0][4]       <=       (macroblock_num << 2)      +  H_DISP     ;
-                address_gen[0][5]       <=       (macroblock_num << 2) + 1  +  H_DISP     ;
-                address_gen[0][6]       <=       (macroblock_num << 2) + 2  +  H_DISP     ;
-                address_gen[0][7]       <=       (macroblock_num << 2) + 3  +  H_DISP     ;
-                address_gen[1][0]       <=       (macroblock_num << 2)      +  H_DISP * 2 ;
+                address_gen[1][0]       <=       (macroblock_num << 2) + 1                ;
+                address_gen[2][0]       <=       (macroblock_num << 2) + 2                ;
+                address_gen[3][0]       <=       (macroblock_num << 2) + 3                ;
+                address_gen[4][0]       <=       (macroblock_num << 2)      +  H_DISP     ;
+                address_gen[5][0]       <=       (macroblock_num << 2) + 1  +  H_DISP     ;
+                address_gen[6][0]       <=       (macroblock_num << 2) + 2  +  H_DISP     ;
+                address_gen[7][0]       <=       (macroblock_num << 2) + 3  +  H_DISP     ;
+                address_gen[0][1]       <=       (macroblock_num << 2)      +  H_DISP * 2 ;
                 address_gen[1][1]       <=       (macroblock_num << 2) + 1  +  H_DISP * 2 ;
-                address_gen[1][2]       <=       (macroblock_num << 2) + 2  +  H_DISP * 2 ;
-                address_gen[1][3]       <=       (macroblock_num << 2) + 3  +  H_DISP * 2 ;
-                address_gen[1][4]       <=       (macroblock_num << 2)      +  H_DISP * 3 ;
-                address_gen[1][5]       <=       (macroblock_num << 2) + 1  +  H_DISP * 3 ;
-                address_gen[1][6]       <=       (macroblock_num << 2) + 2  +  H_DISP * 3 ;
-                address_gen[1][7]       <=       (macroblock_num << 2) + 3  +  H_DISP * 3 ;
-            end
-            else begin
-                address_gen[0][0]       <=        address_gen[0][0]                       ;
-                address_gen[0][1]       <=        address_gen[1][0]                       ;
-                address_gen[0][2]       <=        address_gen[2][0]                       ;
-                address_gen[0][3]       <=        address_gen[3][0]                       ;
-                address_gen[0][4]       <=        address_gen[4][0]                       ;
-                address_gen[0][5]       <=        address_gen[5][0]                       ;
-                address_gen[0][6]       <=        address_gen[6][0]                       ;
-                address_gen[0][7]       <=        address_gen[7][0]                       ;
-                address_gen[1][0]       <=        address_gen[0][1]                       ;
-                address_gen[1][1]       <=        address_gen[1][1]                       ;
-                address_gen[1][2]       <=        address_gen[2][1]                       ;
-                address_gen[1][3]       <=        address_gen[3][1]                       ;
-                address_gen[1][4]       <=        address_gen[4][1]                       ;
-                address_gen[1][5]       <=        address_gen[5][1]                       ;
-                address_gen[1][6]       <=        address_gen[6][1]                       ;
-                address_gen[1][7]       <=        address_gen[7][1]                       ;
+                address_gen[2][1]       <=       (macroblock_num << 2) + 2  +  H_DISP * 2 ;
+                address_gen[3][1]       <=       (macroblock_num << 2) + 3  +  H_DISP * 2 ;
+                address_gen[4][1]       <=       (macroblock_num << 2)      +  H_DISP * 3 ;
+                address_gen[5][1]       <=       (macroblock_num << 2) + 1  +  H_DISP * 3 ;
+                address_gen[6][1]       <=       (macroblock_num << 2) + 2  +  H_DISP * 3 ;
+                address_gen[7][1]       <=       (macroblock_num << 2) + 3  +  H_DISP * 3 ;
             end
         end
     end
@@ -218,7 +200,7 @@ module U6_0_Spatial_algorithm #(
                 end 
                 else begin
                     if (c_st == data_fetch) begin
-                        generated_rd_addr[a]<=   address_gen[addr_idx][a];
+                        generated_rd_addr[a]<=   address_gen[a][addr_idx];
                     end
                     else begin
                         generated_rd_addr[a]<=   generated_rd_addr[a];
@@ -399,7 +381,7 @@ module U6_0_Spatial_algorithm #(
 
     generate
         for (c = 0;c < CHANNEL_NUM ;c = c + 1) begin
-            assign   d_out_addr[c]       =  address_gen[addr_out_idx][c]        ;
+            assign   d_out_addr[c]       =  address_gen[c][addr_out_idx]        ;
         end
     endgenerate
 

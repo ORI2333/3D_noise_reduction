@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_Sys_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_Sys" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="9.270000000001 ms"></ZoomEndTime>
+      <Cursor1Time time="1.400000000000 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="315"></NameColumnWidth>
+      <ValueColumnWidth column_width="196"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="2" />
+   <wave_markers>
+      <marker time="0" label="" />
+   </wave_markers>
+   <wvobject fp_name="group91" type="group">
+      <obj_property name="label">tb</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_Sys/ddr3_dq" type="array">
+         <obj_property name="ElementShortName">ddr3_dq[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_dq[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_addr" type="array">
+         <obj_property name="ElementShortName">ddr3_addr[13:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_addr[13:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_ba" type="array">
+         <obj_property name="ElementShortName">ddr3_ba[2:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_ba[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_dqs_p" type="array">
+         <obj_property name="ElementShortName">ddr3_dqs_p[3:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_dqs_p[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_dqs_n" type="array">
+         <obj_property name="ElementShortName">ddr3_dqs_n[3:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_dqs_n[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_ck_p" type="array">
+         <obj_property name="ElementShortName">ddr3_ck_p[0:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_ck_p[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_ck_n" type="array">
+         <obj_property name="ElementShortName">ddr3_ck_n[0:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_ck_n[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_dm" type="array">
+         <obj_property name="ElementShortName">ddr3_dm[3:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_dm[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_cke" type="array">
+         <obj_property name="ElementShortName">ddr3_cke[0:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_cke[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_cs_n" type="array">
+         <obj_property name="ElementShortName">ddr3_cs_n[0:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_cs_n[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_ras_n" type="logic">
+         <obj_property name="ElementShortName">ddr3_ras_n</obj_property>
+         <obj_property name="ObjectShortName">ddr3_ras_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_cas_n" type="logic">
+         <obj_property name="ElementShortName">ddr3_cas_n</obj_property>
+         <obj_property name="ObjectShortName">ddr3_cas_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_we_n" type="logic">
+         <obj_property name="ElementShortName">ddr3_we_n</obj_property>
+         <obj_property name="ObjectShortName">ddr3_we_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_odt" type="array">
+         <obj_property name="ElementShortName">ddr3_odt[0:0]</obj_property>
+         <obj_property name="ObjectShortName">ddr3_odt[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ddr3_reset_n" type="logic">
+         <obj_property name="ElementShortName">ddr3_reset_n</obj_property>
+         <obj_property name="ObjectShortName">ddr3_reset_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/aresetn" type="logic">
+         <obj_property name="ElementShortName">aresetn</obj_property>
+         <obj_property name="ObjectShortName">aresetn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/rst" type="logic">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/sys_rst" type="logic">
+         <obj_property name="ElementShortName">sys_rst</obj_property>
+         <obj_property name="ObjectShortName">sys_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ref_clk" type="logic">
+         <obj_property name="ElementShortName">ref_clk</obj_property>
+         <obj_property name="ObjectShortName">ref_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/sys_clk" type="logic">
+         <obj_property name="ElementShortName">sys_clk</obj_property>
+         <obj_property name="ObjectShortName">sys_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/i_data_R" type="array">
+         <obj_property name="ElementShortName">i_data_R[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_R[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/i_data_G" type="array">
+         <obj_property name="ElementShortName">i_data_G[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_G[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/i_data_B" type="array">
+         <obj_property name="ElementShortName">i_data_B[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_B[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/i_fval" type="logic">
+         <obj_property name="ElementShortName">i_fval</obj_property>
+         <obj_property name="ObjectShortName">i_fval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/i_lval" type="logic">
+         <obj_property name="ElementShortName">i_lval</obj_property>
+         <obj_property name="ObjectShortName">i_lval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/o_data_R" type="array">
+         <obj_property name="ElementShortName">o_data_R[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_R[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/o_data_G" type="array">
+         <obj_property name="ElementShortName">o_data_G[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_G[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/o_data_B" type="array">
+         <obj_property name="ElementShortName">o_data_B[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_B[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/o_fval" type="logic">
+         <obj_property name="ElementShortName">o_fval</obj_property>
+         <obj_property name="ObjectShortName">o_fval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/o_lval" type="logic">
+         <obj_property name="ElementShortName">o_lval</obj_property>
+         <obj_property name="ObjectShortName">o_lval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/init_calib_complete" type="logic">
+         <obj_property name="ElementShortName">init_calib_complete</obj_property>
+         <obj_property name="ObjectShortName">init_calib_complete</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ui_clk" type="logic">
+         <obj_property name="ElementShortName">ui_clk</obj_property>
+         <obj_property name="ObjectShortName">ui_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/ui_clk_sync_rst" type="logic">
+         <obj_property name="ElementShortName">ui_clk_sync_rst</obj_property>
+         <obj_property name="ObjectShortName">ui_clk_sync_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/mmcm_locked" type="logic">
+         <obj_property name="ElementShortName">mmcm_locked</obj_property>
+         <obj_property name="ObjectShortName">mmcm_locked</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/app_sr_active" type="logic">
+         <obj_property name="ElementShortName">app_sr_active</obj_property>
+         <obj_property name="ObjectShortName">app_sr_active</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/app_ref_ack" type="logic">
+         <obj_property name="ElementShortName">app_ref_ack</obj_property>
+         <obj_property name="ObjectShortName">app_ref_ack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/app_zq_ack" type="logic">
+         <obj_property name="ElementShortName">app_zq_ack</obj_property>
+         <obj_property name="ObjectShortName">app_zq_ack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/s_axi_bid" type="array">
+         <obj_property name="ElementShortName">s_axi_bid[3:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axi_bid[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/s_axi_rid" type="array">
+         <obj_property name="ElementShortName">s_axi_rid[3:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axi_rid[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWADDR" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_AWVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_AWREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWPROT" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWPROT[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWPROT[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWLOCK" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWLOCK[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWLOCK[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWCACHE" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWCACHE[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWCACHE[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWSIZE" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWSIZE[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWSIZE[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWBURST" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWBURST[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWBURST[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_AWLEN" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWLEN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWLEN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_WDATA" type="array">
+         <obj_property name="ElementShortName">M_AXI_WDATA[255:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WDATA[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_WSTRB" type="array">
+         <obj_property name="ElementShortName">M_AXI_WSTRB[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WSTRB[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_WVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_WVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_WREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_WREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_WLAST" type="logic">
+         <obj_property name="ElementShortName">M_AXI_WLAST</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WLAST</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_BRESP" type="array">
+         <obj_property name="ElementShortName">M_AXI_BRESP[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BRESP[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_BVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_BVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_BREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_BREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARADDR" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_ARVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_ARREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARPROT" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARPROT[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARPROT[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARLOCK" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARLOCK[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARLOCK[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARCACHE" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARCACHE[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARCACHE[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARSIZE" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARSIZE[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARSIZE[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARBURST" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARBURST[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARBURST[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_ARLEN" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARLEN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARLEN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_RDATA" type="array">
+         <obj_property name="ElementShortName">M_AXI_RDATA[255:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RDATA[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_RRESP" type="array">
+         <obj_property name="ElementShortName">M_AXI_RRESP[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RRESP[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_RVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_RVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_RREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_RREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/M_AXI_RLAST" type="logic">
+         <obj_property name="ElementShortName">M_AXI_RLAST</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RLAST</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/file_handle" type="array">
+         <obj_property name="ElementShortName">file_handle[31:0]</obj_property>
+         <obj_property name="ObjectShortName">file_handle[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/read_count" type="array">
+         <obj_property name="ElementShortName">read_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">read_count[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/pixel_x" type="array">
+         <obj_property name="ElementShortName">pixel_x[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pixel_x[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/pixel_y" type="array">
+         <obj_property name="ElementShortName">pixel_y[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pixel_y[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/mem_index" type="array">
+         <obj_property name="ElementShortName">mem_index[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_index[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/test1_file" type="array">
+         <obj_property name="ElementShortName">test1_file[31:0]</obj_property>
+         <obj_property name="ObjectShortName">test1_file[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/test_a" type="array">
+         <obj_property name="ElementShortName">test_a[31:0]</obj_property>
+         <obj_property name="ObjectShortName">test_a[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/frame" type="array">
+         <obj_property name="ElementShortName">frame[31:0]</obj_property>
+         <obj_property name="ObjectShortName">frame[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/row" type="array">
+         <obj_property name="ElementShortName">row[31:0]</obj_property>
+         <obj_property name="ObjectShortName">row[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/col" type="array">
+         <obj_property name="ElementShortName">col[31:0]</obj_property>
+         <obj_property name="ObjectShortName">col[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/plusarg_ok" type="array">
+         <obj_property name="ElementShortName">plusarg_ok[31:0]</obj_property>
+         <obj_property name="ObjectShortName">plusarg_ok[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/skip_calib_wait" type="array">
+         <obj_property name="ElementShortName">skip_calib_wait[31:0]</obj_property>
+         <obj_property name="ObjectShortName">skip_calib_wait[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/file" type="array">
+         <obj_property name="ElementShortName">file[31:0]</obj_property>
+         <obj_property name="ObjectShortName">file[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/out_counter" type="array">
+         <obj_property name="ElementShortName">out_counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">out_counter[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/a" type="array">
+         <obj_property name="ElementShortName">a[31:0]</obj_property>
+         <obj_property name="ObjectShortName">a[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/H_DISP" type="array">
+         <obj_property name="ElementShortName">H_DISP[31:0]</obj_property>
+         <obj_property name="ObjectShortName">H_DISP[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/V_DISP" type="array">
+         <obj_property name="ElementShortName">V_DISP[31:0]</obj_property>
+         <obj_property name="ObjectShortName">V_DISP[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/CMOS_H_PIXEL" type="array">
+         <obj_property name="ElementShortName">CMOS_H_PIXEL[31:0]</obj_property>
+         <obj_property name="ObjectShortName">CMOS_H_PIXEL[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/CMOS_V_PIXEL" type="array">
+         <obj_property name="ElementShortName">CMOS_V_PIXEL[31:0]</obj_property>
+         <obj_property name="ObjectShortName">CMOS_V_PIXEL[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group304" type="group">
+      <obj_property name="label">3d</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/ui_clk" type="logic">
+         <obj_property name="ElementShortName">ui_clk</obj_property>
+         <obj_property name="ObjectShortName">ui_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rst_n" type="logic">
+         <obj_property name="ElementShortName">rst_n</obj_property>
+         <obj_property name="ObjectShortName">rst_n</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/ui_clk_sync_rst" type="logic">
+         <obj_property name="ElementShortName">ui_clk_sync_rst</obj_property>
+         <obj_property name="ObjectShortName">ui_clk_sync_rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_data_R" type="array">
+         <obj_property name="ElementShortName">i_data_R[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_R[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_data_G" type="array">
+         <obj_property name="ElementShortName">i_data_G[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_G[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_data_B" type="array">
+         <obj_property name="ElementShortName">i_data_B[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_B[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_fval" type="logic">
+         <obj_property name="ElementShortName">i_fval</obj_property>
+         <obj_property name="ObjectShortName">i_fval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_lval" type="logic">
+         <obj_property name="ElementShortName">i_lval</obj_property>
+         <obj_property name="ObjectShortName">i_lval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/cur_st" type="array">
+         <obj_property name="ElementShortName">cur_st[2:0]</obj_property>
+         <obj_property name="ObjectShortName">cur_st[2:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/data_flatten" type="array">
+         <obj_property name="ElementShortName">data_flatten[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">data_flatten[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/wr_mux_sel" type="logic">
+         <obj_property name="ElementShortName">wr_mux_sel</obj_property>
+         <obj_property name="ObjectShortName">wr_mux_sel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_mux_sel" type="logic">
+         <obj_property name="ElementShortName">rd_mux_sel</obj_property>
+         <obj_property name="ObjectShortName">rd_mux_sel</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_fval_pulse" type="logic">
+         <obj_property name="ElementShortName">i_fval_pulse</obj_property>
+         <obj_property name="ObjectShortName">i_fval_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_req" type="array">
+         <obj_property name="ElementShortName">M_wr_req[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_req[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_granted" type="array">
+         <obj_property name="ElementShortName">M_wr_granted[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_granted[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_busy" type="array">
+         <obj_property name="ElementShortName">M_wr_busy[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_busy[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_len" type="array">
+         <obj_property name="ElementShortName">M_wr_len[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_len[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_addr" type="array">
+         <obj_property name="ElementShortName">M_wr_addr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_addr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_din" type="array">
+         <obj_property name="ElementShortName">M_wr_din[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_din[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_dval" type="array">
+         <obj_property name="ElementShortName">M_wr_dval[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_dval[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_wr_finish" type="array">
+         <obj_property name="ElementShortName">M_wr_finish[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_wr_finish[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_req" type="array">
+         <obj_property name="ElementShortName">M_rd_req[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_req[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_granted" type="array">
+         <obj_property name="ElementShortName">M_rd_granted[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_granted[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_busy" type="array">
+         <obj_property name="ElementShortName">M_rd_busy[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_busy[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_addr" type="array">
+         <obj_property name="ElementShortName">M_rd_addr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_addr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_lenth" type="array">
+         <obj_property name="ElementShortName">M_rd_lenth[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_lenth[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_dout" type="array">
+         <obj_property name="ElementShortName">M_rd_dout[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_dout[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_dval" type="array">
+         <obj_property name="ElementShortName">M_rd_dval[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_dval[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_rd_finish" type="array">
+         <obj_property name="ElementShortName">M_rd_finish[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_rd_finish[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_fval" type="logic">
+         <obj_property name="ElementShortName">o_fval</obj_property>
+         <obj_property name="ObjectShortName">o_fval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_lval" type="logic">
+         <obj_property name="ElementShortName">o_lval</obj_property>
+         <obj_property name="ObjectShortName">o_lval</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_data_R" type="array">
+         <obj_property name="ElementShortName">o_data_R[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_R[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_data_G" type="array">
+         <obj_property name="ElementShortName">o_data_G[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_G[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_data_B" type="array">
+         <obj_property name="ElementShortName">o_data_B[7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_B[7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWID" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWID[5:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWID[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWADDR" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWLEN" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWLEN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWLEN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWSIZE" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWSIZE[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWSIZE[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWBURST" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWBURST[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWBURST[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWLOCK" type="logic">
+         <obj_property name="ElementShortName">M_AXI_AWLOCK</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWLOCK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWCACHE" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWCACHE[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWCACHE[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWPROT" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWPROT[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWPROT[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWQOS" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWQOS[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWQOS[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWUSER" type="array">
+         <obj_property name="ElementShortName">M_AXI_AWUSER[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWUSER[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_AWVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_AWREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_AWREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_WDATA" type="array">
+         <obj_property name="ElementShortName">M_AXI_WDATA[255:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WDATA[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_WSTRB" type="array">
+         <obj_property name="ElementShortName">M_AXI_WSTRB[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WSTRB[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_WLAST" type="logic">
+         <obj_property name="ElementShortName">M_AXI_WLAST</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WLAST</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_WUSER" type="array">
+         <obj_property name="ElementShortName">M_AXI_WUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_WVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_WVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_WREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_WREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_BID" type="array">
+         <obj_property name="ElementShortName">M_AXI_BID[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BID[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_BRESP" type="array">
+         <obj_property name="ElementShortName">M_AXI_BRESP[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BRESP[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_BUSER" type="array">
+         <obj_property name="ElementShortName">M_AXI_BUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_BVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_BVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_BREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_BREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARID" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARID[5:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARID[5:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARADDR" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARLEN" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARLEN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARLEN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARSIZE" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARSIZE[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARSIZE[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARBURST" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARBURST[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARBURST[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARLOCK" type="logic">
+         <obj_property name="ElementShortName">M_AXI_ARLOCK</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARLOCK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARCACHE" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARCACHE[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARCACHE[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARPROT" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARPROT[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARPROT[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARQOS" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARQOS[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARQOS[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARUSER" type="array">
+         <obj_property name="ElementShortName">M_AXI_ARUSER[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARUSER[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_ARVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_ARREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_ARREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_RID" type="array">
+         <obj_property name="ElementShortName">M_AXI_RID[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RID[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_RDATA" type="array">
+         <obj_property name="ElementShortName">M_AXI_RDATA[255:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RDATA[255:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_RRESP" type="array">
+         <obj_property name="ElementShortName">M_AXI_RRESP[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RRESP[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_RLAST" type="logic">
+         <obj_property name="ElementShortName">M_AXI_RLAST</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RLAST</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_RUSER" type="array">
+         <obj_property name="ElementShortName">M_AXI_RUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_RVALID" type="logic">
+         <obj_property name="ElementShortName">M_AXI_RVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RVALID</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/M_AXI_RREADY" type="logic">
+         <obj_property name="ElementShortName">M_AXI_RREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RREADY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/bram_prefetch" type="logic">
+         <obj_property name="ElementShortName">bram_prefetch</obj_property>
+         <obj_property name="ObjectShortName">bram_prefetch</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/data_valid" type="array">
+         <obj_property name="ElementShortName">data_valid[2:0]</obj_property>
+         <obj_property name="ObjectShortName">data_valid[2:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/data_in" type="array">
+         <obj_property name="ElementShortName">data_in[2:0][7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">data_in[2:0][7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/status_wr_finish" type="array">
+         <obj_property name="ElementShortName">status_wr_finish[2:0]</obj_property>
+         <obj_property name="ObjectShortName">status_wr_finish[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/wr_finish_clr" type="logic">
+         <obj_property name="ElementShortName">wr_finish_clr</obj_property>
+         <obj_property name="ObjectShortName">wr_finish_clr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/line_cnt" type="array">
+         <obj_property name="ElementShortName">line_cnt[8:0]</obj_property>
+         <obj_property name="ObjectShortName">line_cnt[8:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/col_cnt" type="array">
+         <obj_property name="ElementShortName">col_cnt[9:0]</obj_property>
+         <obj_property name="ObjectShortName">col_cnt[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/frame_wr_addr" type="array">
+         <obj_property name="ElementShortName">frame_wr_addr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">frame_wr_addr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/frame_proc_addr" type="array">
+         <obj_property name="ElementShortName">frame_proc_addr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">frame_proc_addr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/frame_match_addr" type="array">
+         <obj_property name="ElementShortName">frame_match_addr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">frame_match_addr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/DEMUX_rdout0" type="array">
+         <obj_property name="ElementShortName">DEMUX_rdout0[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">DEMUX_rdout0[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_MB_dout" type="array">
+         <obj_property name="ElementShortName">R_MB_dout[1:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">R_MB_dout[1:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_MB_ena" type="logic">
+         <obj_property name="ElementShortName">R_MB_ena</obj_property>
+         <obj_property name="ObjectShortName">R_MB_ena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_MB_dout" type="array">
+         <obj_property name="ElementShortName">B_MB_dout[1:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">B_MB_dout[1:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_MB_ena" type="logic">
+         <obj_property name="ElementShortName">B_MB_ena</obj_property>
+         <obj_property name="ObjectShortName">B_MB_ena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_MB_dout" type="array">
+         <obj_property name="ElementShortName">G_MB_dout[1:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">G_MB_dout[1:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_MB_ena" type="logic">
+         <obj_property name="ElementShortName">G_MB_ena</obj_property>
+         <obj_property name="ObjectShortName">G_MB_ena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_Sub_dout" type="array">
+         <obj_property name="ElementShortName">R_Sub_dout[11:0]</obj_property>
+         <obj_property name="ObjectShortName">R_Sub_dout[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_Sub_ena" type="logic">
+         <obj_property name="ElementShortName">R_Sub_ena</obj_property>
+         <obj_property name="ObjectShortName">R_Sub_ena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_Sub_dout" type="array">
+         <obj_property name="ElementShortName">G_Sub_dout[11:0]</obj_property>
+         <obj_property name="ObjectShortName">G_Sub_dout[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_Sub_ena" type="logic">
+         <obj_property name="ElementShortName">G_Sub_ena</obj_property>
+         <obj_property name="ObjectShortName">G_Sub_ena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_Sub_dout" type="array">
+         <obj_property name="ElementShortName">B_Sub_dout[11:0]</obj_property>
+         <obj_property name="ObjectShortName">B_Sub_dout[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_Sub_ena" type="logic">
+         <obj_property name="ElementShortName">B_Sub_ena</obj_property>
+         <obj_property name="ObjectShortName">B_Sub_ena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/MB_dout" type="array">
+         <obj_property name="ElementShortName">MB_dout[2:0][1:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">MB_dout[2:0][1:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/MB_ena" type="array">
+         <obj_property name="ElementShortName">MB_ena[2:0]</obj_property>
+         <obj_property name="ObjectShortName">MB_ena[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/Sub_dout" type="array">
+         <obj_property name="ElementShortName">Sub_dout[2:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">Sub_dout[2:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/Sub_ena" type="array">
+         <obj_property name="ElementShortName">Sub_ena[2:0]</obj_property>
+         <obj_property name="ObjectShortName">Sub_ena[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/mbds_finish_flag" type="logic">
+         <obj_property name="ElementShortName">mbds_finish_flag</obj_property>
+         <obj_property name="ObjectShortName">mbds_finish_flag</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/mbds_finish_flag_clr" type="logic">
+         <obj_property name="ElementShortName">mbds_finish_flag_clr</obj_property>
+         <obj_property name="ObjectShortName">mbds_finish_flag_clr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/bram_prefetch_type" type="logic">
+         <obj_property name="ElementShortName">bram_prefetch_type</obj_property>
+         <obj_property name="ObjectShortName">bram_prefetch_type</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/bram_prefetch_addr" type="array">
+         <obj_property name="ElementShortName">bram_prefetch_addr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">bram_prefetch_addr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_wr_MUX_reg" type="logic">
+         <obj_property name="ElementShortName">i_wr_MUX_reg</obj_property>
+         <obj_property name="ObjectShortName">i_wr_MUX_reg</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_rd_data_R" type="array">
+         <obj_property name="ElementShortName">o_rd_data_R[11:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rd_data_R[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_rd_data_G" type="array">
+         <obj_property name="ElementShortName">o_rd_data_G[11:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rd_data_G[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_rd_data_B" type="array">
+         <obj_property name="ElementShortName">o_rd_data_B[11:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rd_data_B[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/BRAM_mb_cnt" type="array">
+         <obj_property name="ElementShortName">BRAM_mb_cnt[2:0][9:0]</obj_property>
+         <obj_property name="ObjectShortName">BRAM_mb_cnt[2:0][9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/BRAM_ds_cnt" type="array">
+         <obj_property name="ElementShortName">BRAM_ds_cnt[2:0][9:0]</obj_property>
+         <obj_property name="ObjectShortName">BRAM_ds_cnt[2:0][9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/g_pref_proc_vcnt" type="array">
+         <obj_property name="ElementShortName">g_pref_proc_vcnt[9:0]</obj_property>
+         <obj_property name="ObjectShortName">g_pref_proc_vcnt[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/g_pref_matc_vcnt" type="array">
+         <obj_property name="ElementShortName">g_pref_matc_vcnt[9:0]</obj_property>
+         <obj_property name="ObjectShortName">g_pref_matc_vcnt[9:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_ena_dma_rd" type="array">
+         <obj_property name="ElementShortName">o_ena_dma_rd[2:0]</obj_property>
+         <obj_property name="ObjectShortName">o_ena_dma_rd[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_addr_dma_rd" type="array">
+         <obj_property name="ElementShortName">o_addr_dma_rd[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_addr_dma_rd[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_lenth_dma_rd" type="array">
+         <obj_property name="ElementShortName">o_lenth_dma_rd[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_lenth_dma_rd[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_finish_dma_rd" type="array">
+         <obj_property name="ElementShortName">i_finish_dma_rd[2:0]</obj_property>
+         <obj_property name="ObjectShortName">i_finish_dma_rd[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_rd_type_d" type="array">
+         <obj_property name="ElementShortName">R_rd_type_d[7:0][1:0]</obj_property>
+         <obj_property name="ObjectShortName">R_rd_type_d[7:0][1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_rd_ena_d" type="array">
+         <obj_property name="ElementShortName">R_rd_ena_d[7:0]</obj_property>
+         <obj_property name="ObjectShortName">R_rd_ena_d[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_rd_addr" type="array">
+         <obj_property name="ElementShortName">R_rd_addr[7:0][14:0]</obj_property>
+         <obj_property name="ObjectShortName">R_rd_addr[7:0][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_rd_type_d" type="array">
+         <obj_property name="ElementShortName">G_rd_type_d[7:0][1:0]</obj_property>
+         <obj_property name="ObjectShortName">G_rd_type_d[7:0][1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_rd_ena_d" type="array">
+         <obj_property name="ElementShortName">G_rd_ena_d[7:0]</obj_property>
+         <obj_property name="ObjectShortName">G_rd_ena_d[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_rd_addr" type="array">
+         <obj_property name="ElementShortName">G_rd_addr[7:0][14:0]</obj_property>
+         <obj_property name="ObjectShortName">G_rd_addr[7:0][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_rd_type_d" type="array">
+         <obj_property name="ElementShortName">B_rd_type_d[7:0][1:0]</obj_property>
+         <obj_property name="ObjectShortName">B_rd_type_d[7:0][1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_rd_ena_d" type="array">
+         <obj_property name="ElementShortName">B_rd_ena_d[7:0]</obj_property>
+         <obj_property name="ObjectShortName">B_rd_ena_d[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_rd_addr" type="array">
+         <obj_property name="ElementShortName">B_rd_addr[7:0][14:0]</obj_property>
+         <obj_property name="ObjectShortName">B_rd_addr[7:0][14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/start" type="logic">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/proc_block_addr" type="array">
+         <obj_property name="ElementShortName">proc_block_addr[14:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_block_addr[14:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_ena_wire_R" type="array">
+         <obj_property name="ElementShortName">rd_ena_wire_R[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_ena_wire_R[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_ena_wire_G" type="array">
+         <obj_property name="ElementShortName">rd_ena_wire_G[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_ena_wire_G[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_ena_wire_B" type="array">
+         <obj_property name="ElementShortName">rd_ena_wire_B[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_ena_wire_B[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_addr_wire_R" type="array">
+         <obj_property name="ElementShortName">rd_addr_wire_R[7:0][15:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_addr_wire_R[7:0][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_addr_wire_G" type="array">
+         <obj_property name="ElementShortName">rd_addr_wire_G[7:0][15:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_addr_wire_G[7:0][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_addr_wire_B" type="array">
+         <obj_property name="ElementShortName">rd_addr_wire_B[7:0][15:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_addr_wire_B[7:0][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_type_R" type="array">
+         <obj_property name="ElementShortName">rd_type_R[7:0][1:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_type_R[7:0][1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_type_G" type="array">
+         <obj_property name="ElementShortName">rd_type_G[7:0][1:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_type_G[7:0][1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rd_type_B" type="array">
+         <obj_property name="ElementShortName">rd_type_B[7:0][1:0]</obj_property>
+         <obj_property name="ObjectShortName">rd_type_B[7:0][1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/d_in_R" type="array">
+         <obj_property name="ElementShortName">d_in_R[7:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">d_in_R[7:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/d_in_G" type="array">
+         <obj_property name="ElementShortName">d_in_G[7:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">d_in_G[7:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/d_in_B" type="array">
+         <obj_property name="ElementShortName">d_in_B[7:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">d_in_B[7:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/select_Temporal_R" type="array">
+         <obj_property name="ElementShortName">select_Temporal_R[7:0]</obj_property>
+         <obj_property name="ObjectShortName">select_Temporal_R[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/select_Temporal_G" type="array">
+         <obj_property name="ElementShortName">select_Temporal_G[7:0]</obj_property>
+         <obj_property name="ObjectShortName">select_Temporal_G[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/select_Temporal_B" type="array">
+         <obj_property name="ElementShortName">select_Temporal_B[7:0]</obj_property>
+         <obj_property name="ObjectShortName">select_Temporal_B[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/ME_TD_finish_flag" type="logic">
+         <obj_property name="ElementShortName">ME_TD_finish_flag</obj_property>
+         <obj_property name="ObjectShortName">ME_TD_finish_flag</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/metd_finish_clr" type="logic">
+         <obj_property name="ElementShortName">metd_finish_clr</obj_property>
+         <obj_property name="ObjectShortName">metd_finish_clr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/METD_info_R" type="array">
+         <obj_property name="ElementShortName">METD_info_R[159:0]</obj_property>
+         <obj_property name="ObjectShortName">METD_info_R[159:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/METD_info_G" type="array">
+         <obj_property name="ElementShortName">METD_info_G[159:0]</obj_property>
+         <obj_property name="ObjectShortName">METD_info_G[159:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/METD_info_B" type="array">
+         <obj_property name="ElementShortName">METD_info_B[159:0]</obj_property>
+         <obj_property name="ObjectShortName">METD_info_B[159:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/METD_cnt" type="array">
+         <obj_property name="ElementShortName">METD_cnt[7:0]</obj_property>
+         <obj_property name="ObjectShortName">METD_cnt[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_rd_ena" type="array">
+         <obj_property name="ElementShortName">o_rd_ena[2:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rd_ena[2:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_rd_address" type="array">
+         <obj_property name="ElementShortName">o_rd_address[2:0][7:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">o_rd_address[2:0][7:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_rd_data_process" type="array">
+         <obj_property name="ElementShortName">i_rd_data_process[2:0][7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_rd_data_process[2:0][7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_rd_data_match" type="array">
+         <obj_property name="ElementShortName">i_rd_data_match[2:0][7:0][7:0]</obj_property>
+         <obj_property name="ObjectShortName">i_rd_data_match[2:0][7:0][7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/fsm_algo_start_pulse" type="logic">
+         <obj_property name="ElementShortName">fsm_algo_start_pulse</obj_property>
+         <obj_property name="ObjectShortName">fsm_algo_start_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/fsm_algo_start" type="logic">
+         <obj_property name="ElementShortName">fsm_algo_start</obj_property>
+         <obj_property name="ObjectShortName">fsm_algo_start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_one_finish_clr" type="logic">
+         <obj_property name="ElementShortName">i_one_finish_clr</obj_property>
+         <obj_property name="ObjectShortName">i_one_finish_clr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_one_MB_finish" type="logic">
+         <obj_property name="ElementShortName">o_one_MB_finish</obj_property>
+         <obj_property name="ObjectShortName">o_one_MB_finish</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_image_out_start" type="logic">
+         <obj_property name="ElementShortName">o_image_out_start</obj_property>
+         <obj_property name="ObjectShortName">o_image_out_start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_line_transfer_finish_pulse" type="logic">
+         <obj_property name="ElementShortName">o_line_transfer_finish_pulse</obj_property>
+         <obj_property name="ObjectShortName">o_line_transfer_finish_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_frame_finish_pulse" type="logic">
+         <obj_property name="ElementShortName">o_frame_finish_pulse</obj_property>
+         <obj_property name="ObjectShortName">o_frame_finish_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_start_sys_pulse" type="logic">
+         <obj_property name="ElementShortName">i_start_sys_pulse</obj_property>
+         <obj_property name="ObjectShortName">i_start_sys_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_start_sys" type="logic">
+         <obj_property name="ElementShortName">i_start_sys</obj_property>
+         <obj_property name="ObjectShortName">i_start_sys</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/algo_vcnt" type="array">
+         <obj_property name="ElementShortName">algo_vcnt[6:0]</obj_property>
+         <obj_property name="ObjectShortName">algo_vcnt[6:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/algo_hcnt" type="array">
+         <obj_property name="ElementShortName">algo_hcnt[7:0]</obj_property>
+         <obj_property name="ObjectShortName">algo_hcnt[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/prefetch" type="logic">
+         <obj_property name="ElementShortName">prefetch</obj_property>
+         <obj_property name="ObjectShortName">prefetch</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/prefetch_pulse" type="logic">
+         <obj_property name="ElementShortName">prefetch_pulse</obj_property>
+         <obj_property name="ObjectShortName">prefetch_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_ena_dma_wr" type="array">
+         <obj_property name="ElementShortName">o_ena_dma_wr[2:0]</obj_property>
+         <obj_property name="ObjectShortName">o_ena_dma_wr[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_ddr_ready" type="array">
+         <obj_property name="ElementShortName">i_ddr_ready[2:0]</obj_property>
+         <obj_property name="ObjectShortName">i_ddr_ready[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_lenth_dma_wr" type="array">
+         <obj_property name="ElementShortName">o_lenth_dma_wr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_lenth_dma_wr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_addr_dma_wr" type="array">
+         <obj_property name="ElementShortName">o_addr_dma_wr[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_addr_dma_wr[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_data_dma_wr" type="array">
+         <obj_property name="ElementShortName">o_data_dma_wr[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">o_data_dma_wr[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_d_val_dma_wr" type="array">
+         <obj_property name="ElementShortName">o_d_val_dma_wr[2:0]</obj_property>
+         <obj_property name="ObjectShortName">o_d_val_dma_wr[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_dma_ddr_finish" type="array">
+         <obj_property name="ElementShortName">o_dma_ddr_finish[2:0]</obj_property>
+         <obj_property name="ObjectShortName">o_dma_ddr_finish[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_ena_pre_rd" type="array">
+         <obj_property name="ElementShortName">o_ena_pre_rd[2:0]</obj_property>
+         <obj_property name="ObjectShortName">o_ena_pre_rd[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_addr_pre_rd" type="array">
+         <obj_property name="ElementShortName">o_addr_pre_rd[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_addr_pre_rd[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/o_lenth_pre_rd" type="array">
+         <obj_property name="ElementShortName">o_lenth_pre_rd[2:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_lenth_pre_rd[2:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_data_pre_rd" type="array">
+         <obj_property name="ElementShortName">i_data_pre_rd[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data_pre_rd[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_d_val_pre_rd" type="array">
+         <obj_property name="ElementShortName">i_d_val_pre_rd[2:0]</obj_property>
+         <obj_property name="ObjectShortName">i_d_val_pre_rd[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_finish_pre_rd" type="array">
+         <obj_property name="ElementShortName">i_finish_pre_rd[2:0]</obj_property>
+         <obj_property name="ObjectShortName">i_finish_pre_rd[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_data" type="array">
+         <obj_property name="ElementShortName">i_data[2:0][63:0]</obj_property>
+         <obj_property name="ObjectShortName">i_data[2:0][63:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/i_d_val" type="logic">
+         <obj_property name="ElementShortName">i_d_val</obj_property>
+         <obj_property name="ObjectShortName">i_d_val</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/frame_in_finish" type="logic">
+         <obj_property name="ElementShortName">frame_in_finish</obj_property>
+         <obj_property name="ObjectShortName">frame_in_finish</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/METD_start" type="logic">
+         <obj_property name="ElementShortName">METD_start</obj_property>
+         <obj_property name="ObjectShortName">METD_start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/fsm_metd_start" type="array">
+         <obj_property name="ElementShortName">fsm_metd_start[7:0]</obj_property>
+         <obj_property name="ObjectShortName">fsm_metd_start[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/rst" type="logic">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/fsm_metd_start_pulse" type="logic">
+         <obj_property name="ElementShortName">fsm_metd_start_pulse</obj_property>
+         <obj_property name="ObjectShortName">fsm_metd_start_pulse</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/DDR_BASE_ADDR" type="array">
+         <obj_property name="ElementShortName">DDR_BASE_ADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DDR_BASE_ADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/DATA_CHANNEL" type="array">
+         <obj_property name="ElementShortName">DATA_CHANNEL[31:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_CHANNEL[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/WAIT" type="array">
+         <obj_property name="ElementShortName">WAIT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">WAIT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/CMOS_H_PIXEL" type="array">
+         <obj_property name="ElementShortName">CMOS_H_PIXEL[31:0]</obj_property>
+         <obj_property name="ObjectShortName">CMOS_H_PIXEL[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/CMOS_V_PIXEL" type="array">
+         <obj_property name="ElementShortName">CMOS_V_PIXEL[31:0]</obj_property>
+         <obj_property name="ObjectShortName">CMOS_V_PIXEL[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/H_DISP" type="array">
+         <obj_property name="ElementShortName">H_DISP[31:0]</obj_property>
+         <obj_property name="ObjectShortName">H_DISP[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/V_DISP" type="array">
+         <obj_property name="ElementShortName">V_DISP[31:0]</obj_property>
+         <obj_property name="ObjectShortName">V_DISP[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/MACROBLOCK_THREASHOLD" type="array">
+         <obj_property name="ElementShortName">MACROBLOCK_THREASHOLD[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MACROBLOCK_THREASHOLD[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/TEMPORAL_CALCULATE_PARAM" type="array">
+         <obj_property name="ElementShortName">TEMPORAL_CALCULATE_PARAM[31:0]</obj_property>
+         <obj_property name="ObjectShortName">TEMPORAL_CALCULATE_PARAM[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/IMAGE_DISP_SIZE" type="array">
+         <obj_property name="ElementShortName">IMAGE_DISP_SIZE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">IMAGE_DISP_SIZE[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_MATCH_ADDR" type="array">
+         <obj_property name="ElementShortName">R_MATCH_ADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">R_MATCH_ADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/R_PROC_ADDR" type="array">
+         <obj_property name="ElementShortName">R_PROC_ADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">R_PROC_ADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_MATCH_ADDR" type="array">
+         <obj_property name="ElementShortName">G_MATCH_ADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">G_MATCH_ADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/G_PROC_ADDR" type="array">
+         <obj_property name="ElementShortName">G_PROC_ADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">G_PROC_ADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_MATCH_ADDR" type="array">
+         <obj_property name="ElementShortName">B_MATCH_ADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">B_MATCH_ADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/B_PROC_ADDR" type="array">
+         <obj_property name="ElementShortName">B_PROC_ADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">B_PROC_ADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/IDLE" type="array">
+         <obj_property name="ElementShortName">IDLE[2:0]</obj_property>
+         <obj_property name="ObjectShortName">IDLE[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/FIRST_FRAME" type="array">
+         <obj_property name="ElementShortName">FIRST_FRAME[2:0]</obj_property>
+         <obj_property name="ObjectShortName">FIRST_FRAME[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/SECOND_FRAME" type="array">
+         <obj_property name="ElementShortName">SECOND_FRAME[2:0]</obj_property>
+         <obj_property name="ObjectShortName">SECOND_FRAME[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/INIT_LOCAL_MAT" type="array">
+         <obj_property name="ElementShortName">INIT_LOCAL_MAT[2:0]</obj_property>
+         <obj_property name="ObjectShortName">INIT_LOCAL_MAT[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/INIT_LOCAL_PROC" type="array">
+         <obj_property name="ElementShortName">INIT_LOCAL_PROC[2:0]</obj_property>
+         <obj_property name="ObjectShortName">INIT_LOCAL_PROC[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/ME_TD" type="array">
+         <obj_property name="ElementShortName">ME_TD[2:0]</obj_property>
+         <obj_property name="ObjectShortName">ME_TD[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_Sys/u_DDD_Noise_8CH/ALGO" type="array">
+         <obj_property name="ElementShortName">ALGO[2:0]</obj_property>
+         <obj_property name="ObjectShortName">ALGO[2:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

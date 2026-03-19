@@ -322,6 +322,86 @@ always @(posedge clk ) begin
     end
 end
 
+// --------------------------------------------------------------------------
+// One-shot pipeline watchdog:
+// run once, report first blocked stage in INIT_LOCAL_MAT -> MBDS path
+// --------------------------------------------------------------------------
+reg wd_seen_i_fval_pulse;
+reg wd_seen_wr_finish_clr_1;
+reg wd_seen_wr_finish_clr_2;
+reg wd_seen_init_local_mat;
+reg wd_seen_bram_prefetch;
+reg wd_seen_o_ena_dma_rd;
+reg wd_seen_m_rd_req0;
+reg wd_seen_m_rd_grant0;
+reg wd_seen_ar_hs;
+reg wd_seen_m_rd_dval0;
+reg wd_seen_data_valid0;
+reg wd_seen_mb_ena0;
+reg wd_seen_mbds_finish;
+integer wd_wr_finish_cnt;
+
+always @(posedge clk) begin
+    if (rst) begin
+        wd_seen_i_fval_pulse    <= 1'b0;
+        wd_seen_wr_finish_clr_1 <= 1'b0;
+        wd_seen_wr_finish_clr_2 <= 1'b0;
+        wd_seen_init_local_mat  <= 1'b0;
+        wd_seen_bram_prefetch   <= 1'b0;
+        wd_seen_o_ena_dma_rd    <= 1'b0;
+        wd_seen_m_rd_req0       <= 1'b0;
+        wd_seen_m_rd_grant0     <= 1'b0;
+        wd_seen_ar_hs           <= 1'b0;
+        wd_seen_m_rd_dval0      <= 1'b0;
+        wd_seen_data_valid0     <= 1'b0;
+        wd_seen_mb_ena0         <= 1'b0;
+        wd_seen_mbds_finish     <= 1'b0;
+        wd_wr_finish_cnt        <= 0;
+    end else begin
+        if (u_DDD_Noise_8CH.i_fval_pulse) begin
+            wd_seen_i_fval_pulse <= 1'b1;
+        end
+
+        if (u_DDD_Noise_8CH.wr_finish_clr) begin
+            wd_wr_finish_cnt <= wd_wr_finish_cnt + 1;
+            if (wd_wr_finish_cnt >= 0) wd_seen_wr_finish_clr_1 <= 1'b1;
+            if (wd_wr_finish_cnt >= 1) wd_seen_wr_finish_clr_2 <= 1'b1;
+        end
+
+        if (u_DDD_Noise_8CH.cur_st == 3'b010) wd_seen_init_local_mat <= 1'b1; // INIT_LOCAL_MAT
+        if (u_DDD_Noise_8CH.bram_prefetch)    wd_seen_bram_prefetch  <= 1'b1;
+        if (u_DDD_Noise_8CH.o_ena_dma_rd)     wd_seen_o_ena_dma_rd   <= 1'b1;
+        if (u_DDD_Noise_8CH.M_rd_req[0])      wd_seen_m_rd_req0      <= 1'b1;
+        if (u_DDD_Noise_8CH.M_rd_granted[0])  wd_seen_m_rd_grant0    <= 1'b1;
+        if (M_AXI_ARVALID && M_AXI_ARREADY)   wd_seen_ar_hs          <= 1'b1;
+        if (u_DDD_Noise_8CH.M_rd_dval[0])     wd_seen_m_rd_dval0     <= 1'b1;
+        if (u_DDD_Noise_8CH.data_valid[0])    wd_seen_data_valid0    <= 1'b1;
+        if (u_DDD_Noise_8CH.MB_ena[0])        wd_seen_mb_ena0        <= 1'b1;
+        if (u_DDD_Noise_8CH.mbds_finish_flag) wd_seen_mbds_finish    <= 1'b1;
+    end
+end
+
+initial begin
+    wait (rst == 1'b0);
+    #3_000_000; // 3ms @ 1ns timescale
+    if (!wd_seen_mbds_finish) begin
+        $display("============================================================");
+        $display("[WATCHDOG] mbds_finish_flag not seen by t=%0t", $time);
+        $display("L1 i_fval_pulse      : %0b", wd_seen_i_fval_pulse);
+        $display("L2 wr_finish_clr x2  : %0b / %0b (cnt=%0d)", wd_seen_wr_finish_clr_1, wd_seen_wr_finish_clr_2, wd_wr_finish_cnt);
+        $display("L3 cur_st=INIT_LOCAL_MAT : %0b (cur_st=%0d)", wd_seen_init_local_mat, u_DDD_Noise_8CH.cur_st);
+        $display("L4 bram_prefetch     : %0b", wd_seen_bram_prefetch);
+        $display("L5 o_ena_dma_rd      : %0b", wd_seen_o_ena_dma_rd);
+        $display("L6 M_rd_req0/grant0  : %0b / %0b", wd_seen_m_rd_req0, wd_seen_m_rd_grant0);
+        $display("L7 AR handshake      : %0b (ARV=%0b ARR=%0b)", wd_seen_ar_hs, M_AXI_ARVALID, M_AXI_ARREADY);
+        $display("L8 M_rd_dval0/data_valid0/MB_ena0 : %0b / %0b / %0b", wd_seen_m_rd_dval0, wd_seen_data_valid0, wd_seen_mb_ena0);
+        $display("L9 mbds_finish_flag  : %0b", wd_seen_mbds_finish);
+        $display("Now M_rd_req=%b M_rd_granted=%b M_rd_busy=%b", u_DDD_Noise_8CH.M_rd_req, u_DDD_Noise_8CH.M_rd_granted, u_DDD_Noise_8CH.M_rd_busy);
+        $display("Now M_rd_dval=%b data_valid=%b", u_DDD_Noise_8CH.M_rd_dval, u_DDD_Noise_8CH.data_valid);
+        $display("============================================================");
+    end
+end
+
 // write output data to file when frame is finished
 integer a;
 initial begin
