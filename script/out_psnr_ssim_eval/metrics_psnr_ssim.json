@@ -1,0 +1,1261 @@
+{
+  "config": {
+    "oracle_dir": "oracle_batch_out_v2",
+    "noisy_dir": "davis_clips_noisy_npz",
+    "model_dir": "out_train_ord_v2_full\\models",
+    "tau_json": "out_ordinal_tune_v2_full\\report\\taus_monotone.json",
+    "videos": [
+      "surf",
+      "bear",
+      "bmx-trees"
+    ],
+    "max_samples_per_video": 12,
+    "baseline_temporal_weight": 16,
+    "baseline_threshold": 4095,
+    "model_feature_names": [
+      "sad1_ds",
+      "sad2_ds",
+      "margin_ds",
+      "sad1_mb_best",
+      "mv_mag",
+      "sum",
+      "grad_energy"
+    ],
+    "log1p_keys": [
+      "sad1_ds",
+      "sad2_ds",
+      "margin_ds",
+      "sad1_mb_best",
+      "grad_energy",
+      "sum"
+    ]
+  },
+  "overall": {
+    "noisy_input": {
+      "psnr": {
+        "mean": 22.740463838734733,
+        "std": 5.78823949520872
+      },
+      "ssim": {
+        "mean": 0.4446035637279413,
+        "std": 0.2327117172233439
+      },
+      "num_samples": {
+        "count": 36.0
+      }
+    },
+    "traditional_baseline": {
+      "psnr": {
+        "mean": 21.61964926139488,
+        "std": 2.867284265986355
+      },
+      "ssim": {
+        "mean": 0.4277924959558254,
+        "std": 0.18993180353080888
+      },
+      "num_samples": {
+        "count": 36.0
+      }
+    },
+    "ours_ootw_3dnr": {
+      "psnr": {
+        "mean": 23.3937718010134,
+        "std": 4.099624958519076
+      },
+      "ssim": {
+        "mean": 0.4719596966383808,
+        "std": 0.21874880958363482
+      },
+      "num_samples": {
+        "count": 36.0
+      }
+    },
+    "oracle_upper_bound": {
+      "psnr": {
+        "mean": 24.61473772037112,
+        "std": 5.278208043423484
+      },
+      "ssim": {
+        "mean": 0.49925133757164847,
+        "std": 0.2291296900813495
+      },
+      "num_samples": {
+        "count": 36.0
+      }
+    }
+  },
+  "by_video": {
+    "bear": {
+      "noisy_input": {
+        "psnr": {
+          "mean": 22.20151830388357,
+          "std": 5.55369379685976
+        },
+        "ssim": {
+          "mean": 0.49979257578383196,
+          "std": 0.2231794953250742
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "traditional_baseline": {
+        "psnr": {
+          "mean": 22.433786471944657,
+          "std": 2.9841622470766986
+        },
+        "ssim": {
+          "mean": 0.4917596318603945,
+          "std": 0.18024957347169734
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "ours_ootw_3dnr": {
+        "psnr": {
+          "mean": 23.10257204126331,
+          "std": 3.7644356964161294
+        },
+        "ssim": {
+          "mean": 0.5183328250929428,
+          "std": 0.20054688200042084
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "oracle_upper_bound": {
+        "psnr": {
+          "mean": 24.184508221853747,
+          "std": 4.9471038892729835
+        },
+        "ssim": {
+          "mean": 0.5520126261588535,
+          "std": 0.21092897812306863
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      }
+    },
+    "bmx-trees": {
+      "noisy_input": {
+        "psnr": {
+          "mean": 22.959193793616063,
+          "std": 6.4232753483197875
+        },
+        "ssim": {
+          "mean": 0.4647417202477469,
+          "std": 0.2516143630724195
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "traditional_baseline": {
+        "psnr": {
+          "mean": 19.85624095506188,
+          "std": 1.998180991614812
+        },
+        "ssim": {
+          "mean": 0.4003288691564335,
+          "std": 0.17846191952186924
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "ours_ootw_3dnr": {
+        "psnr": {
+          "mean": 22.915535616430862,
+          "std": 4.437869204126295
+        },
+        "ssim": {
+          "mean": 0.47590749321605497,
+          "std": 0.23361506904565818
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "oracle_upper_bound": {
+        "psnr": {
+          "mean": 24.308449179441197,
+          "std": 5.785040679463637
+        },
+        "ssim": {
+          "mean": 0.5022645729895548,
+          "std": 0.24370846155368747
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      }
+    },
+    "surf": {
+      "noisy_input": {
+        "psnr": {
+          "mean": 23.06067941870457,
+          "std": 5.2885087947092595
+        },
+        "ssim": {
+          "mean": 0.3692763951522449,
+          "std": 0.2005487482779829
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "traditional_baseline": {
+        "psnr": {
+          "mean": 22.56892035717811,
+          "std": 2.663167611708779
+        },
+        "ssim": {
+          "mean": 0.391288986850648,
+          "std": 0.19417814777012565
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "ours_ootw_3dnr": {
+        "psnr": {
+          "mean": 24.163207745346053,
+          "std": 3.955954549207994
+        },
+        "ssim": {
+          "mean": 0.42163877160614477,
+          "std": 0.20990432363553568
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      },
+      "oracle_upper_bound": {
+        "psnr": {
+          "mean": 25.35125575981843,
+          "std": 4.981620116040694
+        },
+        "ssim": {
+          "mean": 0.44347681356653684,
+          "std": 0.21843252023532547
+        },
+        "num_samples": {
+          "count": 12.0
+        }
+      }
+    }
+  },
+  "samples": [
+    {
+      "video": "bear",
+      "sample": "bear_t00008_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 29.71557155310762,
+      "ssim": 0.8404139073037725
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00008_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 26.293436569054013,
+      "ssim": 0.7640072424610441
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00008_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 28.45558222351373,
+      "ssim": 0.8244906936707338
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00008_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 30.769297337093363,
+      "ssim": 0.8686545375791246
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00011_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 17.238651402803416,
+      "ssim": 0.31419763517418714
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00011_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 19.51664013213575,
+      "ssim": 0.36198105654635815
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00011_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 19.58189659835121,
+      "ssim": 0.36886713101972246
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00011_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 19.776336999642478,
+      "ssim": 0.38514286617581844
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00026_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 17.617586079706765,
+      "ssim": 0.30494931068206094
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00026_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 20.039983776958984,
+      "ssim": 0.3654484896977111
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00026_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 20.053059136292035,
+      "ssim": 0.3689118401804102
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00026_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 20.2217326383642,
+      "ssim": 0.3826369489893821
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00029_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 32.25587657789431,
+      "ssim": 0.8819693989287352
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00029_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 28.00789449680662,
+      "ssim": 0.8100160174747811
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00029_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 30.15961868580795,
+      "ssim": 0.8623025078485466
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00029_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 33.1987577915441,
+      "ssim": 0.9054131909124162
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00037_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 20.038681933738545,
+      "ssim": 0.3996058844126466
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00037_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 22.201282209670556,
+      "ssim": 0.46015826719166325
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00037_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 22.258926286533555,
+      "ssim": 0.4664249737351998
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00037_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 22.503903236229903,
+      "ssim": 0.483589811162955
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00043_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 21.501672281655576,
+      "ssim": 0.46287843744434504
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00043_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 23.364467924846096,
+      "ssim": 0.5093650386547942
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00043_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 23.484075828761238,
+      "ssim": 0.5199182120305219
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00043_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 23.812291094228737,
+      "ssim": 0.5409812322647524
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00046_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 22.705933537024944,
+      "ssim": 0.5185524199761766
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00046_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 24.36424009164257,
+      "ssim": 0.5651147752576907
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00046_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 24.5592624086777,
+      "ssim": 0.5776329206628258
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00046_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 24.930627715657504,
+      "ssim": 0.5975722213237985
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00054_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 20.27278561623005,
+      "ssim": 0.41782013330589035
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00054_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.16054063882917,
+      "ssim": 0.3750916940525828
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00054_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 21.572848105589394,
+      "ssim": 0.40816973226980974
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00054_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 22.26656118639445,
+      "ssim": 0.45832472778466643
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00057_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 17.22929085367021,
+      "ssim": 0.29792823702736676
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00057_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 19.12781468334272,
+      "ssim": 0.2867164495228751
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00057_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 19.24277518769954,
+      "ssim": 0.300945822021928
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00057_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 19.564283057332766,
+      "ssim": 0.33412639053758797
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00058_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 20.191374379880813,
+      "ssim": 0.42950987577988015
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00058_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.32903307332805,
+      "ssim": 0.40448233668937233
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00058_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 21.669567051222867,
+      "ssim": 0.43097956170166934
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00058_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 22.255522850867756,
+      "ssim": 0.47676790690568954
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00060_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 31.691425785512457,
+      "ssim": 0.8735451740568635
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00060_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 25.61941836235123,
+      "ssim": 0.7355865726293752
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00060_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 27.976662980272554,
+      "ssim": 0.8206133821016186
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00060_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 32.472668877046345,
+      "ssim": 0.8951663733398139
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00061_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 15.95936964537809,
+      "ssim": 0.25614049531405964
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00061_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 18.180685704370138,
+      "ssim": 0.2631476421464857
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00061_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 18.216590002437968,
+      "ssim": 0.270737123872327
+    },
+    {
+      "video": "bear",
+      "sample": "bear_t00061_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 18.442115877843325,
+      "ssim": 0.2957753069302369
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00001_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 33.367189375642866,
+      "ssim": 0.8374041246263211
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00001_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 23.199678606916777,
+      "ssim": 0.6824691792357976
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00001_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 29.587555489747427,
+      "ssim": 0.8167177994369296
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00001_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 33.92008725395288,
+      "ssim": 0.8621872062505839
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00005_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 25.230094389858504,
+      "ssim": 0.5261154668391298
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00005_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.86587151578154,
+      "ssim": 0.4814169978770149
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00005_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 25.236241595072734,
+      "ssim": 0.5520599709357359
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00005_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 26.406941019350676,
+      "ssim": 0.5785737737639215
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00008_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 18.026054558468527,
+      "ssim": 0.21122913401054777
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00008_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 18.891809916653326,
+      "ssim": 0.21300030254512992
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00008_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 19.5850961183008,
+      "ssim": 0.23849449808087667
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00008_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 19.980661194630514,
+      "ssim": 0.25430049881535
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00009_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 20.130267233772905,
+      "ssim": 0.301816664136026
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00009_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 20.01785325224273,
+      "ssim": 0.2952104964866438
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00009_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 21.316402469884114,
+      "ssim": 0.33376272066386664
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00009_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 21.850260555975552,
+      "ssim": 0.35231082648194495
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00014_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 25.80248013709593,
+      "ssim": 0.5678906401895084
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00014_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.607893645924054,
+      "ssim": 0.49773434281088985
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00014_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 25.73606930006948,
+      "ssim": 0.5911433775901328
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00014_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 26.814705018988224,
+      "ssim": 0.6171224734674384
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00018_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 29.33963241863943,
+      "ssim": 0.7223897735075985
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00018_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.77645806843058,
+      "ssim": 0.5987139887207591
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00018_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 28.093761054287803,
+      "ssim": 0.7231343185997537
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00018_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 29.948779725800662,
+      "ssim": 0.7524608050251057
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00020_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 15.65328406164962,
+      "ssim": 0.1708881779637311
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00020_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 17.04604753423879,
+      "ssim": 0.18046598950968296
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00020_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 17.449305242708096,
+      "ssim": 0.19820337865543158
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00020_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 17.74949412459864,
+      "ssim": 0.21044265878648946
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00025_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 16.362839297533323,
+      "ssim": 0.2080092402730701
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00025_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 17.355028624815944,
+      "ssim": 0.20692116345467346
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00025_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 17.963320020872356,
+      "ssim": 0.2331633199586635
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00025_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 18.278202053168588,
+      "ssim": 0.24693481177875742
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00027_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 24.115709324935683,
+      "ssim": 0.5712818745235473
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00027_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 20.629410859211834,
+      "ssim": 0.4912760155199913
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00027_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 24.243708456767493,
+      "ssim": 0.5867527772317397
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00027_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 25.107852629112003,
+      "ssim": 0.6125781158159567
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00041_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 34.07417053425156,
+      "ssim": 0.9184167866432834
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00041_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 20.557929284987047,
+      "ssim": 0.6488552006988696
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00041_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 29.16864231683316,
+      "ssim": 0.8710512278835788
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00041_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 34.24422127298701,
+      "ssim": 0.9220202429778825
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00050_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 17.188804059258864,
+      "ssim": 0.3182851713441918
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00050_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 17.91219398001806,
+      "ssim": 0.28842000726773703
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00050_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 18.61837661205575,
+      "ssim": 0.3235224043265203
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00050_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 19.084992423967286,
+      "ssim": 0.355328026392433
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00054_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 16.219800132285556,
+      "ssim": 0.22317358891600847
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00054_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 17.4147161715219,
+      "ssim": 0.21946274575001332
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00054_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 17.987948720571097,
+      "ssim": 0.24288412522943092
+    },
+    {
+      "video": "bmx-trees",
+      "sample": "bmx-trees_t00054_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 18.31519288076234,
+      "ssim": 0.26291543631879555
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00000_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 26.743784748791796,
+      "ssim": 0.5289457238869567
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00000_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 25.115054075574182,
+      "ssim": 0.586560944593386
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00000_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 27.507245571296124,
+      "ssim": 0.6136818847704759
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00000_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 28.946270819092877,
+      "ssim": 0.6351133901383084
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00001_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 19.655122307375127,
+      "ssim": 0.243023871334083
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00001_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.3560100216015,
+      "ssim": 0.2934468965562321
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00001_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 21.872265853261972,
+      "ssim": 0.30670605751840196
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00001_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 22.26808034181962,
+      "ssim": 0.3187575372365581
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00005_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 15.1784150898673,
+      "ssim": 0.11944710874878962
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00005_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 17.511732589939772,
+      "ssim": 0.12786855792411234
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00005_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 17.603570377884726,
+      "ssim": 0.13696665598741353
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00005_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 17.801749352526027,
+      "ssim": 0.14729633792101224
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00006_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 19.6098325140788,
+      "ssim": 0.2294682006693449
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00006_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.019055839926505,
+      "ssim": 0.23991905095120378
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00006_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 21.534824250035435,
+      "ssim": 0.2636093596581699
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00006_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 21.973971424876378,
+      "ssim": 0.28183432669221703
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00010_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 31.425253315947042,
+      "ssim": 0.7164539865976317
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00010_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 26.36903319531564,
+      "ssim": 0.7441122694749747
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00010_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 30.34830569741036,
+      "ssim": 0.782414172868604
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00010_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 33.36950846261738,
+      "ssim": 0.8060627636097423
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00011_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 20.77896520140697,
+      "ssim": 0.26284014118662724
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00011_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.98495677727202,
+      "ssim": 0.285704535457507
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00011_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 22.739030036578256,
+      "ssim": 0.30823156522781336
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00011_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 23.23223751311026,
+      "ssim": 0.32759505747261114
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00013_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 27.31540668907713,
+      "ssim": 0.5237730158957955
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00013_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 24.429095457887765,
+      "ssim": 0.520557599624712
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00013_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 27.262588449245683,
+      "ssim": 0.5786478766479909
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00013_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 29.15496470684401,
+      "ssim": 0.6185110910234703
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00014_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 24.33002814719991,
+      "ssim": 0.38750098073208766
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00014_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 23.599855820189358,
+      "ssim": 0.3976581065460422
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00014_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 25.268468198387378,
+      "ssim": 0.44216869080253995
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00014_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 26.41653395205641,
+      "ssim": 0.4731885094099932
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00024_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 15.853233959229387,
+      "ssim": 0.12074238841580075
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00024_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 18.29502115443686,
+      "ssim": 0.15154105517977887
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00024_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 18.43562587746546,
+      "ssim": 0.15838362689309607
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00024_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 18.616223131603228,
+      "ssim": 0.16560457757527647
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00030_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 24.134034514903515,
+      "ssim": 0.3665605713969664
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00030_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 24.414187015736104,
+      "ssim": 0.4083296548571475
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00030_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 25.659634218990625,
+      "ssim": 0.43806298654725184
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00030_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 26.451022227594606,
+      "ssim": 0.46030122549245717
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00032_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 19.816750885696763,
+      "ssim": 0.2187079256306114
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00032_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 21.50508942429399,
+      "ssim": 0.25781482290306923
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00032_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 22.023614353945216,
+      "ssim": 0.27314740204401017
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00032_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 22.421717561722755,
+      "ssim": 0.2864263344736479
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00035_f001_oracle.npz",
+      "method": "noisy_input",
+      "psnr": 31.887325650881117,
+      "ssim": 0.7138528273322439
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00035_f001_oracle.npz",
+      "method": "traditional_baseline",
+      "psnr": 25.227952913963584,
+      "ssim": 0.6819543481396106
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00035_f001_oracle.npz",
+      "method": "ours_ootw_3dnr",
+      "psnr": 29.70332005965137,
+      "ssim": 0.7576449803079695
+    },
+    {
+      "video": "surf",
+      "sample": "surf_t00035_f001_oracle.npz",
+      "method": "oracle_upper_bound",
+      "psnr": 33.56278962395759,
+      "ssim": 0.8010306117531484
+    }
+  ]
+}
