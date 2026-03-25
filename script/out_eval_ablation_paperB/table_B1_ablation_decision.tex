@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\caption{Table B1. Decision-level ablation under unified evaluation protocol.}
+\label{tab:b1_ablation_decision}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+Variant & Accuracy & Macro-F1 & MeanAbsClassError & TailRecall@24 & TailRecall@28 & TailRecall@31 \\
+\midrule
+A0 Heuristic baseline & 0.2630 & 0.0463 & 6.4699 & 0.0000 & 0.0000 & 0.0000 \\
+A1 Multiclass LightGBM & 0.2878 & 0.1553 & 4.9832 & 0.0515 & 0.0027 & 0.0000 \\
+A2 Regression-quantization LightGBM & 0.2870 & 0.1574 & 4.9989 & 0.0568 & 0.0014 & 0.0000 \\
+A3 Ordinal raw & 0.2891 & 0.1885 & 5.3242 & 0.1788 & 0.1555 & 0.0640 \\
+A4 Ordinal + threshold tuning & 0.2843 & 0.1827 & 5.3531 & 0.1970 & 0.1252 & 0.0507 \\
+A5 Final deployable ordinal & 0.2849 & 0.1833 & 5.3363 & 0.1946 & 0.1225 & 0.0510 \\
+\bottomrule
+\end{tabular}
+\end{table}
