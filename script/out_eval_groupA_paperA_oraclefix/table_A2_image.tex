@@ -1,0 +1,25 @@
+\begin{table*}[t]
+\centering
+\caption{Table A2. Image-level comparison on DAVIS and Set8 (PSNR/SSIM).}
+\label{tab:a2_image}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccc}
+\toprule
+Dataset & Method & $\sigma=10$ & $\sigma=30$ & $\sigma=50$ \\
+\midrule
+\multirow{6}{*}{DAVIS} & Heuristic baseline & 24.6836/0.693881 & 20.8784/0.386716 & 17.9592/0.245859 \\
+ & Multiclass LightGBM & 27.3380/0.730547 & 21.1251/0.389974 & 17.8820/0.247592 \\
+ & Regression-quantization LightGBM & 27.3400/0.730538 & 21.1278/0.390057 & 17.8845/0.247547 \\
+ & Ordinal LightGBM & 27.2634/0.728272 & 21.1034/0.388859 & 17.9404/0.247210 \\
+ & Ordinal + threshold tuning & 27.1415/0.727972 & 21.1455/0.389960 & 17.9845/0.247750 \\
+ & Oracle upper bound & 29.6366/0.787268 & 22.0906/0.437777 & 18.9956/0.280904 \\
+\midrule
+\multirow{6}{*}{Set8} & Heuristic baseline & 24.5509/0.707589 & 20.8188/0.409305 & 18.0239/0.269415 \\
+ & Multiclass LightGBM & 26.9945/0.739401 & 21.3369/0.417520 & 18.1721/0.275070 \\
+ & Regression-quantization LightGBM & 26.9998/0.739395 & 21.3412/0.417897 & 18.1767/0.275201 \\
+ & Ordinal LightGBM & 26.8915/0.735674 & 21.3086/0.415930 & 18.2209/0.274675 \\
+ & Ordinal + threshold tuning & 26.7889/0.736003 & 21.3303/0.416885 & 18.2570/0.275206 \\
+ & Oracle upper bound & 30.0349/0.806472 & 22.5309/0.482053 & 19.3106/0.320457 \\
+\bottomrule
+\end{tabular}
+\end{table*}
