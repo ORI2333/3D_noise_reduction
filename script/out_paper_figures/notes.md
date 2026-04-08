@@ -13,3 +13,22 @@
 - Input deploy-gap: `script\out_deploy_gap\deploy_gap.json`
 - Generated: `fig_deploy_gap_summary.(png|pdf)`
 - Includes transitions: A4→A5_soft and A5_soft→A5_hw_eq.
+## 09G Plot Deploy Gap Figures
+- Time: `2026-04-08T17:55:27`
+- Seed: `123`
+- Input deploy-gap: `script\out_deploy_gap\deploy_gap.json`
+- Generated: `fig_deploy_gap_summary_v2.(png|pdf)`
+- Visual changes: external top legend, thinner agreement line, no agreement text labels, selective bar labels.
+- Includes transitions: A4→A5_soft and A5_soft→A5_hw_eq.
+- Generated: `fig_deploy_gap_delta_only.(png|pdf)`
+- Generated: `fig_deploy_gap_agreement_only.(png|pdf)`
+## 09G Plot Deploy Gap Figures
+- Time: `2026-04-08T18:00:43`
+- Seed: `123`
+- Input deploy-gap: `script\out_deploy_gap\deploy_gap.json`
+- Generated: `fig_deploy_gap_summary_v2.(png|pdf)`
+- PDF is generated from PNG to ensure visual consistency.
+- Visual changes: external top legend, thinner agreement line, no agreement text labels, selective bar labels.
+- Includes transitions: A4→A5_soft and A5_soft→A5_hw_eq.
+- Generated: `fig_deploy_gap_delta_only.(png|pdf)`
+- Generated: `fig_deploy_gap_agreement_only.(png|pdf)`
