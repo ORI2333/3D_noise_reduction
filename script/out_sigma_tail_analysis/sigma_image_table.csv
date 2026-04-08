@@ -1,0 +1,16 @@
+sigma,method,method_name,psnr,ssim
+10,A2,A2 Regression-quantization LightGBM,27.097757,0.736819
+10,A3,A3 Ordinal raw,26.999390,0.733496
+10,A4,A4 Ordinal + threshold tuning,26.891475,0.733655
+10,A5_soft,A5_soft Software deployable mapping,26.905270,0.733820
+10,A5_hw_eq,A5_hw_eq Exported hardware-equivalent mapping,26.904755,0.733814
+30,A2,A2 Regression-quantization LightGBM,21.285287,0.410067
+30,A3,A3 Ordinal raw,21.254592,0.408304
+30,A4,A4 Ordinal + threshold tuning,21.282080,0.409310
+30,A5_soft,A5_soft Software deployable mapping,21.283478,0.409096
+30,A5_hw_eq,A5_hw_eq Exported hardware-equivalent mapping,21.283482,0.409097
+50,A2,A2 Regression-quantization LightGBM,18.098030,0.267437
+50,A3,A3 Ordinal raw,18.145403,0.266978
+50,A4,A4 Ordinal + threshold tuning,18.183911,0.267509
+50,A5_soft,A5_soft Software deployable mapping,18.183234,0.267428
+50,A5_hw_eq,A5_hw_eq Exported hardware-equivalent mapping,18.183396,0.267431

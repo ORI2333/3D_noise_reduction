@@ -1,0 +1,16 @@
+sigma,method,method_name,accuracy,macro_f1,mean_abs_class_error,tail_recall_24,tail_recall_28,tail_recall_31
+10,A2,A2 Regression-quantization LightGBM,0.202240,0.110317,5.958086,0.009036,0.000000,0.000000
+10,A3,A3 Ordinal raw,0.238726,0.144000,6.110617,0.017642,0.051546,0.066787
+10,A4,A4 Ordinal + threshold tuning,0.227540,0.136989,6.202131,0.023451,0.054983,0.059567
+10,A5_soft,A5_soft Software deployable mapping,0.228241,0.137054,6.183188,0.018718,0.051546,0.064982
+10,A5_hw_eq,A5_hw_eq Exported hardware-equivalent mapping,0.228232,0.137040,6.183946,0.018718,0.051546,0.064982
+30,A2,A2 Regression-quantization LightGBM,0.311395,0.161078,4.666708,0.078078,0.004036,0.000000
+30,A3,A3 Ordinal raw,0.307190,0.170906,5.038548,0.155410,0.191726,0.077261
+30,A4,A4 Ordinal + threshold tuning,0.307668,0.170278,5.010582,0.178145,0.183148,0.064091
+30,A5_soft,A5_soft Software deployable mapping,0.308323,0.170306,4.992821,0.172917,0.172553,0.064091
+30,A5_hw_eq,A5_hw_eq Exported hardware-equivalent mapping,0.308313,0.170414,4.993127,0.173332,0.174067,0.064969
+50,A2,A2 Regression-quantization LightGBM,0.347770,0.159719,4.367201,0.055073,0.000539,0.000000
+50,A3,A3 Ordinal raw,0.322113,0.191548,4.817903,0.227737,0.147889,0.056046
+50,A4,A4 Ordinal + threshold tuning,0.318552,0.187563,4.838605,0.245872,0.108356,0.039440
+50,A5_soft,A5_soft Software deployable mapping,0.318858,0.188256,4.825517,0.245586,0.108176,0.041515
+50,A5_hw_eq,A5_hw_eq Exported hardware-equivalent mapping,0.318794,0.188269,4.826292,0.245586,0.108715,0.041515
