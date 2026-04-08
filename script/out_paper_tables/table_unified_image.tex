@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\centering
+\caption{Unified image-level comparison (PSNR/SSIM).}
+\label{tab:unified_image}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccc}
+\toprule
+Dataset & Variant & $\sigma=10$ & $\sigma=30$ & $\sigma=50$ \\
+\midrule
+\multirow{7}{*}{DAVIS} & A0 Heuristic baseline & 24.7092/0.693827 & 20.8904/0.386003 & 17.9656/0.245126 \\
+ & A1 Multiclass LightGBM & 27.3584/0.729941 & 21.1332/0.389099 & 17.8859/0.246782 \\
+ & A2 Regression-quantization LightGBM & 27.3589/0.729949 & 21.1363/0.389186 & 17.8882/0.246731 \\
+ & A3 Ordinal raw & 27.2870/0.727686 & 21.1106/0.387967 & 17.9442/0.246454 \\
+ & A4 Ordinal + threshold tuning & 27.1651/0.727392 & 21.1536/0.389109 & 17.9891/0.246981 \\
+ & A5_soft Software deployable mapping & 27.1673/0.727404 & 21.1555/0.389121 & 17.9893/0.246978 \\
+ & A5_hw_eq Exported hardware-equivalent mapping & 27.1669/0.727395 & 21.1555/0.389121 & 17.9896/0.246981 \\
+\midrule
+\multirow{7}{*}{Set8} & A0 Heuristic baseline & 24.5509/0.707589 & 20.8188/0.409305 & 18.0239/0.269415 \\
+ & A1 Multiclass LightGBM & 26.9945/0.739401 & 21.3369/0.417520 & 18.1721/0.275070 \\
+ & A2 Regression-quantization LightGBM & 26.9998/0.739395 & 21.3412/0.417897 & 18.1767/0.275201 \\
+ & A3 Ordinal raw & 26.8915/0.735674 & 21.3086/0.415930 & 18.2209/0.274675 \\
+ & A4 Ordinal + threshold tuning & 26.7889/0.736003 & 21.3303/0.416885 & 18.2570/0.275206 \\
+ & A5_soft Software deployable mapping & 26.8070/0.736227 & 21.3315/0.416587 & 18.2560/0.275097 \\
+ & A5_hw_eq Exported hardware-equivalent mapping & 26.8065/0.736221 & 21.3315/0.416587 & 18.2561/0.275099 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\caption{Unified decision-level comparison for A0--A5 variants.}
+\label{tab:unified_decision}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+\toprule
+Variant & Accuracy & Macro-F1 & MeanAbsClassError & TailRecall@24 & TailRecall@28 & TailRecall@31 \\
+\midrule
+A0 Heuristic baseline & 0.2633 & 0.0463 & 6.4652 & 0.0000 & 0.0000 & 0.0000 \\
+A1 Multiclass LightGBM & 0.2879 & 0.1553 & 4.9815 & 0.0513 & 0.0027 & 0.0000 \\
+A2 Regression-quantization LightGBM & 0.2871 & 0.1574 & 4.9973 & 0.0568 & 0.0014 & 0.0000 \\
+A3 Ordinal raw & 0.2893 & 0.1886 & 5.3224 & 0.1787 & 0.1554 & 0.0644 \\
+A4 Ordinal + threshold tuning & 0.2846 & 0.1828 & 5.3504 & 0.1967 & 0.1253 & 0.0503 \\
+A5_soft Software deployable mapping & 0.2851 & 0.1835 & 5.3338 & 0.1943 & 0.1224 & 0.0522 \\
+A5_hw_eq Exported hardware-equivalent mapping & 0.2851 & 0.1836 & 5.3345 & 0.1945 & 0.1231 & 0.0525 \\
+\bottomrule
+\end{tabular}
+\end{table}

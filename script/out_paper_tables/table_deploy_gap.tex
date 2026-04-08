@@ -1,0 +1,14 @@
+\begin{table}[t]
+\centering
+\caption{Deploy gap analysis between adjacent deploy stages.}
+\label{tab:deploy_gap}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccccc}
+\toprule
+Pair & Agreement & Pair-MAE & $\Delta$Macro-F1 & $\Delta$Tail@24 & $\Delta$PSNR \\
+\midrule
+A4_vs_A5_soft & 0.9889 & 0.0791 & 0.0007 & -0.0024 & 0.0048 \\
+A5_soft_vs_A5_hw_eq & 0.9990 & 0.0043 & 0.0001 & 0.0001 & -0.0001 \\
+\bottomrule
+\end{tabular}
+\end{table}

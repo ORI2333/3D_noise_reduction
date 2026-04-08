@@ -1,0 +1,53 @@
+{
+  "base_root": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script",
+  "davis_jpeg_dir": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\DAVIS-2017-trainval-480p\\DAVIS\\JPEGImages\\480p",
+  "set8_dir": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\Set8",
+  "davis_clips": [
+    "surf",
+    "bear",
+    "bmx-trees"
+  ],
+  "sigmas": [
+    10,
+    30,
+    50
+  ],
+  "max_frames_per_seq": 12,
+  "seed": 123,
+  "h_disp": 480,
+  "v_disp": 320,
+  "mb_size": 4,
+  "baseline_temporal_weight": 16,
+  "baseline_threshold": 4095,
+  "w_set": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    31
+  ],
+  "model_dir_multiclass": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\out_train_multiclass",
+  "model_dir_reg": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\out_train_reg",
+  "model_dir_ordinal": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\out_train_ord_v2_full",
+  "tau_tuned_json": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\out_ordinal_tune_v2_full\\report\\taus_monotone.json",
+  "tdnr_py": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\3dnr.py",
+  "oracle_lib_py": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\oracle_lib.py",
+  "protocol_json": "F:\\EngineeringWarehouse\\NR\\3D_noise_reduction\\script\\out_eval_groupA_paperA_oraclefix\\metrics_groupA_full.json",
+  "datasets": [
+    "DAVIS",
+    "Set8"
+  ],
+  "variants": [
+    "A0",
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5_soft",
+    "A5_hw_eq"
+  ]
+}
