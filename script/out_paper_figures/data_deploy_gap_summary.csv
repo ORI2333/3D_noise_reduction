@@ -1,0 +1,3 @@
+transition,delta_macro_f1,delta_psnr,decision_agreement
+A4_vs_A5_soft,0.00073071,0.00483841,0.98890599
+A5_soft_vs_A5_hw_eq,0.00005191,-0.00011611,0.99900279
